@@ -26,6 +26,10 @@
         'views/views.xml',
         'views/templates.xml',
     ],
+    # styles
+    'css': [
+        'static/src/css/custom.css'
+    ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
