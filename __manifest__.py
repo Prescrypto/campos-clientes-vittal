@@ -2,25 +2,23 @@
 {
     'name': "Campos de Clientes",
 
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary': """Campos personalizados para clientes de Vittal.""",
 
     'description': """
-        Long description of module's purpose
+        Campos personalizados para clientes de Vittal. Depende del modulo de ventas.
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Prescrypto",
+    'website': "http://www.prescrypto.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Specific Industry Applications',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'crm'],
 
     # always loaded
     'data': [
