@@ -1,33 +1,29 @@
 <odoo>
-  <data>
+    <data>
+        <template id="assets_backend" name="campos-clientes-vittal assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/campos-clientes-vittal/static/src/css/custom.css"/>
+            </xpath>
+        </template>
 
-    <record model="ir.ui.view" id="view_partner_form">
-        <field name="name">res.partner.form.inherit</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
+        <record model="ir.ui.view" id="view_partner_form">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
 
-          <!-- quitar campos no usados -->
-          <xpath expr="//field[@name='website']" position="replace"></xpath>
-          <xpath expr="//field[@name='category_id']" position="replace"></xpath>
+                <!-- quitar campos no usados -->
+                <xpath expr="//field[@name='website']" position="replace"></xpath>
+                <xpath expr="//field[@name='category_id']" position="replace"></xpath>
+                <xpath expr="//field[@name='lang']" position="replace"></xpath>
 
-          <!-- quitar campo de colonia (zip) existente -->
-          <xpath expr="//field[@name='zip']" position="replace"></xpath>
+                <!-- quitar campo de colonia (zip) existente -->
+                <xpath expr="//field[@name='zip']" position="replace">
+                    <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="zip_extra" placeholder="ZIP Ext" class="o_address_zip_extra" />
+                </xpath>
+            </field>
+        </record>
 
-          <!-- agregar codigo postal con codigo de colonia despues de la direccion -->
-          <xpath expr="//label[@for='street']/parent::*" position="after">
-            <form string="Zip Code">
-                <group>
-                    <group colspan="2" col="2">
-                        <field name="zip" string="Zip"/>
-                        <field name="zip_extra" string="Zip Extra"/>
-                    </group>
-                </group>
-            </form>
-          </xpath>
-
-        </field>
-    </record>
-
-  </data>
+    </data>
 </odoo>
