@@ -1,59 +1,33 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="campos_clientes_vittal.list">
-      <field name="name">campos_clientes_vittal list</field>
-      <field name="model">campos_clientes_vittal.campos_clientes_vittal</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="campos_clientes_vittal.action_window">
-      <field name="name">campos_clientes_vittal window</field>
-      <field name="res_model">campos_clientes_vittal.campos_clientes_vittal</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+    <record model="ir.ui.view" id="view_partner_form">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="campos_clientes_vittal.action_server">
-      <field name="name">campos_clientes_vittal server</field>
-      <field name="model_id" ref="model_campos_clientes_vittal_campos_clientes_vittal"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+          <!-- quitar campos no usados -->
+          <xpath expr="//field[@name='website']" position="replace"></xpath>
+          <xpath expr="//field[@name='category_id']" position="replace"></xpath>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="campos_clientes_vittal" id="campos_clientes_vittal.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="campos_clientes_vittal.menu_1" parent="campos_clientes_vittal.menu_root"/>
-    <menuitem name="Menu 2" id="campos_clientes_vittal.menu_2" parent="campos_clientes_vittal.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="campos_clientes_vittal.menu_1_list" parent="campos_clientes_vittal.menu_1"
-              action="campos_clientes_vittal.action_window"/>
-    <menuitem name="Server to list" id="campos_clientes_vittal" parent="campos_clientes_vittal.menu_2"
-              action="campos_clientes_vittal.action_server"/>
-    -->
+          <!-- quitar campo de colonia (zip) existente -->
+          <xpath expr="//field[@name='zip']" position="replace"></xpath>
+
+          <!-- agregar codigo postal con codigo de colonia despues de la direccion -->
+          <xpath expr="//label[@for='street']/parent::*" position="after">
+            <form string="Zip Code">
+                <group>
+                    <group colspan="2" col="2">
+                        <field name="zip" string="Zip"/>
+                        <field name="zip_extra" string="Zip Extra"/>
+                    </group>
+                </group>
+            </form>
+          </xpath>
+
+        </field>
+    </record>
+
   </data>
 </odoo>
