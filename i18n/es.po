@@ -1,0 +1,45 @@
+# Translation of Prescrypto Server.
+# This file contains the translation of the following modules:
+# 	* campos-clientes-vittal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Prescrypto Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-15 21:53+0000\n"
+"PO-Revision-Date: 2017-09-15 15:36-0700\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.3\n"
+"Last-Translator: \n"
+"Language: es\n"
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_zip_extra
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_zip_extra
+msgid "Extended Zip code"
+msgstr "Código Postal de Colonia"
+
+#. module: campos-clientes-vittal
+#: model:ir.model,name:campos-clientes-vittal.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "ZIP"
+msgstr "Código Postal"
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "ZIP Ext"
+msgstr "C.P. Colonia"
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_zip_extra
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_zip_extra
+msgid "Zip Extra"
+msgstr "C.P. Colonia"
