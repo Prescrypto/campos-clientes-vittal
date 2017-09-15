@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "campos_clientes_vittal",
+    'name': "Campos de Clientes",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
