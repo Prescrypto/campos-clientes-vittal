@@ -5,7 +5,14 @@ from odoo import models, fields, api
 class campos_clientes_vittal(models.Model):
     _inherit = 'res.partner'
 
+    # codigo postal de colonia
     zip_extra = fields.Char(string="Zip Extra", help="Extended zip code")
+
+    # agregar tipo de usuario adicional
+    client_type = fields.Selection(selection=[
+        ('company', 'Company'),
+        ('family', 'Family'),
+        ('individual', 'Individual')])
 
     # fn ex
     #

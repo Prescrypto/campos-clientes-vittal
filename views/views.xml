@@ -19,9 +19,49 @@
 
                 <!-- quitar campo de colonia (zip) existente -->
                 <xpath expr="//field[@name='zip']" position="replace">
-                    <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
                     <field name="zip_extra" placeholder="ZIP Ext" class="o_address_zip_extra" />
                 </xpath>
+
+                <!-- renombrar campo de nombre -->
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" default_focus="1" placeholder="Name" attrs="{'required' : [('type', '=', 'contact')]}"/>
+                </xpath>
+
+                <!-- agregar campo de tipo de cliente -->
+                <xpath expr="//field[@name='company_type']" position="replace">
+                    <field name="client_type" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>
+                </xpath>
+
+                <!-- quitar validaciones sobre campo deprecado -->
+                <xpath expr="//field[@name='parent_id']" position="replace"></xpath>
+                <xpath expr="//field[@name='type']" position="replace">
+                    <field name="type" attrs="{'invisible': True}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='open_parent']" position="replace"></xpath>
+
+                <xpath expr="//field[@name='street']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street2']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='zip']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='function']" position="replace"></xpath>
+                <xpath expr="//field[@name='title']" position="replace"></xpath>
             </field>
         </record>
 
