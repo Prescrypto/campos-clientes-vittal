@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-15 21:53+0000\n"
-"PO-Revision-Date: 2017-09-15 21:53+0000\n"
+"POT-Creation-Date: 2017-09-18 05:48+0000\n"
+"PO-Revision-Date: 2017-09-18 05:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_client_type
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_client_type
+msgid "Client type"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:res.partner,client_type:0
+msgid "Company"
+msgstr ""
+
+#. module: campos-clientes-vittal
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_zip_extra
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_zip_extra
-msgid "Extended Zip code"
+msgid "Extended zip code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:res.partner,client_type:0
+msgid "Family"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:res.partner,client_type:0
+msgid "Individual"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Name"
 msgstr ""
 
 #. module: campos-clientes-vittal
