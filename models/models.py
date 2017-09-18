@@ -14,6 +14,9 @@ class campos_clientes_vittal(models.Model):
         ('family', 'Family'),
         ('individual', 'Individual')])
 
+    # agregar nombre comercial
+    legal_name = fields.Char(string="Legal Name", help="Legal or fiscal name of business")
+
     # fn ex
     #
     # value = fields.Integer()
