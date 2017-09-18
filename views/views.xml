@@ -62,6 +62,12 @@
 
                 <xpath expr="//field[@name='function']" position="replace"></xpath>
                 <xpath expr="//field[@name='title']" position="replace"></xpath>
+
+                <!-- agregar pestaña para mostrar miembros -->
+                <xpath expr="//page[@name='internal_notes']" position="before">
+                    <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
+                    </page>
+                </xpath>
             </field>
         </record>
 
