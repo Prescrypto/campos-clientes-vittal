@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 05:48+0000\n"
-"PO-Revision-Date: 2017-09-18 05:48+0000\n"
+"POT-Creation-Date: 2017-09-18 22:13+0000\n"
+"PO-Revision-Date: 2017-09-18 22:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,24 @@ msgstr ""
 #. module: campos-clientes-vittal
 #: selection:res.partner,client_type:0
 msgid "Individual"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_legal_name
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_legal_name
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Legal Name"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_legal_name
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_legal_name
+msgid "Legal or fiscal name of business"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Members"
 msgstr ""
 
 #. module: campos-clientes-vittal
