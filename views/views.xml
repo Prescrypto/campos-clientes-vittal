@@ -12,6 +12,13 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
 
+                <!-- agregar nombre comercial -->
+                <xpath expr="//h1" position="after">
+                    <div class="o_row">
+                        <field name="legal_name" placeholder="Legal Name" attrs="{'invisible': [('client_type', '!=', 'company')]}" modifiers="{'required': [('client_type', '=', 'company')]}"/>
+                    </div>
+                </xpath>
+
                 <!-- quitar campos no usados -->
                 <xpath expr="//field[@name='website']" position="replace"></xpath>
                 <xpath expr="//field[@name='category_id']" position="replace"></xpath>
@@ -62,6 +69,12 @@
 
                 <xpath expr="//field[@name='function']" position="replace"></xpath>
                 <xpath expr="//field[@name='title']" position="replace"></xpath>
+
+                <!-- agregar pestaña para mostrar miembros -->
+                <xpath expr="//page[@name='internal_notes']" position="before">
+                    <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
+                    </page>
+                </xpath>
             </field>
         </record>
 

@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 05:48+0000\n"
-"PO-Revision-Date: 2017-09-17 22:59-0700\n"
+"POT-Creation-Date: 2017-09-18 22:13+0000\n"
+"PO-Revision-Date: 2017-09-18 15:15-0700\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
-"Last-Translator: \n"
-"Language: es\n"
 
 #. module: campos-clientes-vittal
 #: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_client_type
@@ -31,7 +31,7 @@ msgstr "Compañia"
 #. module: campos-clientes-vittal
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_zip_extra
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_zip_extra
-msgid "Extended Zip code"
+msgid "Extended zip code"
 msgstr "Código Postal de Colonia"
 
 #. module: campos-clientes-vittal
@@ -43,6 +43,24 @@ msgstr "Familia"
 #: selection:res.partner,client_type:0
 msgid "Individual"
 msgstr "Individual"
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_legal_name
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_legal_name
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Legal Name"
+msgstr "Nombre Comercial"
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_legal_name
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_legal_name
+msgid "Legal or fiscal name of business"
+msgstr "Nombre comercial o fiscal del negocio"
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Members"
+msgstr "Miembros"
 
 #. module: campos-clientes-vittal
 #: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
