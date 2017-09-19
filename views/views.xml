@@ -41,7 +41,9 @@
                 </xpath>
 
                 <!-- quitar validaciones sobre campo deprecado -->
-                <xpath expr="//field[@name='parent_id']" position="replace"></xpath>
+                <xpath expr="//field[@name='parent_id']" position="replace">
+                    <field name="parent_id" attrs="{'invisible': True}"/>
+                </xpath>
                 <xpath expr="//field[@name='type']" position="replace">
                     <field name="type" attrs="{'invisible': True}"/>
                 </xpath>
@@ -73,11 +75,6 @@
                 <!-- agregar pestaña para mostrar miembros -->
                 <xpath expr="//notebook/page[1]" position="after">
                     <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
-                    </page>
-                </xpath>
-
-                <xpath expr="//notebook/page[1]" position="replace">
-                    <page string="Directions" attrs="{'invisible': [('client_type', '=', 'individual')]}">
                     </page>
                 </xpath>
             </field>
