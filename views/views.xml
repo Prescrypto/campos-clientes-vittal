@@ -71,8 +71,13 @@
                 <xpath expr="//field[@name='title']" position="replace"></xpath>
 
                 <!-- agregar pestaña para mostrar miembros -->
-                <xpath expr="//page[@name='internal_notes']" position="before">
+                <xpath expr="//notebook/page[1]" position="after">
                     <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
+                    </page>
+                </xpath>
+
+                <xpath expr="//notebook/page[1]" position="replace">
+                    <page string="Directions" attrs="{'invisible': [('client_type', '=', 'individual')]}">
                     </page>
                 </xpath>
             </field>
