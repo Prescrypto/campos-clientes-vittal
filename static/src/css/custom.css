@@ -31,3 +31,12 @@
   content: '– ';
   margin-right: -3px;
 }
+
+.o_form_view .oe_title > .o_legal_name {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.o_address_zip_container {
+  display: block;
+}

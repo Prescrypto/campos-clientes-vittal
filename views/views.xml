@@ -11,6 +11,11 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
+                <xpath expr="//h1" position="replace">
+                    <h1 class="o_legal_name">
+                        <field name="name" default_focus="1" placeholder="Name" attrs="{'required' : [('type', '=', 'contact')]}"/>
+                    </h1>
+                </xpath>
 
                 <xpath expr="//h1" position="after">
                     <!-- agregar nombre comercial -->
@@ -56,8 +61,10 @@
 
                 <!-- quitar campo de colonia (zip) existente -->
                 <xpath expr="//field[@name='zip']" position="replace">
-                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                    <field name="zip_extra" placeholder="ZIP Ext" class="o_address_zip_extra" />
+                    <div class="o_address_zip_container">
+                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="zip_extra" placeholder="ZIP Ext" class="o_address_zip_extra" />
+                    </div>
                 </xpath>
 
                 <!-- renombrar campo de nombre -->
