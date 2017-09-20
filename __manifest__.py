@@ -18,7 +18,18 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'crm'],
+    'depends': [
+        'base',
+        'crm',
+        'stock',
+        'mrp',
+        'sale',
+        'point_of_sale',
+        'account',
+        'account_accountant',
+        'contacts',
+        'board'
+    ],
 
     # always loaded
     'data': [
