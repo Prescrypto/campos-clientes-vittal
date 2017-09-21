@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-19 00:44+0000\n"
-"PO-Revision-Date: 2017-09-19 00:44+0000\n"
+"POT-Creation-Date: 2017-09-21 05:44+0000\n"
+"PO-Revision-Date: 2017-09-21 05:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,38 +16,244 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: campos-clientes-vittal
+#: selection:partner.member,group_id:0
+#: selection:res.partner,group_id:0
+msgid "AREA-P"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Address"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_122.py:39
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_123.py:39
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_124.py:39
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_126.py:40
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_127.py:40
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_128.py:40
+#: code:addons/campos-clientes-vittal/models/models.py:35
+#, python-format
+msgid "Agreements"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,zone:0
+#: selection:res.partner,zone:0
+msgid "BQELMS"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,group_id:0
+#: selection:res.partner,group_id:0
+msgid "CONV"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "City"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_client_type
 #: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_client_type
 #: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_client_type
 msgid "Client type"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: selection:partner.member,client_type:0
 #: selection:res.partner,client_type:0
 msgid "Company"
 msgstr ""
 
 #. module: campos-clientes-vittal
 #: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
-msgid "Directions"
+msgid "Contact / Address"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Contact Name"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Country"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_country_code
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_country_code
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_country_code
+msgid "Country Code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Date client first subscribed"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Date when subscription ends"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_sub_start_date
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_sub_start_date
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_sub_start_date
+msgid "Date when subscription started"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Date when subscription starts"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_sub_duration
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_sub_duration
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_sub_duration
+msgid "Duration"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,group_id:0
+#: selection:res.partner,group_id:0
+msgid "EVENTO"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "End of Subscription"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_122.py:40
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_123.py:40
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_124.py:40
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_126.py:41
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_127.py:41
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_128.py:41
+#: code:addons/campos-clientes-vittal/models/models.py:36
+#, python-format
+msgid "Events"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_zip_extra
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_zip_extra
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_zip_extra
 msgid "Extended zip code"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: selection:partner.member,client_type:0
 #: selection:res.partner,client_type:0
 msgid "Family"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Fax:"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,group_id:0
+#: selection:res.partner,group_id:0
+msgid "GRUPOS"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_group_id
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_group_id
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_group_id
+msgid "Group Code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_group_name
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_group_name
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_group_name
+msgid "Group name"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_122.py:41
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_123.py:41
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_124.py:41
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_126.py:42
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_127.py:42
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_128.py:42
+#: code:addons/campos-clientes-vittal/models/models.py:37
+#, python-format
+msgid "Groups"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_id
+msgid "ID"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,zone:0
+#: selection:res.partner,zone:0
+msgid "ITRLMS"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,client_type:0
 #: selection:res.partner,client_type:0
 msgid "Individual"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_group_id
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_group_id
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_group_id
+msgid "Internal group code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Join Date"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,zone:0
+#: selection:res.partner,zone:0
+msgid "LOMAS"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_legal_name
 #: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_legal_name
 #: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_legal_name
 #: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
@@ -55,14 +261,23 @@ msgid "Legal Name"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_legal_name
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_legal_name
 #: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_legal_name
 msgid "Legal or fiscal name of business"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_member_ids
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_member_ids
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_member_ids
 #: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
 msgid "Members"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Mobile:"
 msgstr ""
 
 #. module: campos-clientes-vittal
@@ -71,8 +286,197 @@ msgid "Name"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_122.py:43
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_123.py:43
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_124.py:43
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_126.py:44
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_127.py:44
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_128.py:44
+#: code:addons/campos-clientes-vittal/models/models.py:39
+#, python-format
+msgid "None Selected"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,group_id:0
+#: selection:res.partner,group_id:0
+msgid "OTROS"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_122.py:42
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_123.py:42
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_124.py:42
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_126.py:43
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_127.py:43
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_128.py:43
+#: code:addons/campos-clientes-vittal/models/models.py:38
+#, python-format
+msgid "Other"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,zone:0
+#: selection:res.partner,zone:0
+msgid "PLNCO"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_parent_id
+msgid "Parent"
+msgstr ""
+
+#. module: campos-clientes-vittal
 #: model:ir.model,name:campos-clientes-vittal.model_res_partner
 msgid "Partner"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Phone:"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_product_custom_id
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_product_custom_id
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_product_custom_id
+msgid "Product Code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_product_custom_id
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_product_custom_id
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_product_custom_id
+msgid "Product code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_122.py:38
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_123.py:38
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_124.py:38
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_126.py:39
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_127.py:39
+#: code:addons/campos-clientes-vittal/models/.models.py@neomake_29660_128.py:39
+#: code:addons/campos-clientes-vittal/models/models.py:34
+#, python-format
+msgid "Protected Areas"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_protected_home_user
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_protected_home_user
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_protected_home_user
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Protected Home"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_protected_home
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_protected_home
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_protected_home
+msgid "Protected home"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_protected_home_auto
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_protected_home_auto
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_protected_home_auto
+msgid "Protected home auto"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_protected_home_user
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_protected_home_user
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_protected_home_user
+msgid "Protected home program"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_quantity
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_quantity
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Quantity in Group"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_quantity
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_quantity
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_quantity
+msgid "Quantity in group"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_rfc
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_rfc
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_rfc
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "RFC"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_rfc
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_rfc
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_rfc
+msgid "RFC Code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,zone:0
+#: selection:res.partner,zone:0
+msgid "SFE"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_sub_start_date
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_sub_start_date
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_sub_start_date
+msgid "Start of Subscription"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "State"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Street 2..."
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "Street..."
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_sub_end_date
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_sub_end_date
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_sub_end_date
+msgid "Sub end date"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,zone:0
+#: selection:res.partner,zone:0
+msgid "TCMCHL"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_country_code
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_country_code
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_country_code
+msgid "Telephone country code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: selection:partner.member,zone:0
+#: selection:res.partner,zone:0
+msgid "UNICA"
 msgstr ""
 
 #. module: campos-clientes-vittal
@@ -86,8 +490,48 @@ msgid "ZIP Ext"
 msgstr ""
 
 #. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_zip_extra
 #: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_zip_extra
 #: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_zip_extra
 msgid "Zip Extra"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_partner_member_zone
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_partner_zone
+#: model:ir.model.fields,field_description:campos-clientes-vittal.field_res_users_zone
+msgid "Zone"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model.fields,help:campos-clientes-vittal.field_partner_member_zone
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_partner_zone
+#: model:ir.model.fields,help:campos-clientes-vittal.field_res_users_zone
+msgid "Zone code"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "e.g. CMPLUS"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "e.g. Mr."
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "e.g. Sales Director"
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.ui.view,arch_db:campos-clientes-vittal.view_partner_form
+msgid "internal note..."
+msgstr ""
+
+#. module: campos-clientes-vittal
+#: model:ir.model,name:campos-clientes-vittal.model_partner_member
+msgid "partner.member"
 msgstr ""
 
