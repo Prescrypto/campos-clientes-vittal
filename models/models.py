@@ -8,6 +8,12 @@ from dateutil.relativedelta import relativedelta
 class UserClients(models.Model):
     _inherit = 'res.partner'
 
+    # miembros del grupo
+    member_ids = fields.One2many(
+        'partner.member',
+        'parent_id',
+        string='Members')
+
     # código de grupo
     group_id = fields.Selection(string="Group Code",
                                 help="Internal group code",
@@ -107,3 +113,14 @@ class UserClients(models.Model):
         for record in self:
             if record.protected_home_auto or record.protected_home_user:
                 record.protected_home = True
+
+
+class ClientMembers(models.Model):
+    _name = 'partner.member'
+    _inherit = 'res.partner'
+
+    # padre del miembro
+    parent_id = fields.Many2one(
+        'res.partner',
+        string="Parent",
+        ondelete="cascade")
