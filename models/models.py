@@ -9,13 +9,15 @@ class UserClients(models.Model):
     _inherit = 'res.partner'
 
     # código de grupo
-    group_id = fields.Selection(string="Group Code", help="Internal group code", selection=[
-        ('area_p', 'AREA-P'),
-        ('conv', 'CONV'),
-        ('evento', 'EVENTO'),
-        ('grupos', 'GRUPOS'),
-        ('otros', 'OTROS')
-    ])
+    group_id = fields.Selection(string="Group Code",
+                                help="Internal group code",
+                                selection=[
+                                    ('area_p', 'AREA-P'),
+                                    ('conv', 'CONV'),
+                                    ('evento', 'EVENTO'),
+                                    ('grupos', 'GRUPOS'),
+                                    ('otros', 'OTROS')
+                                ])
 
     group_name = fields.Char(compute="_group_name", store=True)
 
@@ -41,13 +43,15 @@ class UserClients(models.Model):
         ('individual', 'Individual')])
 
     # nombre comercial
-    legal_name = fields.Char(string="Legal Name", help="Legal or fiscal name of business")
+    legal_name = fields.Char(string="Legal Name",
+                             help="Legal or fiscal name of business")
 
     # rfc
     rfc = fields.Char(string="RFC", help="RFC Code")
 
     # lada de país
-    country_code = fields.Char(string="Country Code", help="Telephone country code")
+    country_code = fields.Char(string="Country Code",
+                               help="Telephone country code")
 
     # código de zona
     zone = fields.Selection(string="Zone", help="Zone code", selection=[
@@ -68,18 +72,24 @@ class UserClients(models.Model):
 
     # fechas de suscripción
     sub_duration = fields.Integer('Duration', default=1)
-    sub_start_date = fields.Date(string="Start of Subscription", help="Date when subscription started")
+
+    sub_start_date = fields.Date(string="Start of Subscription",
+                                 help="Date when subscription started")
+
     sub_end_date = fields.Date(compute="_add_month", store=True)
 
     @api.depends('sub_start_date', 'sub_duration')
     def _add_month(self):
         for record in self:
             if record.sub_start_date:
-                endtime = fields.Datetime.from_string(record.sub_start_date) + relativedelta(months=record.sub_duration)
+                start_fmt = fields.Datetime.from_string(record.sub_start_date)
+                endtime = start_fmt + relativedelta(months=record.sub_duration)
                 record.sub_end_date = fields.Datetime.to_string(endtime)
 
     # hogar protegido
-    protected_home_auto = fields.Boolean(compute="_protected_home_auto", store=True, readonly=True)
+    protected_home_auto = fields.Boolean(compute="_protected_home_auto",
+                                         store=True,
+                                         readonly=True)
 
     @api.depends('quantity')
     def _protected_home_auto(self):
@@ -87,7 +97,8 @@ class UserClients(models.Model):
             if record.quantity > 4:
                 record.protected_home_auto = True
 
-    protected_home_user = fields.Boolean(string='Protected Home', help="Protected home program")
+    protected_home_user = fields.Boolean(string='Protected Home',
+                                         help="Protected home program")
 
     protected_home = fields.Boolean(compute="_protected_home", store=True)
 
