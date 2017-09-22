@@ -5,7 +5,7 @@ from odoo import models, fields, api
 from dateutil.relativedelta import relativedelta
 
 
-class UserClients(models.Model):
+class user_client(models.Model):
     _inherit = 'res.partner'
 
     # miembros del grupo
@@ -115,7 +115,7 @@ class UserClients(models.Model):
                 record.protected_home = True
 
 
-class ClientMembers(models.Model):
+class partner_member(models.Model):
     _name = 'partner.member'
     _inherit = 'res.partner'
 
