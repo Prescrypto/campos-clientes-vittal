@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-21 05:44+0000\n"
-"PO-Revision-Date: 2017-09-21 05:44+0000\n"
+"POT-Creation-Date: 2017-09-25 04:54+0000\n"
+"PO-Revision-Date: 2017-09-25 04:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,20 +22,14 @@ msgid "AREA-P"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Address"
+#: code:addons/campos_clientes_vittal/models/models.py:36
+#, python-format
+msgid "Agreements"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_122.py:39
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_123.py:39
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_124.py:39
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_126.py:40
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_127.py:40
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_128.py:40
-#: code:addons/campos_clientes_vittal/models/models.py:35
-#, python-format
-msgid "Agreements"
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_member_id
+msgid "Associate ID"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -45,14 +39,14 @@ msgid "BQELMS"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: selection:partner.member,group_id:0
-#: selection:res.partner,group_id:0
-msgid "CONV"
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_birthday
+msgid "Birthday"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "City"
+#: selection:partner.member,group_id:0
+#: selection:res.partner,group_id:0
+msgid "CONV"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -79,11 +73,6 @@ msgid "Contact Name"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Country"
-msgstr ""
-
-#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_country_code
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_country_code
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_country_code
@@ -103,6 +92,11 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Date client first subscribed"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,help:campos_clientes_vittal.field_partner_member_birthday
+msgid "Date of birth"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -141,13 +135,7 @@ msgid "End of Subscription"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_122.py:40
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_123.py:40
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_124.py:40
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_126.py:41
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_127.py:41
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_128.py:41
-#: code:addons/campos_clientes_vittal/models/models.py:36
+#: code:addons/campos_clientes_vittal/models/models.py:37
 #, python-format
 msgid "Events"
 msgstr ""
@@ -163,11 +151,6 @@ msgstr ""
 #: selection:partner.member,client_type:0
 #: selection:res.partner,client_type:0
 msgid "Family"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Fax:"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -191,13 +174,7 @@ msgid "Group name"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_122.py:41
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_123.py:41
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_124.py:41
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_126.py:42
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_127.py:42
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_128.py:42
-#: code:addons/campos_clientes_vittal/models/models.py:37
+#: code:addons/campos_clientes_vittal/models/models.py:38
 #, python-format
 msgid "Groups"
 msgstr ""
@@ -224,6 +201,16 @@ msgstr ""
 #: model:ir.model.fields,help:campos_clientes_vittal.field_res_partner_group_id
 #: model:ir.model.fields,help:campos_clientes_vittal.field_res_users_group_id
 msgid "Internal group code"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Internal note…"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,help:campos_clientes_vittal.field_partner_member_is_owner
+msgid "Is this the owner"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -277,24 +264,18 @@ msgstr ""
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Mobile:"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Name"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_122.py:43
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_123.py:43
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_124.py:43
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_126.py:44
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_127.py:44
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_128.py:44
-#: code:addons/campos_clientes_vittal/models/models.py:39
+#: code:addons/campos_clientes_vittal/models/models.py:40
 #, python-format
 msgid "None Selected"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: selection:partner.member,relationship:0
+msgid "Not family"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -304,15 +285,24 @@ msgid "OTROS"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_122.py:42
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_123.py:42
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_124.py:42
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_126.py:43
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_127.py:43
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_128.py:43
-#: code:addons/campos_clientes_vittal/models/models.py:38
+#: selection:partner.member,relationship:0
+msgid "Offspring"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: code:addons/campos_clientes_vittal/models/models.py:39
 #, python-format
 msgid "Other"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: selection:partner.member,relationship:0
+msgid "Other family"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_is_owner
+msgid "Owner"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -332,11 +322,6 @@ msgid "Partner"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Phone:"
-msgstr ""
-
-#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_product_custom_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_product_custom_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_product_custom_id
@@ -351,13 +336,7 @@ msgid "Product code"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_122.py:38
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_123.py:38
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_124.py:38
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_126.py:39
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_127.py:39
-#: code:addons/campos_clientes_vittal/models/.models.py@neomake_29660_128.py:39
-#: code:addons/campos_clientes_vittal/models/models.py:34
+#: code:addons/campos_clientes_vittal/models/models.py:35
 #, python-format
 msgid "Protected Areas"
 msgstr ""
@@ -426,9 +405,19 @@ msgid "RFC Code"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_relationship
+msgid "Relationship"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: selection:partner.member,zone:0
 #: selection:res.partner,zone:0
 msgid "SFE"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: selection:partner.member,relationship:0
+msgid "Spouse"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -436,21 +425,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sub_start_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sub_start_date
 msgid "Start of Subscription"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "State"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Street 2..."
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Street..."
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -474,9 +448,19 @@ msgid "Telephone country code"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,help:campos_clientes_vittal.field_partner_member_relationship
+msgid "Type of member"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: selection:partner.member,zone:0
 #: selection:res.partner,zone:0
 msgid "UNICA"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,help:campos_clientes_vittal.field_partner_member_member_id
+msgid "Unique identifier for associates"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -513,21 +497,6 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "e.g. CMPLUS"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "e.g. Mr."
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "e.g. Sales Director"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "internal note..."
 msgstr ""
 
 #. module: campos_clientes_vittal
