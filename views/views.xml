@@ -109,6 +109,65 @@
                 <xpath expr="//field[@name='function']" position="replace"></xpath>
                 <xpath expr="//field[@name='title']" position="replace"></xpath>
 
+                <!-- modificar pestaña para mostrar direcciones -->
+                <xpath expr="//notebook/page[1]" position="replace">
+                    <page string="Addresses">
+                        <field name="child_ids" attrs="{'invisible': True}">
+                            <field name="type"/>
+                        </field>
+                        <field name="address_ids" mode="tree" context="{'default_sub_start_date': sub_start_date, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id}">
+                            <tree>
+                                <field name="address_type" />
+                                <field name="street"/>
+                                <field name="city"/>
+                                <field name="state_id"/>
+                            </tree>
+                            <form string="Addresses">
+                                <sheet>
+                                    <group>
+                                        <field name="default_address"/>
+                                        <field name="address_type" required="1" widget="radio" options="{'horizontal': true}"/>
+                                    </group>
+                                    <hr/>
+                                    <group>
+                                        <group>
+                                            <label for="street" string="Address"/>
+                                            <div>
+                                                <div class="o_address_format" name="div_address">
+                                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                                    <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True}" context="{'country_id': country_id, 'zip': zip}"/>
+                                                    <div class="o_address_zip_container">
+                                                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                                        <field name="zip_extra" placeholder="ZIP Ext" class="o_address_zip_extra" />
+                                                    </div>
+                                                    <field name="country_id" placeholder="Country" class="o_address_country" options="{'no_open': True, 'no_create': True}"/>
+                                                    <field name="cross_street" placeholder="Cross Street"/>
+                                                    <field name="references" placeholder="References"/>
+                                                    <field name="exterior" placeholder="Exterior"/>
+                                                    <field name="details" placeholder="Special details or characteristics"/>
+                                                </div>
+                                            </div>
+                                        </group>
+                                        <group>
+                                            <field name="name" string="Contact Name"/>
+                                            <field name="email"/>
+                                            <field name="phone" widget="phone"/>
+                                            <field name="mobile" widget="phone"/>
+                                            <field name="comment" placeholder="Internal note…"/>
+                                        </group>
+                                    </group>
+                                    <field name="supplier" invisible="True"/>
+                                    <field name="customer" invisible="True"/>
+                                    <field name="lang" invisible="True"/>
+                                    <field name="image" invisible="True"/>
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+
                 <!-- agregar pestaña para mostrar miembros -->
                 <xpath expr="//notebook/page[1]" position="after">
                     <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
@@ -120,7 +179,7 @@
                                 <field name="phone"/>
                                 <field name="email"/>
                             </tree>
-                            <form string="Contact / Address">
+                            <form string="Members">
                                 <sheet>
                                     <group>
                                         <field name="is_owner"/>
