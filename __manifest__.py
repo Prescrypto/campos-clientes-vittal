@@ -36,6 +36,7 @@
         'security/ir.model.access.csv',
         'views/view_partner_form.xml',
         'views/view_product_form.xml',
+        'views/view_partner_filter.xml',
         'views/templates.xml',
     ],
     # styles

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-26 20:19+0000\n"
-"PO-Revision-Date: 2017-09-26 20:19+0000\n"
+"POT-Creation-Date: 2017-09-26 20:51+0000\n"
+"PO-Revision-Date: 2017-09-26 20:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -163,11 +163,6 @@ msgid "Cross Streets"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Date client registered"
-msgstr ""
-
-#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
 msgid "Date when subscription ends"
 msgstr ""
@@ -316,6 +311,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_legal_name
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_legal_name
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_legal_name
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_filter
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Legal Name"
 msgstr ""
