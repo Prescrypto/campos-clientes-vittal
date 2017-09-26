@@ -34,7 +34,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml',
+        'views/view_partner_form.xml',
         'views/templates.xml',
     ],
     # styles
