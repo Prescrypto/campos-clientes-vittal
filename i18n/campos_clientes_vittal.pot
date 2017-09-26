@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-25 21:10+0000\n"
-"PO-Revision-Date: 2017-09-25 21:10+0000\n"
+"POT-Creation-Date: 2017-09-26 19:54+0000\n"
+"PO-Revision-Date: 2017-09-26 19:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,14 +42,14 @@ msgid "Addresses"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:172
+#: code:addons/campos_clientes_vittal/models/partner_address.py:19
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Administrative Address"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:42
+#: code:addons/campos_clientes_vittal/models/user_client.py:35
 #, python-format
 msgid "Agreements"
 msgstr ""
@@ -60,10 +60,27 @@ msgid "Associate ID"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_auto_invoice
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_auto_invoice
+msgid "Automatic Invoicing"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_auto_payment
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_auto_payment
+msgid "Automatic Payment"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: selection:partner.address,zone:0
 #: selection:partner.member,zone:0
 #: selection:res.partner,zone:0
 msgid "BQELMS"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: selection:product.template,recurrence:0
+msgid "Bimonthly"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -117,7 +134,7 @@ msgid "Country Code"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:174
+#: code:addons/campos_clientes_vittal/models/partner_address.py:22
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Coverage Address"
@@ -157,6 +174,7 @@ msgstr ""
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
 msgid "Date when subscription ends"
 msgstr ""
 
@@ -170,6 +188,7 @@ msgstr ""
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
 msgid "Date when subscription starts"
 msgstr ""
 
@@ -209,12 +228,15 @@ msgid "EVENTO"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_sub_end_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_sub_end_date
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
 msgid "End of Subscription"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:43
+#: code:addons/campos_clientes_vittal/models/user_client.py:36
 #, python-format
 msgid "Events"
 msgstr ""
@@ -241,7 +263,7 @@ msgid "Family"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:173
+#: code:addons/campos_clientes_vittal/models/partner_address.py:20
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Fiscal Address"
@@ -276,7 +298,7 @@ msgid "Group name"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:44
+#: code:addons/campos_clientes_vittal/models/user_client.py:37
 #, python-format
 msgid "Groups"
 msgstr ""
@@ -376,6 +398,11 @@ msgid "Members"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: selection:product.template,recurrence:0
+msgid "Monthly"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Name"
 msgstr ""
@@ -391,7 +418,7 @@ msgid "Nearest intersection"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:46
+#: code:addons/campos_clientes_vittal/models/user_client.py:39
 #, python-format
 msgid "None Selected"
 msgstr ""
@@ -414,7 +441,7 @@ msgid "Offspring"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:45
+#: code:addons/campos_clientes_vittal/models/user_client.py:38
 #, python-format
 msgid "Other"
 msgstr ""
@@ -456,6 +483,11 @@ msgid "Product Code"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,help:campos_clientes_vittal.field_partner_address_product_custom_id
 #: model:ir.model.fields,help:campos_clientes_vittal.field_partner_member_product_custom_id
 #: model:ir.model.fields,help:campos_clientes_vittal.field_res_partner_product_custom_id
@@ -464,7 +496,7 @@ msgid "Product code"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:41
+#: code:addons/campos_clientes_vittal/models/user_client.py:34
 #, python-format
 msgid "Protected Areas"
 msgstr ""
@@ -541,6 +573,12 @@ msgid "RFC Code"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_recurrence
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_recurrence
+msgid "Recurrence"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_references
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "References"
@@ -559,6 +597,11 @@ msgid "SFE"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: selection:product.template,recurrence:0
+msgid "Semiannually"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,help:campos_clientes_vittal.field_partner_address_details
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Special details or characteristics"
@@ -572,6 +615,8 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_sub_start_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_member_sub_start_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_sub_start_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_sub_start_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sub_start_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sub_start_date
 msgid "Start of Subscription"
@@ -601,7 +646,18 @@ msgid "Sub end date"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/models.py:175
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_sub_invoice_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_sub_invoice_date
+msgid "Sub invoice date"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
+msgid "Subscriptions"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: code:addons/campos_clientes_vittal/models/partner_address.py:23
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Support Address"
@@ -637,6 +693,11 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,help:campos_clientes_vittal.field_partner_member_member_id
 msgid "Unique identifier for associates"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: selection:product.template,recurrence:0
+msgid "Yearly"
 msgstr ""
 
 #. module: campos_clientes_vittal
