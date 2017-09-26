@@ -25,9 +25,7 @@
 
                 <xpath expr="//field[@name='category_id']" position="after">
                     <!-- agregar campo de fechas de suscripción -->
-                    <field name="date" placeholder="Date client first subscribed" string="Join Date"/>
-                    <field name="sub_start_date" placeholder="Date when subscription starts"/>
-                    <field name="sub_end_date" placeholder="Date when subscription ends" string="End of Subscription" class="oe_read_only"/>
+                    <field name="date" string="Join Date"/>
                     <!-- agregar campo de codigo de producto -->
                     <field name="product_custom_id" placeholder="e.g. CMPLUS"/>
                     <!-- agregar campo de cápitas -->
@@ -40,7 +38,7 @@
 
                 <xpath expr="//field[@name='phone']" position="before">
                     <!-- agregar código y nombre de grupo -->
-                    <field name="group_name" string=""/>
+                    <field name="group_name"/>
                     <field name="group_id"/>
                     <!-- agregar campo de zona -->
                     <field name="zone"/>
@@ -109,7 +107,7 @@
                         <field name="child_ids" attrs="{'invisible': True}">
                             <field name="type"/>
                         </field>
-                        <field name="address_ids" mode="tree" context="{'default_sub_start_date': sub_start_date, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id}">
+                        <field name="address_ids" mode="tree" context="{'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id}">
                             <tree>
                                 <field name="address_type" />
                                 <field name="street"/>
@@ -165,11 +163,10 @@
                 <!-- agregar pestaña para mostrar miembros -->
                 <xpath expr="//notebook/page[1]" position="after">
                     <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
-                        <field name="member_ids" mode="tree" context="{'default_sub_start_date': sub_start_date}">
+                        <field name="member_ids" mode="tree">
                             <tree>
                                 <field name="relationship" />
                                 <field name="name"/>
-                                <field name="sub_start_date"/>
                                 <field name="phone"/>
                                 <field name="email"/>
                             </tree>
@@ -190,7 +187,6 @@
                                         </group>
                                         <group>
                                             <field name="member_id"/>
-                                            <field name="sub_start_date"/>
                                             <field name="comment" placeholder="Internal note…"/>
                                         </group>
                                     </group>
