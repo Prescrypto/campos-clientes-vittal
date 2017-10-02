@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-26 20:51+0000\n"
-"PO-Revision-Date: 2017-09-26 20:51+0000\n"
+"POT-Creation-Date: 2017-10-03 04:46+0000\n"
+"PO-Revision-Date: 2017-10-03 04:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
+msgid "(update)"
+msgstr ""
 
 #. module: campos_clientes_vittal
 #: selection:partner.address,group_id:0
@@ -60,14 +65,12 @@ msgid "Associate ID"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_auto_invoice
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_auto_invoice
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_auto_invoice
 msgid "Automatic Invoicing"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_auto_payment
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_auto_payment
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_auto_payment
 msgid "Automatic Payment"
 msgstr ""
 
@@ -79,7 +82,7 @@ msgid "BQELMS"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: selection:product.template,recurrence:0
+#: selection:sale.order,recurrence:0
 msgid "Bimonthly"
 msgstr ""
 
@@ -163,12 +166,12 @@ msgid "Cross Streets"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
 msgid "Date when subscription ends"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
 msgid "Date when subscription starts"
 msgstr ""
 
@@ -190,9 +193,8 @@ msgid "EVENTO"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_sub_end_date
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_sub_end_date
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_sub_end_date
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
 msgid "End of Subscription"
 msgstr ""
 
@@ -277,6 +279,11 @@ msgid "Internal note…"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
+msgid "Invoiced Quantity"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Join Date"
 msgstr ""
@@ -326,7 +333,7 @@ msgid "Members"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: selection:product.template,recurrence:0
+#: selection:sale.order,recurrence:0
 msgid "Monthly"
 msgstr ""
 
@@ -356,6 +363,16 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: selection:partner.member,relationship:0
 msgid "Offspring"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
+msgid "Order Lines"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_subscription_tree
+msgid "Order Number"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -459,8 +476,7 @@ msgid "RFC"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_recurrence
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_recurrence
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_recurrence
 msgid "Recurrence"
 msgstr ""
 
@@ -483,8 +499,23 @@ msgid "SFE"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: selection:product.template,recurrence:0
+#: model:ir.model,name:campos_clientes_vittal.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
+msgid "Sales Order Lines"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: selection:sale.order,recurrence:0
 msgid "Semiannually"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
+msgid "Setup default terms and conditions in your company settings."
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -498,8 +529,7 @@ msgid "Spouse"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_sub_start_date
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_sub_start_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_sub_start_date
 msgid "Start of Subscription"
 msgstr ""
 
@@ -519,13 +549,23 @@ msgid "Street..."
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_product_sub_invoice_date
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_product_template_sub_invoice_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_sub_invoice_date
 msgid "Sub invoice date"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_form
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_is_subscription
+msgid "Subscription?"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.actions.act_window,name:campos_clientes_vittal.view_subscription_action
+#: model:ir.ui.menu,name:campos_clientes_vittal.menu_subs
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_product_filter
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_quotations_filter
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_filter
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_subscription_filter
 msgid "Subscriptions"
 msgstr ""
 
@@ -544,6 +584,11 @@ msgid "TCMCHL"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_subscription_tree
+msgid "Total Tax Included"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: selection:partner.address,zone:0
 #: selection:partner.member,zone:0
 #: selection:res.partner,zone:0
@@ -551,7 +596,7 @@ msgid "UNICA"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: selection:product.template,recurrence:0
+#: selection:sale.order,recurrence:0
 msgid "Yearly"
 msgstr ""
 
@@ -579,6 +624,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_zone
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_zone
 msgid "Zone"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
+msgid "days"
 msgstr ""
 
 #. module: campos_clientes_vittal
