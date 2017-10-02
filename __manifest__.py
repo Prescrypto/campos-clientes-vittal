@@ -41,6 +41,7 @@
         'views/sale_order_filter.xml',
         'views/quotation_filter.xml',
         'views/subscription_filter.xml',
+        'views/subscription_tree.xml',
         'views/subscription_menu.xml',
         'views/templates.xml',
     ],
