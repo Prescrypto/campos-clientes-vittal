@@ -6,6 +6,19 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="payment_term_id" position="replace"/>
+
+                <xpath expr="//notebook/page[1]" position="after">
+                    <page string="Subscriptions">
+                        <group>
+                            <field name="sub_start_date" placeholder="Date when subscription starts" attrs="{'required': True}"/>
+                            <field name="sub_end_date" placeholder="Date when subscription ends" string="End of Subscription"/>
+                            <field name="sub_invoice_date" class="oe_read_only"/>
+                            <field name="recurrence" attrs="{'required': True}"/>
+                            <field name="auto_payment"/>
+                            <field name="auto_invoice"/>
+                        </group>
+                    </page>
+                </xpath>
             </field>
         </record>
     </data>
