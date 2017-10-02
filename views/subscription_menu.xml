@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
 <odoo>
-    <!-- acción para abrir lista de suscripciones -->
-    <act_window id="action_subs" name="All Subscriptions" res_model="product.template" view_mode="tree,form"/>
-
     <!-- agregar entrada a menú que invoca la acción -->
-    <menuitem id="menu_subs" parent="sales_team.menu_sales" name="Subscriptions" action="action_subs"/>
+    <menuitem id="menu_subs" parent="sales_team.menu_sales" name="Subscriptions" action="view_subscription_action"/>
 </odoo>

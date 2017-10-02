@@ -37,8 +37,11 @@
         'views/view_partner_form.xml',
         'views/view_partner_filter.xml',
         'views/view_product_filter.xml',
-        'views/subscription_menu.xml',
         'views/sale_order_form.xml',
+        'views/sale_order_filter.xml',
+        'views/quotation_filter.xml',
+        'views/subscription_filter.xml',
+        'views/subscription_menu.xml',
         'views/templates.xml',
     ],
     # styles

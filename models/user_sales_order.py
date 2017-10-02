@@ -7,6 +7,9 @@ from dateutil.relativedelta import relativedelta
 class user_sales_order(models.Model):
     _inherit = "sale.order"
 
+    # es suscripción?
+    is_subscription = fields.Boolean("Subscription?", default=True)
+
     # fecha de inicio
     sub_start_date = fields.Date("Start of Subscription")
 
