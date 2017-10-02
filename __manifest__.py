@@ -38,6 +38,7 @@
         'views/view_partner_filter.xml',
         'views/view_product_filter.xml',
         'views/subscription_menu.xml',
+        'views/sale_order_form.xml',
         'views/templates.xml',
     ],
     # styles
