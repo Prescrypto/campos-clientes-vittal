@@ -21,22 +21,28 @@
     'depends': [
         'base',
         'crm',
-        'stock',
-        'mrp',
         'sale',
-        'point_of_sale',
         'account',
         'account_accountant',
-        'contacts',
-        'board'
+        'board',
+        'contacts'
     ],
+
+    # not a module
+    'application': True,
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/view_partner_form.xml',
-        'views/view_product_form.xml',
         'views/view_partner_filter.xml',
+        'views/view_product_filter.xml',
+        'views/sale_order_form.xml',
+        'views/sale_order_filter.xml',
+        'views/quotation_filter.xml',
+        'views/subscription_filter.xml',
+        'views/subscription_tree.xml',
+        'views/subscription_menu.xml',
         'views/templates.xml',
     ],
     # styles
