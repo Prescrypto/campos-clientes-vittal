@@ -160,17 +160,22 @@
                     </page>
                 </xpath>
 
-                <!-- agregar pestaña para mostrar miembros -->
+                <!-- agregar pestaña para mostrar cápitas -->
                 <xpath expr="//notebook/page[1]" position="after">
                     <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
                         <field name="member_ids" mode="tree">
                             <tree>
-                                <field name="relationship" />
+                                <field name="associate_id"/>
+                                <field name="relationship"/>
                                 <field name="name"/>
                                 <field name="phone"/>
                                 <field name="email"/>
                             </tree>
-                            <form string="Members">
+                            <form string="Member of Group Family">
+                                <header>
+                                    <button string="Begin Registration" type="object" name="start_reg" class="oe_highlight"/>
+                                    <button string="End Registration" type="object" name="end_reg"/>
+                                </header>
                                 <sheet>
                                     <group>
                                         <field name="is_owner"/>
@@ -179,15 +184,26 @@
                                     <hr/>
                                     <group>
                                         <group>
+                                            <field name="associate_id"/>
                                             <field name="name" string="Contact Name"/>
                                             <field name="birthday"/>
+                                            <field name="age" class="oe_read_only"/>
                                             <field name="phone" widget="phone"/>
                                             <field name="email"/>
                                             <field name="mobile" widget="phone"/>
                                         </group>
                                         <group>
-                                            <field name="member_id"/>
-                                            <field name="comment" placeholder="Internal note…"/>
+                                            <field name="allergies"/>
+                                            <field name="prev_ailments"/>
+                                            <field name="comment"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="user_active"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date" attrs="{'invisible': [('user_active', '=', True)]}"/>
+                                            <field name="end_reason" attrs="{'invisible': [('user_active', '=', True)]}"/>
                                         </group>
                                     </group>
                                     <field name="supplier" invisible="True"/>
