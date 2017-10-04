@@ -162,8 +162,8 @@
 
                 <!-- agregar pestaña para mostrar cápitas -->
                 <xpath expr="//notebook/page[1]" position="after">
-                    <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
-                        <field name="member_ids" mode="tree">
+                    <page string="Family Members" attrs="{'invisible': [('client_type', '!=', 'family')]}">
+                        <field name="family_ids" mode="tree">
                             <tree>
                                 <field name="associate_id"/>
                                 <field name="relationship"/>
@@ -171,7 +171,58 @@
                                 <field name="phone"/>
                                 <field name="email"/>
                             </tree>
-                            <form string="Member of Group Family">
+                            <form string="Member of Family Group">
+                                <header>
+                                    <button string="Begin Registration" type="object" name="start_reg" class="oe_highlight"/>
+                                    <button string="End Registration" type="object" name="end_reg"/>
+                                </header>
+                                <sheet>
+                                    <group>
+                                        <field name="is_owner"/>
+                                        <field name="relationship" widget="radio" options="{'horizontal': true}"/>
+                                    </group>
+                                    <hr/>
+                                    <group>
+                                        <group>
+                                            <field name="name" string="Contact Name"/>
+                                            <field name="birthday"/>
+                                            <field name="age" class="oe_read_only"/>
+                                            <field name="phone" widget="phone"/>
+                                            <field name="email"/>
+                                            <field name="mobile" widget="phone"/>
+                                        </group>
+                                        <group>
+                                            <field name="allergies"/>
+                                            <field name="prev_ailments"/>
+                                            <field name="comment"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="user_active"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date" attrs="{'invisible': [('user_active', '=', True)]}"/>
+                                            <field name="end_reason" attrs="{'invisible': [('user_active', '=', True)]}"/>
+                                        </group>
+                                    </group>
+                                    <field name="supplier" invisible="True"/>
+                                    <field name="customer" invisible="True"/>
+                                    <field name="lang" invisible="True"/>
+                                    <field name="image" invisible="True"/>
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+
+                    <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
+                        <field name="company_ids" mode="tree">
+                            <tree>
+                                <field name="relationship"/>
+                                <field name="name"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </tree>
+                            <form string="Member of Company Group">
                                 <header>
                                     <button string="Begin Registration" type="object" name="start_reg" class="oe_highlight"/>
                                     <button string="End Registration" type="object" name="end_reg"/>

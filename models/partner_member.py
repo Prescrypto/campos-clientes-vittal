@@ -5,8 +5,8 @@ from datetime import date, datetime
 from odoo import models, fields, api
 
 
-class partner_member(models.Model):
-    _name = "partner.member"
+class FamilyMember(models.Model):
+    _name = "family.member"
     _inherit = "res.partner"
 
     # padre del miembro
@@ -74,3 +74,32 @@ class partner_member(models.Model):
 
     # clave de socio
     associate_id = fields.Char("Associate ID")
+
+
+class CompanyMember(models.Model):
+    _name = "company.member"
+    _inherit = "family.member"
+
+    # padre del miembro
+    parent_id = fields.Many2one(
+        "res.partner", string="Parent", ondelete="set null")
+
+    # condición de grupo
+    relationship = fields.Selection(
+        string="Role",
+        selection=[("1", odoo._("Owner")), ("2", odoo._("Director")),
+                   ("3", odoo._("Executive")), ("4", odoo._("Administrator")),
+                   ("5", odoo._("Employee")), ("6", odoo._("Other"))])
+
+    # comenzar suscripción
+    @api.one
+    def start_reg(self):
+        self.start_date = fields.Datetime.to_string(datetime.now())
+        self.end_date = ""
+        self.user_active = True
+
+    # terminar suscripción
+    @api.one
+    def end_reg(self):
+        self.end_date = fields.Datetime.to_string(datetime.now())
+        self.user_active = False

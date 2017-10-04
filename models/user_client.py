@@ -12,8 +12,12 @@ class user_client(models.Model):
         "partner.address", "parent_id", string="Addresses")
 
     # miembros del grupo
-    member_ids = fields.One2many(
-        "partner.member", "parent_id", string="Members")
+    family_ids = fields.One2many(
+        "family.member", "parent_id", string="Family Members")
+
+    # miembros del grupo
+    company_ids = fields.One2many(
+        "company.member", "parent_id", string="Company Members")
 
     # código de grupo
     group_id = fields.Selection(
@@ -42,7 +46,8 @@ class user_client(models.Model):
     # tipo de usuario adicional
     client_type = fields.Selection(selection=[("company", odoo._("Company")),
                                               ("family", odoo._("Family")),
-                                              ("individual", odoo._("Individual"))])
+                                              ("individual",
+                                               odoo._("Individual"))])
 
     # nombre comercial
     legal_name = fields.Char("Legal Name")
@@ -85,3 +90,4 @@ class user_client(models.Model):
         for record in self:
             if record.protected_home_auto or record.protected_home_user:
                 record.protected_home = True
+
