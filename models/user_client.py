@@ -40,9 +40,9 @@ class user_client(models.Model):
     zip_extra = fields.Char("Zip Extra")
 
     # tipo de usuario adicional
-    client_type = fields.Selection(selection=[("company", "Company"),
-                                              ("family", "Family"),
-                                              ("individual", "Individual")])
+    client_type = fields.Selection(selection=[("company", odoo._("Company")),
+                                              ("family", odoo._("Family")),
+                                              ("individual", odoo._("Individual"))])
 
     # nombre comercial
     legal_name = fields.Char("Legal Name")

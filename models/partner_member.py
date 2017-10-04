@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import odoo
 from odoo import models, fields
 
 
@@ -20,8 +21,8 @@ class partner_member(models.Model):
     # condición de grupo
     relationship = fields.Selection(
         string="Relationship",
-        selection=[("1", "Spouse"), ("3", "Offspring"), ("4", "Other family"),
-                   ("9", "Not family")])
+        selection=[("1", odoo._("Spouse")), ("3", odoo._("Offspring")),
+                   ("4", odoo._("Other family")), ("9", odoo._("Not family"))])
 
     # fecha de nacimiento
     birthday = fields.Date("Birthday")

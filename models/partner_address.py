@@ -9,8 +9,7 @@ class partner_address(models.Model):
     _inherit = "res.partner"
 
     # padre de la dirección
-    parent_id = fields.Many2one(
-        "res.partner", string="Parent", ondelete="set null")
+    parent_id = fields.Many2one("res.partner", string="Parent")
 
     # tipos de dirección
     address_type = fields.Selection(
