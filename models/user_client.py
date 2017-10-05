@@ -49,6 +49,9 @@ class user_client(models.Model):
     # rfc
     rfc = fields.Char("RFC")
 
+    # tipo de negocio
+    business_type = fields.Char("Business Type")
+
     # código de zona
     zone = fields.Selection(
         string="Zone",

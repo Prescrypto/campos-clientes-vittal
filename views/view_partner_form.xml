@@ -22,7 +22,7 @@
                             <field name="rfc" placeholder="RFC"/>
                         </div>
                         <!-- agregar titular -->
-                        <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'family')]}">
+                        <div class="o_row" attrs="{'invisible': [('client_type', '=', 'private')]}">
                             <field name="main_contact" placeholder="Main Contact"/>
                         </div>
                         <!-- agregar codigo de grupo -->
@@ -40,6 +40,8 @@
                 </xpath>
 
                 <xpath expr="//field[@name='phone']" position="before">
+                    <!-- agregar tipo de negocio -->
+                    <field name="business_type"/>
                     <!-- agregar campo de zona -->
                     <field name="zone"/>
                 </xpath>
