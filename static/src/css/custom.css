@@ -40,3 +40,7 @@
 .o_address_zip_container {
   display: block;
 }
+
+.o_form_readonly .o_name_container > .o_row {
+  display: block !important;
+}
