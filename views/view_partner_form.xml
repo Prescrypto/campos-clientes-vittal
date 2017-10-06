@@ -26,7 +26,7 @@
                             <field name="main_contact" placeholder="Main Contact"/>
                         </div>
                         <!-- agregar codigo de grupo -->
-                        <group>
+                        <group attrs="{'invisible': [('client_type', '=', 'private')]}">
                             <field name="group_code" placeholder="Group Code"/>
                         </group>
                     </div>
@@ -172,10 +172,19 @@
                         <field name="family_ids" mode="tree">
                             <tree>
                                 <field name="associate_id"/>
-                                <field name="relationship"/>
                                 <field name="name"/>
+                                <field name="age"/>
+                                <field name="birthday"/>
+                                <field name="relationship"/>
+                                <field name="function"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="user_active"/>
+                                <field name="end_reason"/>
                                 <field name="phone"/>
                                 <field name="email"/>
+                                <field name="prev_ailments"/>
+                                <field name="allergies"/>
                             </tree>
                             <form string="Member of Family Group">
                                 <header>
