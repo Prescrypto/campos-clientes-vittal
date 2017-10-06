@@ -13,6 +13,9 @@ class FamilyMember(models.Model):
     parent_id = fields.Many2one(
         "res.partner", string="Parent", ondelete="set null")
 
+    # clave de socio
+    associate_id = fields.Char("Associate ID")
+
     # titular del grupo
     is_owner = fields.Boolean("Owner")
 
@@ -71,9 +74,6 @@ class FamilyMember(models.Model):
 
     # motivo de baja
     end_reason = fields.Text("Reason for Ending")
-
-    # clave de socio
-    associate_id = fields.Char("Associate ID")
 
 
 class CompanyMember(models.Model):

@@ -109,10 +109,16 @@
                         </field>
                         <field name="address_ids" mode="tree" context="{'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id}">
                             <tree>
-                                <field name="address_type" />
+                                <field name="default_address"/>
                                 <field name="street"/>
+                                <field name="street2"/>
                                 <field name="city"/>
                                 <field name="state_id"/>
+                                <field name="zip"/>
+                                <field name="zip_extra"/>
+                                <field name="name"/>
+                                <field name="phone"/>
+                                <field name="mobile"/>
                             </tree>
                             <form string="Addresses">
                                 <sheet>
@@ -217,10 +223,20 @@
                     <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
                         <field name="company_ids" mode="tree">
                             <tree>
-                                <field name="relationship"/>
+                                <field name="associate_id"/>
                                 <field name="name"/>
+                                <field name="age"/>
+                                <field name="birthday"/>
+                                <field name="relationship"/>
+                                <field name="function"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="user_active"/>
+                                <field name="end_reason"/>
                                 <field name="phone"/>
                                 <field name="email"/>
+                                <field name="prev_ailments"/>
+                                <field name="allergies"/>
                             </tree>
                             <form string="Member of Company Group">
                                 <header>
@@ -231,6 +247,7 @@
                                     <group>
                                         <field name="is_owner"/>
                                         <field name="relationship" widget="radio" options="{'horizontal': true}"/>
+                                        <field name="function"/>
                                     </group>
                                     <hr/>
                                     <group>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-05 06:57+0000\n"
-"PO-Revision-Date: 2017-10-05 06:57+0000\n"
+"POT-Creation-Date: 2017-10-06 05:03+0000\n"
+"PO-Revision-Date: 2017-10-06 05:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgid "Administrative Address"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:91
+#: code:addons/campos_clientes_vittal/models/partner_member.py:94
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Administrator"
@@ -245,14 +245,14 @@ msgid "Details"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:90
+#: code:addons/campos_clientes_vittal/models/partner_member.py:93
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Director"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:92
+#: code:addons/campos_clientes_vittal/models/partner_member.py:95
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Employee"
@@ -281,7 +281,7 @@ msgid "Every 3 Months"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:91
+#: code:addons/campos_clientes_vittal/models/partner_member.py:94
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Executive"
@@ -314,7 +314,7 @@ msgid "Family Members"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:22
+#: code:addons/campos_clientes_vittal/models/partner_member.py:28
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Father"
@@ -440,7 +440,7 @@ msgid "Monthly"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:22
+#: code:addons/campos_clientes_vittal/models/partner_member.py:28
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Mother"
@@ -452,7 +452,7 @@ msgid "Name"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:23
+#: code:addons/campos_clientes_vittal/models/partner_member.py:29
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Offspring"
@@ -469,21 +469,21 @@ msgid "Order Number"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:92
+#: code:addons/campos_clientes_vittal/models/partner_member.py:95
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Other"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:24
+#: code:addons/campos_clientes_vittal/models/partner_member.py:30
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Other family"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:90
+#: code:addons/campos_clientes_vittal/models/partner_member.py:93
 #: selection:company.member,relationship:0
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_is_owner
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_is_owner
@@ -611,7 +611,7 @@ msgid "Special details or characteristics"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:23
+#: code:addons/campos_clientes_vittal/models/partner_member.py:29
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Spouse"
@@ -747,10 +747,5 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model,name:campos_clientes_vittal.model_partner_address
 msgid "partner.address"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.model,name:campos_clientes_vittal.model_partner_member
-msgid "partner.member"
 msgstr ""
 
