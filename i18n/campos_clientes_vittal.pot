@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-06 05:10+0000\n"
-"PO-Revision-Date: 2017-10-06 05:10+0000\n"
+"POT-Creation-Date: 2017-10-06 23:32+0000\n"
+"PO-Revision-Date: 2017-10-06 23:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,7 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_user_active
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_user_active
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_user_active
 msgid "Active"
 msgstr ""
 
@@ -42,6 +43,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_address_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_address_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_address_ids
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_address_ids
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Addresses"
 msgstr ""
@@ -54,7 +56,7 @@ msgid "Administrative Address"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:94
+#: code:addons/campos_clientes_vittal/models/partner_member.py:102
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Administrator"
@@ -63,18 +65,21 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_age
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_age
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_age
 msgid "Age"
 msgstr ""
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_allergies
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_allergies
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_allergies
 msgid "Allergies"
 msgstr ""
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_associate_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_associate_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_associate_id
 msgid "Associate ID"
 msgstr ""
 
@@ -103,11 +108,12 @@ msgstr ""
 #: selection:family.member,zone:0
 #: selection:partner.address,zone:0
 #: selection:res.partner,zone:0
+#: selection:user.member,zone:0
 msgid "BQELMS"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_member_form
 msgid "Begin Registration"
 msgstr ""
 
@@ -126,6 +132,7 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_birthday
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_birthday
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_birthday
 msgid "Birthday"
 msgstr ""
 
@@ -135,6 +142,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_business_type
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_business_type
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_business_type
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_business_type
 msgid "Business Type"
 msgstr ""
 
@@ -149,15 +157,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_client_type
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_client_type
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_client_type
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_client_type
 msgid "Client type"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:42
+#: code:addons/campos_clientes_vittal/models/user_client.py:54
 #: selection:company.member,client_type:0
 #: selection:family.member,client_type:0
 #: selection:partner.address,client_type:0
 #: selection:res.partner,client_type:0
+#: selection:user.member,client_type:0
 #, python-format
 msgid "Company"
 msgstr ""
@@ -167,11 +177,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_company_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_company_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_company_ids
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_company_ids
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Company Members"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_member_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Contact Name"
 msgstr ""
@@ -198,6 +210,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_create_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_create_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_create_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_create_uid
 msgid "Created by"
 msgstr ""
 
@@ -205,6 +218,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_create_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_create_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_create_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_create_date
 msgid "Created on"
 msgstr ""
 
@@ -221,6 +235,7 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_end_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_end_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_end_date
 msgid "Date Ended"
 msgstr ""
 
@@ -245,21 +260,21 @@ msgid "Details"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:93
+#: code:addons/campos_clientes_vittal/models/partner_member.py:101
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Director"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:95
+#: code:addons/campos_clientes_vittal/models/partner_member.py:103
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Employee"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_member_form
 msgid "End Registration"
 msgstr ""
 
@@ -281,7 +296,7 @@ msgid "Every 3 Months"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:94
+#: code:addons/campos_clientes_vittal/models/partner_member.py:102
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Executive"
@@ -294,11 +309,12 @@ msgid "Exterior"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:43
+#: code:addons/campos_clientes_vittal/models/user_client.py:55
 #: selection:company.member,client_type:0
 #: selection:family.member,client_type:0
 #: selection:partner.address,client_type:0
 #: selection:res.partner,client_type:0
+#: selection:user.member,client_type:0
 #, python-format
 msgid "Family"
 msgstr ""
@@ -309,12 +325,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_family_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_family_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_family_ids
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_family_ids
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Family Members"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:28
+#: code:addons/campos_clientes_vittal/models/partner_member.py:72
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Father"
@@ -333,6 +350,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_group_code
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_group_code
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_group_code
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_group_code
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Group Code"
 msgstr ""
@@ -341,6 +359,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_id
 msgid "ID"
 msgstr ""
 
@@ -349,6 +368,7 @@ msgstr ""
 #: selection:family.member,zone:0
 #: selection:partner.address,zone:0
 #: selection:res.partner,zone:0
+#: selection:user.member,zone:0
 msgid "ITRLMS"
 msgstr ""
 
@@ -377,6 +397,7 @@ msgstr ""
 #: selection:family.member,zone:0
 #: selection:partner.address,zone:0
 #: selection:res.partner,zone:0
+#: selection:user.member,zone:0
 msgid "LOMAS"
 msgstr ""
 
@@ -384,6 +405,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member___last_update
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member___last_update
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address___last_update
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member___last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -391,6 +413,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_write_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_write_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_write_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_write_uid
 msgid "Last Updated by"
 msgstr ""
 
@@ -398,6 +421,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_write_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_write_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_write_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -407,29 +431,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_legal_name
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_legal_name
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_legal_name
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_legal_name
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_filter
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Legal Name"
 msgstr ""
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_company_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_family_contact_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_main_contact
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_company_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_family_contact_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_main_contact
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_main_contact
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_main_contact
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_main_contact
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_company_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_family_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_company_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_family_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_company_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_family_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_company_contact_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_family_contact_id
 msgid "Main Contact"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Member of Company Group"
-msgstr ""
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Member of Family Group"
 msgstr ""
 
 #. module: campos_clientes_vittal
@@ -440,7 +463,7 @@ msgid "Monthly"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:28
+#: code:addons/campos_clientes_vittal/models/partner_member.py:72
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Mother"
@@ -452,7 +475,7 @@ msgid "Name"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:29
+#: code:addons/campos_clientes_vittal/models/partner_member.py:73
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Offspring"
@@ -469,24 +492,25 @@ msgid "Order Number"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:95
+#: code:addons/campos_clientes_vittal/models/partner_member.py:103
 #: selection:company.member,relationship:0
 #, python-format
 msgid "Other"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:30
+#: code:addons/campos_clientes_vittal/models/partner_member.py:74
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Other family"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:93
+#: code:addons/campos_clientes_vittal/models/partner_member.py:101
 #: selection:company.member,relationship:0
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_is_owner
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_is_owner
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_is_owner
 #, python-format
 msgid "Owner"
 msgstr ""
@@ -496,6 +520,7 @@ msgstr ""
 #: selection:family.member,zone:0
 #: selection:partner.address,zone:0
 #: selection:res.partner,zone:0
+#: selection:user.member,zone:0
 msgid "PLNCO"
 msgstr ""
 
@@ -503,6 +528,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_parent_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_parent_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_parent_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_parent_id
 msgid "Parent"
 msgstr ""
 
@@ -514,15 +540,17 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_prev_ailments
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_prev_ailments
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_prev_ailments
 msgid "Previous Ailments"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:44
+#: code:addons/campos_clientes_vittal/models/user_client.py:56
 #: selection:company.member,client_type:0
 #: selection:family.member,client_type:0
 #: selection:partner.address,client_type:0
 #: selection:res.partner,client_type:0
+#: selection:user.member,client_type:0
 #, python-format
 msgid "Private"
 msgstr ""
@@ -538,6 +566,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_rfc
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_rfc
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_rfc
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_rfc
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "RFC"
 msgstr ""
@@ -545,6 +574,7 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_end_reason
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_end_reason
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_end_reason
 msgid "Reason for Ending"
 msgstr ""
 
@@ -562,11 +592,13 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_start_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_start_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_start_date
 msgid "Registration Date"
 msgstr ""
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_relationship
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_relationship
 msgid "Relationship"
 msgstr ""
 
@@ -580,6 +612,7 @@ msgstr ""
 #: selection:family.member,zone:0
 #: selection:partner.address,zone:0
 #: selection:res.partner,zone:0
+#: selection:user.member,zone:0
 msgid "SFE"
 msgstr ""
 
@@ -611,7 +644,7 @@ msgid "Special details or characteristics"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_member.py:29
+#: code:addons/campos_clientes_vittal/models/partner_member.py:73
 #: selection:family.member,relationship:0
 #, python-format
 msgid "Spouse"
@@ -678,6 +711,7 @@ msgstr ""
 #: selection:family.member,zone:0
 #: selection:partner.address,zone:0
 #: selection:res.partner,zone:0
+#: selection:user.member,zone:0
 msgid "TCMCHL"
 msgstr ""
 
@@ -691,6 +725,7 @@ msgstr ""
 #: selection:family.member,zone:0
 #: selection:partner.address,zone:0
 #: selection:res.partner,zone:0
+#: selection:user.member,zone:0
 msgid "UNICA"
 msgstr ""
 
@@ -717,6 +752,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_zip_extra
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_zip_extra
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_zip_extra
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_zip_extra
 msgid "Zip Extra"
 msgstr ""
 
@@ -726,6 +762,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_zone
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_zone
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_zone
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_zone
 msgid "Zone"
 msgstr ""
 
@@ -747,5 +784,10 @@ msgstr ""
 #. module: campos_clientes_vittal
 #: model:ir.model,name:campos_clientes_vittal.model_partner_address
 msgid "partner.address"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_user_member
+msgid "user.member"
 msgstr ""
 

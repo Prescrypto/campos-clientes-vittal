@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <record id="view_member_form" model="ir.ui.view">
+            <field name="name">Member</field>
+            <field name="model">user.member</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Begin Registration" type="object" name="start_reg" class="oe_highlight"/>
+                        <button string="End Registration" type="object" name="end_reg"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="is_owner"/>
+                            <field name="relationship" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <hr/>
+                        <group>
+                            <group>
+                                <field name="name" string="Contact Name"/>
+                                <field name="function"/>
+                                <field name="age" class="oe_read_only"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="email"/>
+                                <field name="mobile" widget="phone"/>
+                            </group>
+                            <group>
+                                <field name="birthday"/>
+                                <field name="allergies"/>
+                                <field name="prev_ailments"/>
+                                <field name="comment"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="user_active"/>
+                                <field name="start_date"/>
+                                <field name="end_date" attrs="{'invisible': [('user_active', '=', True)]}"/>
+                                <field name="end_reason" attrs="{'invisible': [('user_active', '=', True)]}"/>
+                            </group>
+                        </group>
+                        <field name="supplier" invisible="True"/>
+                        <field name="customer" invisible="True"/>
+                        <field name="lang" invisible="True"/>
+                        <field name="image" invisible="True"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -21,9 +21,11 @@
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
                             <field name="rfc" placeholder="RFC"/>
                         </div>
-                        <!-- agregar titular -->
-                        <div class="o_row" attrs="{'invisible': [('client_type', '=', 'private')]}">
-                            <field name="main_contact" placeholder="Main Contact"/>
+                        <div class="o_row">
+                            <!-- agregar titular familiar -->
+                            <field name="family_contact_id" widget="selection" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}"/>
+                            <!-- agregar titular empresarial -->
+                            <field name="company_contact_id" widget="selection" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
                         </div>
                         <!-- agregar codigo de grupo -->
                         <group attrs="{'invisible': [('client_type', '=', 'private')]}">
@@ -169,7 +171,7 @@
                 <!-- agregar pestaña para mostrar cápitas -->
                 <xpath expr="//notebook/page[1]" position="after">
                     <page string="Family Members" attrs="{'invisible': [('client_type', '!=', 'family')]}">
-                        <field name="family_ids" mode="tree">
+                        <field name="family_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_member_form'}">
                             <tree>
                                 <field name="associate_id"/>
                                 <field name="name"/>
@@ -186,51 +188,11 @@
                                 <field name="prev_ailments"/>
                                 <field name="allergies"/>
                             </tree>
-                            <form string="Member of Family Group">
-                                <header>
-                                    <button string="Begin Registration" type="object" name="start_reg" class="oe_highlight"/>
-                                    <button string="End Registration" type="object" name="end_reg"/>
-                                </header>
-                                <sheet>
-                                    <group>
-                                        <field name="is_owner"/>
-                                        <field name="relationship" widget="radio" options="{'horizontal': true}"/>
-                                    </group>
-                                    <hr/>
-                                    <group>
-                                        <group>
-                                            <field name="name" string="Contact Name"/>
-                                            <field name="birthday"/>
-                                            <field name="age" class="oe_read_only"/>
-                                            <field name="phone" widget="phone"/>
-                                            <field name="email"/>
-                                            <field name="mobile" widget="phone"/>
-                                        </group>
-                                        <group>
-                                            <field name="allergies"/>
-                                            <field name="prev_ailments"/>
-                                            <field name="comment"/>
-                                        </group>
-                                    </group>
-                                    <group>
-                                        <group>
-                                            <field name="user_active"/>
-                                            <field name="start_date"/>
-                                            <field name="end_date" attrs="{'invisible': [('user_active', '=', True)]}"/>
-                                            <field name="end_reason" attrs="{'invisible': [('user_active', '=', True)]}"/>
-                                        </group>
-                                    </group>
-                                    <field name="supplier" invisible="True"/>
-                                    <field name="customer" invisible="True"/>
-                                    <field name="lang" invisible="True"/>
-                                    <field name="image" invisible="True"/>
-                                </sheet>
-                            </form>
                         </field>
                     </page>
 
                     <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
-                        <field name="company_ids" mode="tree">
+                        <field name="company_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_member_form'}">
                             <tree>
                                 <field name="associate_id"/>
                                 <field name="name"/>
@@ -247,53 +209,10 @@
                                 <field name="prev_ailments"/>
                                 <field name="allergies"/>
                             </tree>
-                            <form string="Member of Company Group">
-                                <header>
-                                    <button string="Begin Registration" type="object" name="start_reg" class="oe_highlight"/>
-                                    <button string="End Registration" type="object" name="end_reg"/>
-                                </header>
-                                <sheet>
-                                    <group>
-                                        <field name="is_owner"/>
-                                        <field name="relationship" widget="radio" options="{'horizontal': true}"/>
-                                        <field name="function"/>
-                                    </group>
-                                    <hr/>
-                                    <group>
-                                        <group>
-                                            <field name="associate_id"/>
-                                            <field name="name" string="Contact Name"/>
-                                            <field name="birthday"/>
-                                            <field name="age" class="oe_read_only"/>
-                                            <field name="phone" widget="phone"/>
-                                            <field name="email"/>
-                                            <field name="mobile" widget="phone"/>
-                                        </group>
-                                        <group>
-                                            <field name="allergies"/>
-                                            <field name="prev_ailments"/>
-                                            <field name="comment"/>
-                                        </group>
-                                    </group>
-                                    <group>
-                                        <group>
-                                            <field name="user_active"/>
-                                            <field name="start_date"/>
-                                            <field name="end_date" attrs="{'invisible': [('user_active', '=', True)]}"/>
-                                            <field name="end_reason" attrs="{'invisible': [('user_active', '=', True)]}"/>
-                                        </group>
-                                    </group>
-                                    <field name="supplier" invisible="True"/>
-                                    <field name="customer" invisible="True"/>
-                                    <field name="lang" invisible="True"/>
-                                    <field name="image" invisible="True"/>
-                                </sheet>
-                            </form>
                         </field>
                     </page>
                 </xpath>
             </field>
         </record>
-
     </data>
 </odoo>

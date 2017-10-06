@@ -6,8 +6,20 @@ from odoo import models, fields, api, _
 class user_client(models.Model):
     _inherit = "res.partner"
 
-    # titular
-    main_contact = fields.Char("Main Contact")
+    # titular familiar
+    family_contact_id = fields.Many2one("family.member", string="Main Contact")
+
+    # titular empresarial
+    company_contact_id = fields.Many2one(
+        "company.member", string="Main Contact")
+
+    # cambiar format de nombre de titular
+    @api.multi
+    def name_get(self):
+        result = []
+        for record in self:
+            result.append((record.id, record.name))
+        return result
 
     # codigo de grupo
     group_code = fields.Char("Group Code", compute="_group_code", store=True)
@@ -58,3 +70,4 @@ class user_client(models.Model):
         selection=[("bqelms", "BQELMS"), ("itrlms", "ITRLMS"),
                    ("lomas", "LOMAS"), ("plnco", "PLNCO"), ("sfe", "SFE"),
                    ("tcmchl", "TCMCHL"), ("unica", "UNICA")])
+
