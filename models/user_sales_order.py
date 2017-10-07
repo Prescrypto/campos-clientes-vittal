@@ -78,7 +78,7 @@ class user_sales_order(models.Model):
     auto_sub = fields.Boolean("Automatic Subscription Renewal")
 
     # direccion de factura
-    invoice_address = fields.Many2one()
+    # invoice_address = fields.Many2one()
 
     # direccion de cobertura
-    coverage_address = fields.Many2one()
+    # coverage_address = fields.Many2one()
