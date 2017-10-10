@@ -17,12 +17,5 @@
                  </tree>
              </field>
         </record>
-
-        <record id="view_subscription_tree_action" model="ir.actions.act_window.view">
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_subscription_tree"/>
-            <field name="act_window_id" ref="view_subscription_action"/>
-        </record>
     </data>
 </odoo>

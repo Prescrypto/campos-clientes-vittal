@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="view_client_tree" model="ir.ui.view">
+             <field name="name">Clients (Extended)</field>
+             <field name="model">res.partner</field>
+             <field name="arch" type="xml">
+                 <tree>
+                    <field name="name"/>
+                    <field name="legal_name"/>
+                    <field name="client_type"/>
+                    <field name="rfc"/>
+                    <field name="business_type"/>
+                    <field name="name"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="city"/>
+                    <field name="state_id"/>
+                    <field name="zip"/>
+                    <field name="zip_extra"/>
+                    <field name="zone"/>
+                 </tree>
+             </field>
+        </record>
+    </data>
+</odoo>
