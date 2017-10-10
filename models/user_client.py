@@ -13,7 +13,7 @@ class user_client(models.Model):
     company_contact_id = fields.Many2one(
         "company.member", string="Main Contact")
 
-    # cambiar format de nombre de titular
+    # cambiar formato de nombre de titular
     @api.multi
     def name_get(self):
         result = []
@@ -27,7 +27,7 @@ class user_client(models.Model):
     @api.one
     @api.depends("client_type")
     def _group_code(self):
-        if self.client_type and self.id:
+        if self.client_type:
             prefix = {
                 "company": "E",
                 "family": "F",

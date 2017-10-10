@@ -28,8 +28,8 @@
                             <field name="company_contact_id" widget="selection" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
                         </div>
                         <!-- agregar codigo de grupo -->
-                        <group attrs="{'invisible': [('client_type', '=', 'private')]}">
-                            <field name="group_code" placeholder="Group Code"/>
+                        <group>
+                            <field class="oe_read_only" name="group_code" string="Code" placeholder="Code" />
                         </group>
                     </div>
                 </xpath>

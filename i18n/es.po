@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-06 23:32+0000\n"
-"PO-Revision-Date: 2017-10-06 16:33-0700\n"
+"POT-Creation-Date: 2017-10-10 05:57+0000\n"
+"PO-Revision-Date: 2017-10-09 22:59-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -162,6 +162,11 @@ msgid "Client type"
 msgstr "Tipo de Cliente"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Code"
+msgstr "Código"
+
+#. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/user_client.py:54
 #: selection:company.member,client_type:0 selection:family.member,client_type:0
 #: selection:partner.address,client_type:0 selection:res.partner,client_type:0
@@ -197,11 +202,6 @@ msgstr "País"
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Coverage Address"
-msgstr "Domicilio de Cobertura"
-
-#. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_coverage_address
-msgid "Coverage address"
 msgstr "Domicilio de Cobertura"
 
 #. module: campos_clientes_vittal
@@ -246,6 +246,11 @@ msgstr "Fin de suscripción"
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
 msgid "Date when subscription starts"
 msgstr "Fecha en la que comenzó la suscripción"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Default"
+msgstr "Default"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_default_address
@@ -347,7 +352,6 @@ msgstr "Domicilio Fiscal"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_group_code
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_group_code
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_group_code
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Group Code"
 msgstr "Código de Grupo"
 
@@ -370,11 +374,6 @@ msgstr "ITRLMS"
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Internal note…"
 msgstr "Nota interna…"
-
-#. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_invoice_address
-msgid "Invoice address"
-msgstr "Domicilio de Facturación"
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
@@ -773,6 +772,12 @@ msgstr ""
 msgid "user.member"
 msgstr ""
 
+#~ msgid "Coverage address"
+#~ msgstr "Domicilio de Cobertura"
+
+#~ msgid "Invoice address"
+#~ msgstr "Domicilio de Facturación"
+
 #~ msgid "Member of Company Group"
 #~ msgstr "Afiliado de Empresa"
 
@@ -892,9 +897,6 @@ msgstr ""
 
 #~ msgid "Quantity in group"
 #~ msgstr "Número de cápitas en el grupo familiar"
-
-#~ msgid "RFC Code"
-#~ msgstr "Código RFC"
 
 #~ msgid "Sub end date"
 #~ msgstr "Fin de suscripción"
