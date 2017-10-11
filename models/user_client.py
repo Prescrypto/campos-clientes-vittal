@@ -36,8 +36,8 @@ class user_client(models.Model):
             self.group_code = prefix + str(self.id)
 
     # direcciones del grupo
-    address_ids = fields.One2many(
-        "partner.address", "parent_id", string="Addresses")
+    child_ids = fields.One2many(
+        "partner.address", "parent_id", string="Contacts and Addresses")
 
     # miembros del grupo
     family_ids = fields.One2many(

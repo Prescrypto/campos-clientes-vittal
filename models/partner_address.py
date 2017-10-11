@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import odoo
-from odoo import models, fields
+from odoo import models, fields, _
 
 
 class partner_address(models.Model):
@@ -14,11 +13,11 @@ class partner_address(models.Model):
     # tipos de dirección
     address_type = fields.Selection(
         string="Address Type",
-        selection=[("admin", odoo._("Administrative Address")),
-                   ("fiscal", odoo._("Fiscal Address")),
-                   ("coverage",
-                    odoo._("Coverage Address")), ("attention",
-                                                  odoo._("Support Address"))])
+        selection=[("contact", _("Contact")),
+                   ("admin", _("Administrative Address")),
+                   ("fiscal", _("Fiscal Address")),
+                   ("coverage", _("Coverage Address")),
+                   ("attention", _("Support Address"))])
 
     # entre calles
     cross_street = fields.Char("Cross Streets")

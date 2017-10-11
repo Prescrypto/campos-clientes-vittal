@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 06:54+0000\n"
-"PO-Revision-Date: 2017-10-09 23:55-0700\n"
+"POT-Creation-Date: 2017-10-12 01:29+0000\n"
+"PO-Revision-Date: 2017-10-11 18:30-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -30,25 +30,15 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Address"
 msgstr "Dirección"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_address_type
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Address Type"
 msgstr "Tipo de Domicilio"
-
-#. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_address_ids
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_address_ids
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_address_ids
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_address_ids
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_address_ids
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_address_ids
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Addresses"
-msgstr "Direcciónes"
 
 #. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/partner_address.py:17
@@ -147,6 +137,7 @@ msgid "Business Type"
 msgstr "Tipo de Negocio"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "City"
 msgstr "Ciudad"
@@ -201,18 +192,31 @@ msgid "Company Members"
 msgstr "Afiliados de Empresa"
 
 #. module: campos_clientes_vittal
+#: code:addons/campos_clientes_vittal/models/partner_address.py:16
+#: selection:partner.address,address_type:0
+#, python-format
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_member_form
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Contact Name"
 msgstr "Nombre de Contacto"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Contacts and Addresses"
+msgstr "Contactos y Direcciones"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Country"
 msgstr "País"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_address.py:20
+#: code:addons/campos_clientes_vittal/models/partner_address.py:19
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
 #: selection:partner.address,address_type:0
 #, python-format
@@ -236,7 +240,7 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Cross Street"
 msgstr "Entre Calles"
 
@@ -271,6 +275,11 @@ msgstr "Default"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_default_address
 msgid "Default Address"
 msgstr "Domicilio Principal"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_delivery_date
+msgid "Delivery Date"
+msgstr "Fecha de Compromiso"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_details
@@ -322,7 +331,7 @@ msgstr "Ejecutivo"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_exterior
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Exterior"
 msgstr "Fachada"
 
@@ -387,6 +396,11 @@ msgstr "ITRLMS"
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Interior"
+msgstr "Interior"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Internal note…"
 msgstr "Nota interna…"
 
@@ -462,6 +476,11 @@ msgid "Main Contact"
 msgstr "Titular"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Mobile"
+msgstr "Móvil"
+
+#. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/user_sales_order.py:44
 #: selection:sale.order,recurrence:0
 #, python-format
@@ -479,6 +498,11 @@ msgstr "Madre"
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Name"
 msgstr "Razón Social"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Note"
+msgstr "Nota"
 
 #. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/partner_member.py:73
@@ -542,6 +566,11 @@ msgid "Partner"
 msgstr "Cónyuge"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_prev_ailments
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_prev_ailments
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_prev_ailments
@@ -587,7 +616,7 @@ msgstr "Recurrencia"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_references
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "References"
 msgstr "Referencias"
 
@@ -639,7 +668,7 @@ msgid "Setup default terms and conditions in your company settings."
 msgstr "Plazo y condiciones por defecto para las cotizaciones."
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Special details or characteristics"
 msgstr "Características especiales"
 
@@ -656,17 +685,23 @@ msgid "Start of Subscription"
 msgstr "Inicio de suscripción"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "State"
 msgstr "Estado"
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Street"
+msgstr "Calle"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Street 2..."
 msgstr "Calle 2..."
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 msgid "Street..."
 msgstr "Calle..."
 
@@ -700,7 +735,7 @@ msgid "Subscriptions"
 msgstr "Suscripciones"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_address.py:21
+#: code:addons/campos_clientes_vittal/models/partner_address.py:20
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Support Address"
@@ -733,14 +768,21 @@ msgid "Yearly"
 msgstr "Anual"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "ZIP"
 msgstr "Código Postal"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "ZIP Ext"
 msgstr "C.P. Colonia"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Zip"
+msgstr "C.P."
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_zip_extra
@@ -786,6 +828,9 @@ msgstr ""
 #: model:ir.model,name:campos_clientes_vittal.model_user_member
 msgid "user.member"
 msgstr ""
+
+#~ msgid "Addresses"
+#~ msgstr "Direcciónes"
 
 #~ msgid "Coverage address"
 #~ msgstr "Domicilio de Cobertura"
@@ -930,12 +975,6 @@ msgstr ""
 
 #~ msgid "Fax:"
 #~ msgstr "Fax:"
-
-#~ msgid "Mobile:"
-#~ msgstr "Móvil:"
-
-#~ msgid "Phone:"
-#~ msgstr "Teléfono:"
 
 #~ msgid "e.g. Mr."
 #~ msgstr "e.g. Sr."

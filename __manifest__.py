@@ -35,6 +35,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/partner_member_form.xml',
+        'views/partner_address_form.xml',
         'views/view_partner_form.xml',
         'views/view_partner_filter.xml',
         'views/view_product_filter.xml',
