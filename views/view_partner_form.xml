@@ -106,7 +106,7 @@
                 <!-- modificar pestaña para mostrar direcciones -->
                 <xpath expr="//notebook/page[1]" position="replace">
                     <page string="Contacts and Addresses">
-                        <field name="child_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id, 'default_address_type': 'contact'}">
+                        <field name="child_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id, 'default_address_type': 'coverage'}">
                             <tree>
                                 <field name="type" attrs="{'invisible': True}"/>
                                 <field name="address_type" string="Address Type"/>

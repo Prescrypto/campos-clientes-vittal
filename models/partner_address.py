@@ -14,9 +14,9 @@ class partner_address(models.Model):
     address_type = fields.Selection(
         string="Address Type",
         selection=[("contact", _("Contact")),
+                   ("coverage", _("Coverage Address")),
                    ("admin", _("Administrative Address")),
-                   ("fiscal", _("Fiscal Address")),
-                   ("coverage", _("Coverage Address"))])
+                   ("fiscal", _("Fiscal Address"))])
 
     # entre calles
     cross_street = fields.Char("Cross Streets")
