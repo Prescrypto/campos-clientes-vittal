@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 01:29+0000\n"
-"PO-Revision-Date: 2017-10-11 18:30-0700\n"
+"POT-Creation-Date: 2017-10-12 02:39+0000\n"
+"PO-Revision-Date: 2017-10-11 19:40-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -199,7 +199,6 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_member_form
 msgid "Contact Name"
 msgstr "Nombre de Contacto"
@@ -265,16 +264,6 @@ msgstr "Terminar suscripción"
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
 msgid "Date when subscription starts"
 msgstr "Fecha en la que comenzó la suscripción"
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "Default"
-msgstr "Default"
-
-#. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_partner_address_default_address
-msgid "Default Address"
-msgstr "Domicilio Principal"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_delivery_date
@@ -495,6 +484,7 @@ msgid "Mother"
 msgstr "Madre"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Name"
 msgstr "Razón Social"
@@ -735,13 +725,6 @@ msgid "Subscriptions"
 msgstr "Suscripciones"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_address.py:20
-#: selection:partner.address,address_type:0
-#, python-format
-msgid "Support Address"
-msgstr "Domicilio de Atención"
-
-#. module: campos_clientes_vittal
 #: selection:company.member,zone:0 selection:family.member,zone:0
 #: selection:partner.address,zone:0 selection:res.partner,zone:0
 #: selection:user.member,zone:0
@@ -828,6 +811,15 @@ msgstr ""
 #: model:ir.model,name:campos_clientes_vittal.model_user_member
 msgid "user.member"
 msgstr ""
+
+#~ msgid "Default"
+#~ msgstr "Default"
+
+#~ msgid "Default Address"
+#~ msgstr "Domicilio Principal"
+
+#~ msgid "Support Address"
+#~ msgstr "Domicilio de Atención"
 
 #~ msgid "Addresses"
 #~ msgstr "Direcciónes"

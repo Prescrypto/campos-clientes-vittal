@@ -110,7 +110,6 @@
                             <tree>
                                 <field name="type" attrs="{'invisible': True}"/>
                                 <field name="address_type" string="Address Type"/>
-                                <field name="default_address" string="Default"/>
                                 <field name="street" string="Street"/>
                                 <field name="street2" string="Interior"/>
                                 <field name="city" string="City"/>

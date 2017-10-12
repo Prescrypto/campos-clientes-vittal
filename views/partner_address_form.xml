@@ -8,7 +8,6 @@
                     <sheet>
                         <group>
                             <field name="address_type" widget="radio" options="{'horizontal': true}" attrs="{'required':True}"/>
-                            <field name="default_address" attrs="{'invisible': [('address_type','=', 'contact')]}"/>
                         </group>
                         <hr/>
                         <group>
@@ -33,7 +32,8 @@
                                 </div>
                             </group>
                             <group>
-                                <field name="name" string="Contact Name"/>
+                                <field name="name" string="Name"/>
+                                <field name="rfc"/>
                                 <field name="email"/>
                                 <field name="phone" widget="phone"/>
                                 <field name="mobile" widget="phone"/>

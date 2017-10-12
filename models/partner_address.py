@@ -16,8 +16,7 @@ class partner_address(models.Model):
         selection=[("contact", _("Contact")),
                    ("admin", _("Administrative Address")),
                    ("fiscal", _("Fiscal Address")),
-                   ("coverage", _("Coverage Address")),
-                   ("attention", _("Support Address"))])
+                   ("coverage", _("Coverage Address"))])
 
     # entre calles
     cross_street = fields.Char("Cross Streets")
@@ -30,6 +29,3 @@ class partner_address(models.Model):
 
     # características especiales
     details = fields.Char("Details")
-
-    # establecer como domicilio de atención default
-    default_address = fields.Boolean("Default Address")
