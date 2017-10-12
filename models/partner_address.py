@@ -10,6 +10,10 @@ class partner_address(models.Model):
     # padre de la dirección
     parent_id = fields.Many2one("res.partner", string="Parent")
 
+    # miembros de clientes que usan la direccion para domicilio de atención
+    atte_address = fields.One2many(
+        "family.member", "atte_address_id", string="Attention Address")
+
     # tipos de dirección
     address_type = fields.Selection(
         string="Address Type",
