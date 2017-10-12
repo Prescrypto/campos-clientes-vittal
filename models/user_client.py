@@ -70,4 +70,3 @@ class user_client(models.Model):
         selection=[("bqelms", "BQELMS"), ("itrlms", "ITRLMS"),
                    ("lomas", "LOMAS"), ("plnco", "PLNCO"), ("sfe", "SFE"),
                    ("tcmchl", "TCMCHL"), ("unica", "UNICA")])
-

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 02:39+0000\n"
-"PO-Revision-Date: 2017-10-12 02:39+0000\n"
+"POT-Creation-Date: 2017-10-12 05:30+0000\n"
+"PO-Revision-Date: 2017-10-12 05:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid "Address Type"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_address.py:17
+#: code:addons/campos_clientes_vittal/models/partner_address.py:18
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Administrative Address"
@@ -217,7 +217,8 @@ msgid "Country"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_address.py:19
+#: code:addons/campos_clientes_vittal/models/partner_address.py:17
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_coverage_address_id
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_sale_order_form
 #: selection:partner.address,address_type:0
 #, python-format
@@ -356,7 +357,7 @@ msgid "Father"
 msgstr ""
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/partner_address.py:18
+#: code:addons/campos_clientes_vittal/models/partner_address.py:19
 #: selection:partner.address,address_type:0
 #, python-format
 msgid "Fiscal Address"
@@ -647,6 +648,11 @@ msgstr ""
 #: selection:res.partner,zone:0
 #: selection:user.member,zone:0
 msgid "SFE"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_invoice_address_id
+msgid "Sale Address"
 msgstr ""
 
 #. module: campos_clientes_vittal

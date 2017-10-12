@@ -11,6 +11,12 @@
                 </header>
 
                 <!-- agregar campo de suscripción -->
+                <field name="partner_id" position="after">
+                    <field name="invoice_address_id" domain="['&amp;',('address_type','=','fiscal'),('parent_id','=',partner_id)]" widget="selection"/>
+                    <field name="coverage_address_id" domain="['&amp;',('address_type','=','coverage'),('parent_id','=',partner_id)]" widget="selection"/>
+                </field>
+
+                <!-- agregar campo de suscripción -->
                 <field name="payment_term_id" position="after">
                     <field name="is_subscription"/>
                 </field>
