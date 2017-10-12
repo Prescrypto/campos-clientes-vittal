@@ -99,6 +99,10 @@ class CompanyMember(models.Model):
     main_contact = fields.One2many(
         "res.partner", "company_contact_id", string="Main Contact")
 
+    # domicilio de atención
+    atte_address_id = fields.Many2one(
+        "partner.address", string="Attention Address")
+
     # condición de grupo
     relationship = fields.Selection(
         string="Role",

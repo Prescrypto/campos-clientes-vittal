@@ -59,5 +59,16 @@
                 </field>
             </field>
         </record>
+
+        <record id="view_company_member_form" model="ir.ui.view">
+            <field name="name">Company Member</field>
+            <field name="model">company.member</field>
+            <field name="inherit_id" ref="campos_clientes_vittal.view_member_form"/>
+            <field name="arch" type="xml">
+                <field name="age" position="after">
+                    <field name="atte_address_id" widget="selection" domain="[('parent_id','=',parent_id)]"/>
+                </field>
+            </field>
+        </record>
     </data>
 </odoo>

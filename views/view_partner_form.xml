@@ -149,7 +149,7 @@
                     </page>
 
                     <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
-                        <field name="company_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_member_form'}">
+                        <field name="company_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}">
                             <tree>
                                 <field name="associate_id"/>
                                 <field name="name"/>
