@@ -82,3 +82,6 @@ class user_sales_order(models.Model):
 
     # direccion de cobertura
     # coverage_address = fields.Many2one()
+
+    # fecha y hora de compromiso
+    delivery_date = fields.Datetime("Delivery Date")

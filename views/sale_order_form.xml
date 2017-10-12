@@ -10,9 +10,14 @@
                     <button string="End Subscription" type="object" name="end_sub" class="oe_highlight" attrs="{'invisible': ['|',('is_subscription', '!=', True),('sub_active', '=', False)]}"/>
                 </header>
 
-                <!-- remover campo no usado -->
+                <!-- agregar campo de suscripción -->
                 <field name="payment_term_id" position="after">
                     <field name="is_subscription"/>
+                </field>
+
+                <!-- agregar campo de fecha de entrega -->
+                <field name="payment_term_id" position="before">
+                    <field name="delivery_date" attrs="{'invisible': [('is_subscription', '=', True)]}"/>
                 </field>
 
                 <!-- renombrar campo de dirección de entrega -->
