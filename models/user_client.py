@@ -1,48 +1,59 @@
 # -*- coding: utf-8 -*-
 
-import odoo
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class user_client(models.Model):
     _inherit = "res.partner"
 
+    # titular familiar
+    family_contact_id = fields.Many2one("family.member", string="Main Contact")
+
+    # titular empresarial
+    company_contact_id = fields.Many2one(
+        "company.member", string="Main Contact")
+
+    # cambiar formato de nombre de titular
+    @api.multi
+    def name_get(self):
+        result = []
+        for record in self:
+            result.append((record.id, record.name))
+        return result
+
+    # codigo de grupo
+    group_code = fields.Char("Group Code", compute="_group_code", store=True)
+
+    @api.one
+    @api.depends("client_type")
+    def _group_code(self):
+        if self.client_type:
+            prefix = {
+                "company": "E",
+                "family": "F",
+                "private": "P",
+            }[self.client_type]
+            self.group_code = prefix + str(self.id)
+
     # direcciones del grupo
-    address_ids = fields.One2many(
-        "partner.address", "parent_id", string="Addresses")
+    child_ids = fields.One2many(
+        "partner.address", "parent_id", string="Contacts and Addresses")
 
     # miembros del grupo
-    member_ids = fields.One2many(
-        "partner.member", "parent_id", string="Members")
+    family_ids = fields.One2many(
+        "family.member", "parent_id", string="Family Members")
 
-    # código de grupo
-    group_id = fields.Selection(
-        string="Group Code",
-        selection=[("area_p", "AREA-P"), ("conv", "CONV"),
-                   ("evento", "EVENTO"), ("grupos", "GRUPOS"), ("otros",
-                                                                "OTROS")])
-
-    group_name = fields.Char(compute="_group_name", store=True)
-
-    @api.depends("group_id")
-    def _group_name(self):
-        for record in self:
-            if record.group_id:
-                record.group_name = {
-                    "area_p": odoo._("Protected Areas"),
-                    "conv": odoo._("Agreements"),
-                    "evento": odoo._("Events"),
-                    "grupos": odoo._("Groups"),
-                    "otros": odoo._("Other")
-                }.get(record.group_id, odoo._("None Selected"))
+    # miembros del grupo
+    company_ids = fields.One2many(
+        "company.member", "parent_id", string="Company Members")
 
     # código postal de colonia
     zip_extra = fields.Char("Zip Extra")
 
     # tipo de usuario adicional
-    client_type = fields.Selection(selection=[("company", "Company"),
-                                              ("family", "Family"),
-                                              ("individual", "Individual")])
+    client_type = fields.Selection(selection=[("company", _("Company")),
+                                              ("family", _("Family")),
+                                              ("private", _("Private"))])
 
     # nombre comercial
     legal_name = fields.Char("Legal Name")
@@ -50,8 +61,8 @@ class user_client(models.Model):
     # rfc
     rfc = fields.Char("RFC")
 
-    # lada de país
-    country_code = fields.Char("Country Code")
+    # tipo de negocio
+    business_type = fields.Char("Business Type")
 
     # código de zona
     zone = fields.Selection(
@@ -59,29 +70,3 @@ class user_client(models.Model):
         selection=[("bqelms", "BQELMS"), ("itrlms", "ITRLMS"),
                    ("lomas", "LOMAS"), ("plnco", "PLNCO"), ("sfe", "SFE"),
                    ("tcmchl", "TCMCHL"), ("unica", "UNICA")])
-
-    # código de producto
-    product_custom_id = fields.Char("Product Code")
-
-    # cápitas
-    quantity = fields.Integer("Quantity")
-
-    # hogar protegido
-    protected_home_auto = fields.Boolean(
-        compute="_protected_home_auto", store=True, readonly=True)
-
-    @api.depends("quantity")
-    def _protected_home_auto(self):
-        for record in self:
-            if record.quantity > 4:
-                record.protected_home_auto = True
-
-    protected_home_user = fields.Boolean("Protected Home")
-
-    protected_home = fields.Boolean(compute="_protected_home", store=True)
-
-    @api.depends("protected_home_auto", "protected_home_user")
-    def _protected_home(self):
-        for record in self:
-            if record.protected_home_auto or record.protected_home_user:
-                record.protected_home = True

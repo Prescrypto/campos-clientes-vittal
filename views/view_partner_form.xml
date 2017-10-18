@@ -12,38 +12,40 @@
                 </xpath>
 
                 <xpath expr="//h1" position="after">
-                    <!-- agregar nombre comercial -->
-                    <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
-                        <field name="legal_name" placeholder="Legal Name"/>
-                    </div>
-                    <!-- agregar rfc -->
-                    <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
-                        <field name="rfc" placeholder="RFC"/>
+                    <div class="o_name_container">
+                        <!-- agregar nombre comercial -->
+                        <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
+                            <field name="legal_name" placeholder="Legal Name"/>
+                        </div>
+                        <!-- agregar rfc -->
+                        <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
+                            <field name="rfc" placeholder="RFC"/>
+                        </div>
+                        <div class="o_row">
+                            <!-- agregar titular familiar -->
+                            <field name="family_contact_id" widget="selection" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}"/>
+                            <!-- agregar titular empresarial -->
+                            <field name="company_contact_id" widget="selection" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
+                        </div>
+                        <!-- agregar codigo de grupo -->
+                        <group>
+                            <field class="oe_read_only" name="group_code" string="Code" placeholder="Code" />
+                        </group>
                     </div>
                 </xpath>
 
+                <field name="fax" position="replace"/>
 
                 <xpath expr="//field[@name='category_id']" position="after">
                     <!-- agregar campo de fechas de suscripción -->
                     <field name="date" string="Join Date"/>
-                    <!-- agregar campo de codigo de producto -->
-                    <field name="product_custom_id" placeholder="e.g. CMPLUS"/>
-                    <!-- agregar campo de cápitas -->
-                    <field name="quantity" string="Quantity in Group" attrs="{'invisible': [('client_type', '!=', 'family')]}"/>
-                    <!-- agregar campo de hogar protegido -->
-                    <field name="protected_home_user" class="oe_edit_only" attrs="{'invisible': ['|', ('protected_home_auto', '=', True), ('client_type', '!=', 'family')]}"/>
-                    <field name="protected_home_auto" class="oe_edit_only" attrs="{'invisible': ['|', ('protected_home_auto', '=', False), ('client_type', '!=', 'family')], 'readonly': True}" string="Protected Home"/>
-                    <field name="protected_home" class="oe_read_only" string="Protected Home" attrs="{'invisible': [('client_type', '!=', 'family')]}"/>
                 </xpath>
 
                 <xpath expr="//field[@name='phone']" position="before">
-                    <!-- agregar código y nombre de grupo -->
-                    <field name="group_name"/>
-                    <field name="group_id"/>
+                    <!-- agregar tipo de negocio -->
+                    <field name="business_type"/>
                     <!-- agregar campo de zona -->
                     <field name="zone"/>
-                    <!-- agregar campo de codigo de pais -->
-                    <field name="country_code"/>
                 </xpath>
 
                 <!-- quitar campos no usados -->
@@ -103,104 +105,71 @@
 
                 <!-- modificar pestaña para mostrar direcciones -->
                 <xpath expr="//notebook/page[1]" position="replace">
-                    <page string="Addresses">
-                        <field name="child_ids" attrs="{'invisible': True}">
-                            <field name="type"/>
-                        </field>
-                        <field name="address_ids" mode="tree" context="{'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id}">
+                    <page string="Contacts and Addresses">
+                        <field name="child_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id, 'default_address_type': 'coverage'}">
                             <tree>
-                                <field name="address_type" />
-                                <field name="street"/>
-                                <field name="city"/>
-                                <field name="state_id"/>
+                                <field name="type" attrs="{'invisible': True}"/>
+                                <field name="address_type" string="Address Type"/>
+                                <field name="street" string="Street"/>
+                                <field name="street2" string="Interior"/>
+                                <field name="city" string="City"/>
+                                <field name="state_id" string="State"/>
+                                <field name="zip" string="Zip"/>
+                                <field name="zip_extra"/>
+                                <field name="name" string="Name"/>
+                                <field name="phone" string="Phone"/>
+                                <field name="mobile" string="Mobile"/>
+                                <field name="comment" string="Note"/>
                             </tree>
-                            <form string="Addresses">
-                                <sheet>
-                                    <group>
-                                        <field name="default_address"/>
-                                        <field name="address_type" required="1" widget="radio" options="{'horizontal': true}"/>
-                                    </group>
-                                    <hr/>
-                                    <group>
-                                        <group>
-                                            <label for="street" string="Address"/>
-                                            <div>
-                                                <div class="o_address_format" name="div_address">
-                                                    <field name="street" placeholder="Street..." class="o_address_street"/>
-                                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                                                    <field name="city" placeholder="City" class="o_address_city"/>
-                                                    <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True}" context="{'country_id': country_id, 'zip': zip}"/>
-                                                    <div class="o_address_zip_container">
-                                                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                                                        <field name="zip_extra" placeholder="ZIP Ext" class="o_address_zip_extra" />
-                                                    </div>
-                                                    <field name="country_id" placeholder="Country" class="o_address_country" options="{'no_open': True, 'no_create': True}"/>
-                                                    <field name="cross_street" placeholder="Cross Street"/>
-                                                    <field name="references" placeholder="References"/>
-                                                    <field name="exterior" placeholder="Exterior"/>
-                                                    <field name="details" placeholder="Special details or characteristics"/>
-                                                </div>
-                                            </div>
-                                        </group>
-                                        <group>
-                                            <field name="name" string="Contact Name"/>
-                                            <field name="email"/>
-                                            <field name="phone" widget="phone"/>
-                                            <field name="mobile" widget="phone"/>
-                                            <field name="comment" placeholder="Internal note…"/>
-                                        </group>
-                                    </group>
-                                    <field name="supplier" invisible="True"/>
-                                    <field name="customer" invisible="True"/>
-                                    <field name="lang" invisible="True"/>
-                                    <field name="image" invisible="True"/>
-                                </sheet>
-                            </form>
                         </field>
                     </page>
                 </xpath>
 
-                <!-- agregar pestaña para mostrar miembros -->
+                <!-- agregar pestaña para mostrar cápitas -->
                 <xpath expr="//notebook/page[1]" position="after">
-                    <page string="Members" attrs="{'invisible': [('client_type', '=', 'individual')]}">
-                        <field name="member_ids" mode="tree">
+                    <page string="Family Members" attrs="{'invisible': [('client_type', '!=', 'family')]}">
+                        <field name="family_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_family_member_form'}">
                             <tree>
-                                <field name="relationship" />
+                                <!-- <field name="associate_id"/> -->
                                 <field name="name"/>
+                                <field name="age"/>
+                                <field name="birthday"/>
+                                <field name="relationship"/>
+                                <field name="function"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="user_active"/>
+                                <field name="end_reason"/>
                                 <field name="phone"/>
                                 <field name="email"/>
+                                <field name="prev_ailments"/>
+                                <field name="allergies"/>
                             </tree>
-                            <form string="Members">
-                                <sheet>
-                                    <group>
-                                        <field name="is_owner"/>
-                                        <field name="relationship" widget="radio" options="{'horizontal': true}"/>
-                                    </group>
-                                    <hr/>
-                                    <group>
-                                        <group>
-                                            <field name="name" string="Contact Name"/>
-                                            <field name="birthday"/>
-                                            <field name="phone" widget="phone"/>
-                                            <field name="email"/>
-                                            <field name="mobile" widget="phone"/>
-                                        </group>
-                                        <group>
-                                            <field name="member_id"/>
-                                            <field name="comment" placeholder="Internal note…"/>
-                                        </group>
-                                    </group>
-                                    <field name="supplier" invisible="True"/>
-                                    <field name="customer" invisible="True"/>
-                                    <field name="lang" invisible="True"/>
-                                    <field name="image" invisible="True"/>
-                                </sheet>
-                            </form>
+                        </field>
+                    </page>
+
+                    <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
+                        <field name="company_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}">
+                            <tree>
+                                <field name="associate_id"/>
+                                <field name="name"/>
+                                <field name="age"/>
+                                <field name="birthday"/>
+                                <field name="relationship"/>
+                                <field name="function"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="user_active"/>
+                                <field name="end_reason"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="prev_ailments"/>
+                                <field name="allergies"/>
+                            </tree>
                         </field>
                     </page>
                 </xpath>
             </field>
         </record>
-
     </data>
 </odoo>

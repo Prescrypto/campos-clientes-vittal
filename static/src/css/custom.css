@@ -32,11 +32,24 @@
   margin-right: -3px;
 }
 
+/* arreglar overflow de nombre */
 .o_form_view .oe_title > .o_legal_name {
   width: 100%;
   word-wrap: break-word;
 }
 
+/* mostrar campos de identidad en su propia linea */
 .o_address_zip_container {
   display: block;
 }
+.o_form_readonly .o_name_container > .o_row {
+  display: block !important;
+}
+
+/* agregar scroll horizontal a tablas */
+.o_list_view  td, .o_list_view th {
+  white-space: nowrap;
+}
+.o_list_view  > tbody > tr > td.o_handle_cell {
+  white-space: nowrap;
+

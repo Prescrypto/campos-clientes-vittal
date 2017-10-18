@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-v_partner_member_user, Vittal group member access,model_partner_member,base.group_user,1,1,1,1
+v_user_member_user, Vittal group member access,model_user_member,base.group_user,1,1,1,1
+v_family_member_user, Vittal group member access,model_family_member,base.group_user,1,1,1,1
+v_company_member_user, Vittal group member access,model_company_member,base.group_user,1,1,1,1
 v_partner_address_user, Vittal group address access,model_partner_address,base.group_user,1,1,1,1
