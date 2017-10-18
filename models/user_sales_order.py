@@ -79,12 +79,11 @@ class user_sales_order(models.Model):
 
     # direccion de factura
     invoice_address_id = fields.Many2one(
-        "partner.address", string="Sale Address")
+        "res.partner", string="Sale Address")
 
     # direccion de cobertura
-    coverage_address_id = fields.Many2one(
-        "partner.address", string="Coverage Address")
+    cov_address_id = fields.Many2one(
+        "res.partner", string="Coverage Address")
 
     # fecha y hora de compromiso
     delivery_date = fields.Datetime("Delivery Date")
-

@@ -9,6 +9,21 @@ class user_client(models.Model):
     # titular familiar
     family_contact_id = fields.Many2one("family.member", string="Main Contact")
 
+    # miembros de clientes que usan la direccion para domicilio de atención
+    family_atte_address = fields.One2many(
+        "family.member", "atte_address_id", string="Attention Address")
+
+    company_atte_address = fields.One2many(
+        "company.member", "atte_address_id", string="Attention Address")
+
+    # direccion de factura de orden de venta
+    invoice_address = fields.One2many(
+        "sale.order", "invoice_address_id", string="Invoice Address")
+
+    # direccion de cobertura de orden de venta
+    cov_address = fields.One2many(
+        "sale.order", "cov_address_id", string="Coverage Address")
+
     # titular empresarial
     company_contact_id = fields.Many2one(
         "company.member", string="Main Contact")
@@ -34,10 +49,6 @@ class user_client(models.Model):
                 "private": "P",
             }[self.client_type]
             self.group_code = prefix + str(self.id)
-
-    # direcciones del grupo
-    child_ids = fields.One2many(
-        "partner.address", "parent_id", string="Contacts and Addresses")
 
     # miembros del grupo
     family_ids = fields.One2many(
@@ -70,3 +81,23 @@ class user_client(models.Model):
         selection=[("bqelms", "BQELMS"), ("itrlms", "ITRLMS"),
                    ("lomas", "LOMAS"), ("plnco", "PLNCO"), ("sfe", "SFE"),
                    ("tcmchl", "TCMCHL"), ("unica", "UNICA")])
+
+    # tipos de dirección
+    type = fields.Selection(
+        string="Address Type",
+        selection=[("contact", _("Contact")),
+                   ("coverage", _("Coverage Address")),
+                   ("admin", _("Administrative Address")),
+                   ("fiscal", _("Fiscal Address"))])
+
+    # entre calles
+    cross_street = fields.Char("Cross Streets")
+
+    # referencias
+    references = fields.Char("References")
+
+    # fachada
+    exterior = fields.Char("Exterior")
+
+    # características especiales
+    details = fields.Char("Details")

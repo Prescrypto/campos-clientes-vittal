@@ -1,17 +1,17 @@
 <odoo>
     <data>
         <record id="view_address_form" model="ir.ui.view">
-            <field name="name">Contacts and Addresses</field>
-            <field name="model">partner.address</field>
+            <field name="name">Contacts &amp; Addresses</field>
+            <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <form string="Contacts and Addresses">
+                <form string="Contacts &amp; Addresses">
                     <sheet>
                         <group>
-                            <field name="address_type" widget="radio" options="{'horizontal': true}" attrs="{'required':True}"/>
+                            <field name="type" widget="radio" options="{'horizontal': true}" attrs="{'required':True}"/>
                         </group>
                         <hr/>
                         <group>
-                            <group attrs="{'invisible': [('address_type','=', 'contact')]}">
+                            <group attrs="{'invisible': [('type','=', 'contact')]}">
                                 <label for="street" string="Address"/>
                                 <div>
                                     <div class="o_address_format" name="div_address">
