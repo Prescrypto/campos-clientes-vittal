@@ -108,6 +108,7 @@
                     <page string="Contacts &amp; Addresses">
                         <field name="child_ids" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id, 'default_type': 'coverage'}">
                             <tree>
+                                <field name="name" string="Name"/>
                                 <field name="type" attrs="{'invisible': True}"/>
                                 <field name="type" string="Address Type"/>
                                 <field name="street" string="Street"/>
