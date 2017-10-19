@@ -167,6 +167,18 @@
                             </tree>
                         </field>
                     </page>
+
+                    <page string="Entities">
+                        <field name="id" invisible="1" />
+
+                        <strong class="oe_edit_only">Entities that belong to customer:</strong>
+                        <strong class="oe_read_only" attrs="{'invisible': [('child_group_ids','=',[])]}">Entities that belong to customer:</strong>
+                        <field name="child_group_ids" widget="many2many_list" options="{'no_create': True}" context="{'tree_view_ref': 'campos_clientes_vittal.view_client_tree'}"/>
+
+                        <strong class="oe_edit_only">Entities customer belongs to:</strong>
+                        <strong class="oe_read_only" attrs="{'invisible': [('parent_group_ids','=',[])]}">Entities customer belongs to:</strong>
+                        <field name="parent_group_ids" widget="many2many_list" options="{'no_create': True}" context="{'tree_view_ref': 'campos_clientes_vittal.view_client_tree'}"/>
+                    </page>
                 </xpath>
             </field>
         </record>
