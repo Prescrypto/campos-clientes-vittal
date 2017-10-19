@@ -21,14 +21,12 @@
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
                             <field name="rfc" placeholder="RFC"/>
                         </div>
-                        <div class="o_row">
+                        <group>
                             <!-- agregar titular familiar -->
                             <field name="family_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_family_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}" options="{'no_create': True}"/>
                             <!-- agregar titular empresarial -->
                             <field name="company_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}" options="{'no_create': True}"/>
-                        </div>
-                        <!-- agregar codigo de grupo -->
-                        <group>
+                            <!-- agregar codigo de grupo -->
                             <field class="oe_read_only" name="group_code" string="Code" placeholder="Code" />
                         </group>
                     </div>
