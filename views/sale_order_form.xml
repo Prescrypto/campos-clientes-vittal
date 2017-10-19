@@ -12,8 +12,8 @@
 
                 <!-- agregar campo de suscripción -->
                 <field name="partner_id" position="after">
-                    <field name="invoice_address_id" domain="['&amp;',('address_type','=','fiscal'),('parent_id','=',partner_id)]" widget="selection"/>
-                    <field name="coverage_address_id" domain="['&amp;',('address_type','=','coverage'),('parent_id','=',partner_id)]" widget="selection"/>
+                    <field name="invoice_address_id" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form'}" domain="['&amp;',('type','=','fiscal'),('parent_id','=',partner_id)]" options="{'no_create': True}"/>
+                    <field name="cov_address_id" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form'}" domain="['&amp;',('type','=','coverage'),('parent_id','=',partner_id)]" options="{'no_create': True}"/>
                 </field>
 
                 <!-- agregar campo de suscripción -->

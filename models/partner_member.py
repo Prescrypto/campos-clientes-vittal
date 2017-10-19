@@ -68,7 +68,7 @@ class FamilyMember(models.Model):
 
     # domicilio de atención
     atte_address_id = fields.Many2one(
-        "partner.address", string="Attention Address")
+        "res.partner", string="Attention Address")
 
     # condición de grupo
     relationship = fields.Selection(
@@ -101,7 +101,7 @@ class CompanyMember(models.Model):
 
     # domicilio de atención
     atte_address_id = fields.Many2one(
-        "partner.address", string="Attention Address")
+        "res.partner", string="Attention Address")
 
     # condición de grupo
     relationship = fields.Selection(

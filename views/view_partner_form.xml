@@ -23,9 +23,9 @@
                         </div>
                         <div class="o_row">
                             <!-- agregar titular familiar -->
-                            <field name="family_contact_id" widget="selection" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}"/>
+                            <field name="family_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_family_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}" options="{'no_create': True}"/>
                             <!-- agregar titular empresarial -->
-                            <field name="company_contact_id" widget="selection" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
+                            <field name="company_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}" options="{'no_create': True}"/>
                         </div>
                         <!-- agregar codigo de grupo -->
                         <group>
@@ -105,18 +105,17 @@
 
                 <!-- modificar pestaña para mostrar direcciones -->
                 <xpath expr="//notebook/page[1]" position="replace">
-                    <page string="Contacts and Addresses">
-                        <field name="child_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id, 'default_address_type': 'coverage'}">
+                    <page string="Contacts &amp; Addresses">
+                        <field name="child_ids" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_zip_extra': zip_extra, 'default_country_id': country_id, 'default_type': 'coverage'}">
                             <tree>
                                 <field name="type" attrs="{'invisible': True}"/>
-                                <field name="address_type" string="Address Type"/>
+                                <field name="type" string="Address Type"/>
                                 <field name="street" string="Street"/>
                                 <field name="street2" string="Interior"/>
                                 <field name="city" string="City"/>
                                 <field name="state_id" string="State"/>
                                 <field name="zip" string="Zip"/>
                                 <field name="zip_extra"/>
-                                <field name="name" string="Name"/>
                                 <field name="phone" string="Phone"/>
                                 <field name="mobile" string="Mobile"/>
                                 <field name="comment" string="Note"/>
