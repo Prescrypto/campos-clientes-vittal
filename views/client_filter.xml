@@ -6,8 +6,11 @@
             <field name="inherit_id" ref="base.view_res_partner_filter"/>
             <field name="arch" type="xml">
                 <field name="name" position="after">
-                    <filter string="Clients" name="client" domain="[('customer','=',True)]"/>
+                    <field name="legal_name" string="Legal Name" filter_domain="[('legal_name','ilike', self)]"/>
                 </field>
+                <field name="category_id" position="replace"/>
+                <field name="user_id" position="replace"/>
+                <field name="parent_id" position="replace"/>
             </field>
         </record>
     </data>
