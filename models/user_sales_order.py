@@ -16,21 +16,23 @@ class user_sales_order(models.Model):
     sub_active = fields.Boolean("Subscription Active?")
 
     # comenzar suscripción
-    @api.one
+    @api.multi
     def start_sub(self):
-        self.sub_start_date = fields.Datetime.to_string(datetime.now())
-        self.sub_end_date = fields.Datetime.to_string(datetime.now() +
-                                                      relativedelta(months=12))
-        self.sub_active = True
+        for record in self:
+            record.sub_start_date = fields.Datetime.to_string(datetime.now())
+            record.sub_end_date = fields.Datetime.to_string(
+                datetime.now() + relativedelta(months=12))
+            record.sub_active = True
 
     # terminar suscripción
-    @api.one
+    @api.multi
     def end_sub(self):
-        self.sub_start_date = fields.Datetime.to_string(datetime.now())
-        self.sub_end_date = fields.Datetime.to_string(datetime.now())
-        self.sub_active = False
-        self.sub_start_date = ""
-        self.sub_end_date = ""
+        for record in self:
+            record.sub_start_date = fields.Datetime.to_string(datetime.now())
+            record.sub_end_date = fields.Datetime.to_string(datetime.now())
+            record.sub_active = False
+            record.sub_start_date = ""
+            record.sub_end_date = ""
 
     # fecha de inicio
     sub_start_date = fields.Date("Start of Subscription")
@@ -48,22 +50,23 @@ class user_sales_order(models.Model):
     # fecha de siguiente facturación
     sub_invoice_date = fields.Date(compute="_add_recurrence", store=True)
 
-    @api.one
+    @api.multi
     @api.depends("sub_start_date", "sub_end_date", "recurrence")
     def _add_recurrence(self):
-        if self.sub_start_date and self.sub_end_date and self.recurrence:
-            # fecha de inicio a datetime
-            start = fields.Datetime.from_string(self.sub_start_date)
-            # fecha final a datetime
-            end = fields.Datetime.from_string(self.sub_end_date)
-            # calculo de siguiente facturación en base a recurrencia
-            calc = start + relativedelta(months=self.recurrence)
-            # si la fecha final es antes de la fecha calculada, usa la
-            # final, si no usa la calculada.
-            if end < calc:
-                self.sub_invoice_date = fields.Datetime.to_string(end)
-            else:
-                self.sub_invoice_date = fields.Datetime.to_string(calc)
+        for record in self:
+            if record.sub_start_date and record.sub_end_date and record.recurrence:
+                # fecha de inicio a datetime
+                start = fields.Datetime.from_string(record.sub_start_date)
+                # fecha final a datetime
+                end = fields.Datetime.from_string(record.sub_end_date)
+                # calculo de siguiente facturación en base a recurrencia
+                calc = start + relativedelta(months=record.recurrence)
+                # si la fecha final es antes de la fecha calculada, usa la
+                # final, si no usa la calculada.
+                if end < calc:
+                    record.sub_invoice_date = fields.Datetime.to_string(end)
+                else:
+                    record.sub_invoice_date = fields.Datetime.to_string(calc)
 
     # pago automático
     auto_payment = fields.Boolean("Automatic Payment")
@@ -77,9 +80,6 @@ class user_sales_order(models.Model):
     # renovacion de suscripción automatica
     auto_sub = fields.Boolean("Automatic Subscription Renewal")
 
-    # direccion de factura
-    invoice_address_id = fields.Many2one("res.partner", string="Sale Address")
-
     # zona derivada de dirección
     related_partner_zone = fields.Selection(
         string="Zone",
@@ -89,14 +89,24 @@ class user_sales_order(models.Model):
 
     partner_zone = fields.Char(string="Zone", compute="_get_zone", store=True)
 
-    @api.one
+    @api.multi
     @api.depends("related_partner_zone")
     def _get_zone(self):
-        if self.related_partner_zone:
-            self.partner_zone = self.related_partner_zone.upper()
+        for record in self:
+            if record.related_partner_zone:
+                record.partner_zone = record.related_partner_zone.upper()
+
+    # direccion de factura
+    invoice_address_id = fields.Many2one("res.partner", string="Sale Address")
 
     # direccion de cobertura
     cov_address_id = fields.Many2one("res.partner", string="Coverage Address")
 
+    @api.onchange("partner_id")
+    def reset_address(self):
+        self.invoice_address_id = None
+        self.cov_address_id = None
+
     # fecha y hora de compromiso
     delivery_date = fields.Datetime("Delivery Date")
+
