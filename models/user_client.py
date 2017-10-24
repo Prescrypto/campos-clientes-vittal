@@ -6,6 +6,22 @@ from odoo import models, fields, api, _
 class user_client(models.Model):
     _inherit = "res.partner"
 
+    parent_group_ids = fields.Many2many(
+        comodel_name="res.partner",
+        relation="client_related_entities_rel",
+        column1="parent_id",
+        column2="child_id",
+        domain="['&',('customer','=',True),('id','!=',id)]",
+        string="Parents")
+
+    child_group_ids = fields.Many2many(
+        comodel_name="res.partner",
+        relation="client_related_entities_rel",
+        column1="child_id",
+        column2="parent_id",
+        domain="['&',('customer','=',True),('id','!=',id)]",
+        string="Children")
+
     # titular familiar
     family_contact_id = fields.Many2one("family.member", string="Main Contact")
 
