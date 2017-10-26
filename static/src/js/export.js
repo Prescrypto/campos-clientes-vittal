@@ -15,7 +15,7 @@ openerp.campos_clientes_vittal = function(instance, local) {
     },
     export_button: function() {
       new instance.web.Model(this.model)
-        .call('export_order', [extractIds(this.records.records)], {
+        .call('export_client', [extractIds(this.records.records)], {
           context: instance.session.user_context,
         })
         .done(createCsv.bind(this, 'export.csv'));
@@ -43,9 +43,31 @@ function csvBody(source) {
 }
 
 function csvHeading() {
-  // actualizar con /models/user_sales_order.py::export_order
+  // actualizar con /models/user_sales_order.py::export_client
   var clientHeader = [
     'Clave del Cliente',
+    'Nombre',
+    'R.F.C.',
+    'Calle',
+    'Número interior',
+    'Número exterior',
+    'Entre Calle',
+    'Y Calle',
+    // 'Colonia',
+    'Código Postal',
+    // 'Población',
+    // 'Municipio',
+    // 'Estado',
+    // 'País',
+    // 'Nacionalidad',
+    'Referencia',
+    'Teléfono',
+    // 'Clasificación',
+    'Fax',
+    'Página web',
+    'C.U.R.P.',
+    // 'Uso del CFDI',
+    // 'Forma de pago SAT',
   ].join(',');
 
   return clientHeader;

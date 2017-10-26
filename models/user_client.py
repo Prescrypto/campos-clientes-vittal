@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import string
+import _sae as sae
+from functools import reduce
 from odoo import models, fields, api, _
 
 
@@ -81,13 +83,9 @@ class user_client(models.Model):
     company_ids = fields.One2many(
         "company.member", "parent_id", string="Company Members")
 
-    # código postal de colonia
-    zip_extra = fields.Char("Zip Extra")
-
     # tipo de usuario adicional
-    client_type = fields.Selection(selection=[("company", _("Company")),
-                                              ("family", _("Family")),
-                                              ("private", _("Private"))])
+    client_type = fields.Selection(selection=[("company", _("Company")), (
+        "family", _("Family")), ("private", _("Private"))])
 
     # nombre comercial
     legal_name = fields.Char("Legal Name")
@@ -114,7 +112,10 @@ class user_client(models.Model):
                    ("fiscal", _("Fiscal Address"))])
 
     # entre calles
-    cross_street = fields.Char("Cross Streets")
+    cross_street = fields.Char("Cross Street")
+
+    # y calle
+    crosses_with = fields.Char("Crosses With")
 
     # referencias
     references = fields.Char("References")
@@ -125,10 +126,38 @@ class user_client(models.Model):
     # características especiales
     details = fields.Char("Details")
 
+    # número de referencia
+    reference_id = fields.Char("Reference Number")
+
+    # CURP
+    curp = fields.Char("CURP")
+
     # exportación sae
     @api.multi
-    def export_order(self):
+    def export_client(self):
         columns = [
             'id',
+            'name',
+            'rfc',
+            'street',
+            'street2',
+            'cross_street',
+            'crosses_with',
+            # 'SAT',
+            'zip',
+            # 'SAT',
+            # 'SAT',
+            # 'SAT',
+            # 'SAT',
+            # 'SAT',
+            'reference_id',
+            'phone',
+            # 'SAT',
+            'fax',
+            'website',
+            'curp',
+            # 'WHAT',
+            # 'WHAT',
         ]
-        return self.export_data(columns).get('datas', [])
+        return map(sae.format, self.export_data(columns).get('datas', []))
+

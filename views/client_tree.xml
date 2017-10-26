@@ -16,7 +16,6 @@
                     <field name="city"/>
                     <field name="state_id"/>
                     <field name="zip"/>
-                    <field name="zip_extra"/>
                     <field name="zone"/>
                  </tree>
              </field>
