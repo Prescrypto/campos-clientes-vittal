@@ -52,6 +52,10 @@
     'css': [
         'static/src/css/custom.css'
     ],
+    # scripts
+    'js': [
+        'static/src/js/export.js'
+    ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
