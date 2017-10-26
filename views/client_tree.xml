@@ -1,7 +1,7 @@
 <odoo>
     <data>
-        <record id="view_client_tree" model="ir.ui.view">
-             <field name="name">Clients (Extended)</field>
+        <record id="res_partner_extended_tree" model="ir.ui.view">
+             <field name="name">Customers (Extended)</field>
              <field name="model">res.partner</field>
              <field name="arch" type="xml">
                  <tree>
