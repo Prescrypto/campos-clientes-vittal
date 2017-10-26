@@ -45,8 +45,8 @@
         'views/subscription_tree.xml',
         'views/subscription_action.xml',
         'views/subscription_filter.xml',
-        'views/templates.xml',
         'views/sales_menu.xml',
+        'views/static_assets.xml',
     ],
     # styles
     'css': [
