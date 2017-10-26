@@ -56,6 +56,10 @@
     'js': [
         'static/src/js/export.js'
     ],
+    # templates
+    'qweb': [
+        'static/src/xml/export_button.xml',
+    ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

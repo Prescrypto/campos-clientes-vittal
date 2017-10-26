@@ -125,3 +125,7 @@ class user_client(models.Model):
     # características especiales
     details = fields.Char("Details")
 
+    # exportación sae
+    @api.multi
+    def export_order(self):
+        return [];
