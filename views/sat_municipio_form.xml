@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="sat_municipio_form" model="ir.ui.view">
+            <field name="name">Municipios</field>
+            <field name="model">sat.municipio</field>
+            <field name="arch" type="xml">
+                <form string="Municipios" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="nombre_municipio" placeholder="Nombre del Municipio"/>
+                            <field name="codigo_municipio" placeholder="Código de Municipio"/>
+                            <field name="codigo_estado" placeholder="Código de Estado"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

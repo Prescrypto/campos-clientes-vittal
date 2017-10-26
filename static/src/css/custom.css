@@ -14,4 +14,18 @@
 }
 .o_list_view  > tbody > tr > td.o_handle_cell {
   white-space: nowrap;
+}
 
+/* esconder boton de editar de colonia */
+.o_sat_pagos > .o_external_button,
+.o_sat_uso > .o_external_button,
+.o_address_colonia > .o_external_button,
+.o_address_city > .o_external_button,
+.o_address_pais > .o_external_button {
+  display: none !important;
+}
+
+/* arreglar municipio */
+.o_form_view .o_group .o_form_field.o_address_city {
+  width: 33%;
+}

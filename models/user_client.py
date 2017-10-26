@@ -2,7 +2,6 @@
 
 import string
 import _sae as sae
-from functools import reduce
 from odoo import models, fields, api, _
 
 
@@ -44,21 +43,6 @@ class user_client(models.Model):
     # titular empresarial
     company_contact_id = fields.Many2one(
         "company.member", string="Main Contact")
-
-    # cambiar formato de nombre de titular
-    def name_get(self):
-        res = []
-        for record in self:
-            if record.type != 'contact':
-                tpl = string.Template("$street, $street2$city")
-                label = tpl.substitute(
-                    street=record.street,
-                    street2=(record.street2 + ", " if record.street2 else ""),
-                    city=record.city)
-                res.append((record.id, label))
-            else:
-                res.append((record.id, record.name))
-        return res
 
     # codigo de grupo
     group_code = fields.Char("Group Code", compute="_group_code", store=True)
@@ -103,6 +87,35 @@ class user_client(models.Model):
                    ("lomas", "LOMAS"), ("plnco", "PLNCO"), ("sfe", "SFE"),
                    ("tcmchl", "TCMCHL"), ("unica", "UNICA")])
 
+    # catalogo de colonias
+    sat_colonia_id = fields.Many2one("sat.colonia", "Colonia")
+
+    # catalogo de municipios
+    sat_municipio_id = fields.Many2one("sat.municipio", "Municipio")
+
+    # nombre derivado de catalogo de municipio
+    sat_municipio_name = fields.Char(
+        related="sat_municipio_id.nombre_municipio", store=True)
+
+    # catalogo de colonias
+    sat_estado_id = fields.Many2one("sat.estado", "Estado")
+
+    # catalogo de paises
+    sat_pais_id = fields.Many2one("sat.pais", "País")
+
+    # catalogo de usos de cfdi
+    sat_uso_id = fields.Many2one("sat.uso", "Uso CFDI")
+
+    # codigo derivado de uso de cfdi
+    sat_uso_codigo = fields.Char(related="sat_uso_id.codigo_uso", store=True)
+
+    # catalog de formas de pago
+    sat_pagos_id = fields.Many2one("sat.pagos", "Formas de Pago")
+
+    # codigo derivado de forma de pago
+    sat_pagos_codigo = fields.Char(
+        related="sat_pagos_id.codigo_forma", store=True)
+
     # tipos de dirección
     type = fields.Selection(
         string="Address Type",
@@ -132,6 +145,12 @@ class user_client(models.Model):
     # CURP
     curp = fields.Char("CURP")
 
+    # población
+    poblacion = fields.Char("Población")
+
+    # nacionalidad
+    nacionalidad = fields.Char("Nacionalidad")
+
     # exportación sae
     @api.multi
     def export_client(self):
@@ -143,21 +162,35 @@ class user_client(models.Model):
             'street2',
             'cross_street',
             'crosses_with',
-            # 'SAT',
+            'sat_colonia_id',
             'zip',
-            # 'SAT',
-            # 'SAT',
-            # 'SAT',
-            # 'SAT',
-            # 'SAT',
+            'poblacion',
+            'sat_municipio_id',
+            'sat_estado_id',
+            'sat_pais_id',
+            'nacionalidad',
             'reference_id',
             'phone',
-            # 'SAT',
             'fax',
             'website',
             'curp',
-            # 'WHAT',
-            # 'WHAT',
+            'sat_uso_codigo',
+            'sat_pagos_codigo',
         ]
         return map(sae.format, self.export_data(columns).get('datas', []))
+
+    # cambiar formato de nombre de titular
+    def name_get(self):
+        res = []
+        for record in self:
+            if record.type != 'contact':
+                tpl = string.Template("$street, $street2$city")
+                label = tpl.substitute(
+                    street=record.street,
+                    street2=(record.street2 + ", " if record.street2 else ""),
+                    city=record.sat_municipio_name)
+                res.append((record.id, label))
+            else:
+                res.append((record.id, record.name))
+        return res
 

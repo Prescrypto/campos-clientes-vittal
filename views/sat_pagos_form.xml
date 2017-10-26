@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="sat_pagos_form" model="ir.ui.view">
+            <field name="name">Formas de pago</field>
+            <field name="model">sat.pagos</field>
+            <field name="arch" type="xml">
+                <form string="Formas de Pago" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="codigo_forma"/>
+                            <field name="nombre_forma"/>
+                            <field name="bancarizado"/>
+                            <field name="numero_operacion"/>
+                            <field name="rfc_emisor"/>
+                            <field name="cuenta_ordenante"/>
+                            <field name="patron_ordenante"/>
+                            <field name="rfc_beneficiario"/>
+                            <field name="cuenta_beneficiario"/>
+                            <field name="patron_beneficiario"/>
+                            <field name="tipo_cadena"/>
+                            <field name="nombre_banco"/>
+                            <field name="inicio_vigencia"/>
+                            <field name="fin_vigencia"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

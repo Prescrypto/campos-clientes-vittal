@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="sat_estado_form" model="ir.ui.view">
+            <field name="name">Estados</field>
+            <field name="model">sat.estado</field>
+            <field name="arch" type="xml">
+                <form string="Estados" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="nombre_estado" placeholder="Estado"/>
+                            <field name="codigo_estado" placeholder="Código de Estado"/>
+                            <field name="codigo_pais" placeholder="Código de País"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

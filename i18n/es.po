@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-24 04:01+0000\n"
-"PO-Revision-Date: 2017-10-23 21:02-0700\n"
+"POT-Creation-Date: 2017-10-30 08:28+0000\n"
+"PO-Revision-Date: 2017-10-30 01:31-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -65,7 +65,7 @@ msgid "Address Type"
 msgstr "Tipo de Domicilio"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:113
+#: code:addons/campos_clientes_vittal/models/user_client.py:120
 #, python-format
 msgid "Administrative Address"
 msgstr "Domicilio Administrativo"
@@ -85,11 +85,27 @@ msgid "Age"
 msgstr "Edad"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_agrupaciones
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
+msgid "Agrupaciones"
+msgstr "Agrupaciones"
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_allergies
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_allergies
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_allergies
 msgid "Allergies"
 msgstr "Alergias"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_aplica_fisica
+msgid "Aplica a Persona Física"
+msgstr "Aplica a Persona Física"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_aplica_moral
+msgid "Aplica a Persona Moral"
+msgstr "Aplica a Persona Moral"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_associate_id
@@ -141,6 +157,11 @@ msgid "BQELMS"
 msgstr "BQELMS"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_bancarizado
+msgid "Bancarizado"
+msgstr "Bancarizado"
+
+#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_member_form
 msgid "Begin Registration"
 msgstr "Comenzar Registro"
@@ -174,6 +195,16 @@ msgid "Business Type"
 msgstr "Tipo de Negocio"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_curp
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_curp
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_curp
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_curp
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_curp
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "CURP"
+msgstr "CURP"
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_child_group_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_child_group_ids
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_child_group_ids
@@ -183,15 +214,15 @@ msgid "Children"
 msgstr "Descendientes"
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "City"
-msgstr "Ciudad"
-
-#. module: campos_clientes_vittal
 #: model:ir.actions.act_window,name:campos_clientes_vittal.view_client_action
 msgid "Client (Extended)"
 msgstr "Cliente (Extendido)"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+#| msgid "Client type"
+msgid "Client Type"
+msgstr "Tipo de Cliente"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_client_type
@@ -203,22 +234,29 @@ msgid "Client type"
 msgstr "Tipo de Cliente"
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_client_filter
-msgid "Clients"
-msgstr "Clientes"
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.menu,name:campos_clientes_vittal.menu_clients_ext
-msgid "Clients (Extended)"
-msgstr "Clientes (Extendido)"
-
-#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Code"
 msgstr "Código"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:88
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_colonia_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_colonia_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_colonia_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_colonia_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_colonia_id
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Colonia"
+msgstr "Colonia"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_sat_colonia_ids
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_colonia_form
+msgid "Colonias"
+msgstr "Colonias"
+
+#. module: campos_clientes_vittal
+#: code:addons/campos_clientes_vittal/models/user_client.py:72
 #: selection:company.member,client_type:0 selection:family.member,client_type:0
 #: selection:res.partner,client_type:0 selection:user.member,client_type:0
 #, python-format
@@ -235,7 +273,7 @@ msgid "Company Members"
 msgstr "Afiliados de Empresa"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:111
+#: code:addons/campos_clientes_vittal/models/user_client.py:118
 #, python-format
 msgid "Contact"
 msgstr "Contacto"
@@ -252,12 +290,7 @@ msgid "Contacts & Addresses"
 msgstr "Contactos y Direcciones"
 
 #. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
-msgid "Country"
-msgstr "País"
-
-#. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:112
+#: code:addons/campos_clientes_vittal/models/user_client.py:119
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_cov_address
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_cov_address
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_cov_address
@@ -272,6 +305,12 @@ msgstr "Domicilio de Cobertura"
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_create_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_create_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_create_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_create_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_create_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_create_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_create_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_create_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -279,14 +318,15 @@ msgstr "Creado por"
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_create_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_create_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_create_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_create_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_create_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_create_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_create_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_create_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_create_date
 msgid "Created on"
 msgstr "Creado el"
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
-msgid "Cross Street"
-msgstr "Entre Calles"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_cross_street
@@ -294,8 +334,96 @@ msgstr "Entre Calles"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_cross_street
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_cross_street
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_cross_street
-msgid "Cross Streets"
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
+msgid "Cross Street"
 msgstr "Entre Calles"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_crosses_with
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_crosses_with
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_crosses_with
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_crosses_with
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_crosses_with
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
+msgid "Crosses With"
+msgstr "Y Calle"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_cuenta_ordenante
+msgid "Cuenta Ordenante"
+msgstr "Cuenta Ordenante"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_cuenta_beneficiario
+msgid "Cuenta de Beneficiario"
+msgstr "Cuenta de Beneficiario"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.menu,name:campos_clientes_vittal.menu_clients_ext
+msgid "Customers (Extended)"
+msgstr "Clientes (Extendido)"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_colonia_form
+msgid "Código Postal"
+msgstr "Código Postal"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_colonia_form
+msgid "Código de Colonia"
+msgstr "Código de Colonia"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_codigo_estado
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_estado_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_municipio_form
+msgid "Código de Estado"
+msgstr "Código de Estado"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_codigo_municipio
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_municipio_form
+msgid "Código de Municipio"
+msgstr "Código de Municipio"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_uso_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_uso_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_uso_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_uso_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_codigo_pais
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_codigo_uso
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_uso_codigo
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_estado_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
+msgid "Código de País"
+msgstr "Código de País"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_codigo_colonia
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_codigo_postal
+msgid "Código de colonia"
+msgstr "Código de colonia"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_codigo_estado
+msgid "Código de estado"
+msgstr "Código de estado"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_pagos_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_pagos_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_pagos_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_pagos_codigo
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_codigo_forma
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_pagos_codigo
+msgid "Código de pagos"
+msgstr "Código de pagos"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_codigo_pais
+msgid "Código de pais"
+msgstr "Código de pais"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_end_date
@@ -336,6 +464,16 @@ msgid "Director"
 msgstr "Directivo"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_display_name
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_display_name
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_display_name
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_display_name
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_display_name
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_display_name
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/partner_member.py:114
 #: selection:company.member,relationship:0
 #, python-format
@@ -363,6 +501,22 @@ msgid "Entities"
 msgstr "Entidades"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_estado_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_estado_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_estado_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_estado_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_estado_id
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_estado_form
+msgid "Estado"
+msgstr "Estado"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_sat_estado_ids
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_estado_form
+msgid "Estados"
+msgstr "Estados"
+
+#. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/user_sales_order.py:47
 #: selection:sale.order,recurrence:0
 #, python-format
@@ -377,6 +531,13 @@ msgid "Executive"
 msgstr "Ejecutivo"
 
 #. module: campos_clientes_vittal
+#. openerp-web
+#: code:addons/campos_clientes_vittal/static/src/xml/export_button.xml:6
+#, python-format
+msgid "Export"
+msgstr "Exportar"
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_exterior
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_exterior
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_exterior
@@ -387,7 +548,7 @@ msgid "Exterior"
 msgstr "Fachada"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:89
+#: code:addons/campos_clientes_vittal/models/user_client.py:73
 #: selection:company.member,client_type:0 selection:family.member,client_type:0
 #: selection:res.partner,client_type:0 selection:user.member,client_type:0
 #, python-format
@@ -412,10 +573,48 @@ msgid "Father"
 msgstr "Padre"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:114
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_inicio_vigencia
+msgid "Fecha Fin de Vigencia"
+msgstr "Fecha Fin de Vigencia"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_fin_vigencia
+msgid "Fecha Inicio de Vigencia"
+msgstr "Fecha Inicio de Vigencia"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_fin_vigencia
+msgid "Fin de Vigencia"
+msgstr "Fin de Vigencia"
+
+#. module: campos_clientes_vittal
+#: code:addons/campos_clientes_vittal/models/user_client.py:121
 #, python-format
 msgid "Fiscal Address"
 msgstr "Domicilio Fiscal"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_pagos_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_pagos_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_pagos_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_pagos_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_sat_pagos_ids
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_pagos_id
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pagos_form
+msgid "Formas de Pago"
+msgstr "Formas de Pago"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_formato_codigo_postal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
+msgid "Formato de Código Postal"
+msgstr "Formato de Código Postal"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_formato_registro
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
+msgid "Formato de Registro de Identidad Tributaria"
+msgstr "Formato de Registro de Identidad Tributaria"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_group_code
@@ -429,6 +628,12 @@ msgstr "Código de Grupo"
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_id
 msgid "ID"
 msgstr "ID"
@@ -438,6 +643,11 @@ msgstr "ID"
 #: selection:res.partner,zone:0 selection:user.member,zone:0
 msgid "ITRLMS"
 msgstr "ITRLMS"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_inicio_vigencia
+msgid "Inicio de Vigencia"
+msgstr "Inicio de Vigencia"
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
@@ -477,6 +687,12 @@ msgstr "LOMAS"
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member___last_update
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member___last_update
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia___last_update
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado___last_update
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio___last_update
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos___last_update
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais___last_update
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso___last_update
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member___last_update
 msgid "Last Modified on"
 msgstr "Ultima Modificiación"
@@ -484,6 +700,12 @@ msgstr "Ultima Modificiación"
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_write_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_write_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_write_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_write_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_write_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_write_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_write_uid
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_write_uid
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_write_uid
 msgid "Last Updated by"
 msgstr "Ultimo en actualizar"
@@ -491,6 +713,12 @@ msgstr "Ultimo en actualizar"
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_write_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_write_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_write_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_write_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_write_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_write_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_write_date
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_write_date
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_write_date
 msgid "Last Updated on"
 msgstr "Ultima Modificación"
@@ -501,7 +729,7 @@ msgstr "Ultima Modificación"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_legal_name
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_legal_name
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_legal_name
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_filter
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_client_filter
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Legal Name"
 msgstr "Nombre Comercial"
@@ -542,15 +770,78 @@ msgid "Mother"
 msgstr "Madre"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_municipio_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_municipio_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_municipio_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_municipio_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_municipio_id
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "Municipio"
+msgstr "Municipio"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_municipio_form
+msgid "Municipios"
+msgstr "Municipios"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_nacionalidad
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_nacionalidad
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_nacionalidad
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_nacionalidad
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_nacionalidad
+msgid "Nacionalidad"
+msgstr "Nacionalidad"
+
+#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Name"
 msgstr "Razón Social"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_nombre_municipio
+msgid "Nombre de Municipio"
+msgstr "Nombre de Municipio"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_nombre_pais
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_nombre_uso
+msgid "Nombre de País"
+msgstr "Nombre de País"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_nombre_banco
+msgid "Nombre del Banco"
+msgstr "Nombre del Banco"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_municipio_form
+msgid "Nombre del Municipio"
+msgstr "Nombre del Municipio"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_nombre_colonia
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_nombre_forma
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_colonia_form
+msgid "Nombre del asentamiento"
+msgstr "Nombre del asentamiento"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_estado_nombre_estado
+msgid "Nombre del estado"
+msgstr "Nombre del estado"
+
+#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Note"
 msgstr "Nota"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_numero_operacion
+msgid "Número de Operación"
+msgstr "Número de Operación"
 
 #. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/partner_member.py:78
@@ -600,6 +891,17 @@ msgid "PLNCO"
 msgstr "PLNCO"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
+msgid "Pais"
+msgstr "País"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
+msgid "Paises"
+msgstr "Paises"
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_parent_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_parent_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_parent_id
@@ -621,9 +923,39 @@ msgid "Partner"
 msgstr "Cónyuge"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_patron_beneficiario
+msgid "Patrón para Cuenta Beneficiaria"
+msgstr "Patrón para Cuenta Beneficiaria"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_patron_ordenante
+msgid "Patrón para Cuenta Ordenante"
+msgstr "Patrón para Cuenta Ordenante"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_pais_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_pais_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_pais_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_pais_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_municipio_sat_municipio_ids
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_sat_pais_ids
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_pais_id
+msgid "País"
+msgstr "País"
+
+#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Phone"
 msgstr "Teléfono"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_poblacion
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_poblacion
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_poblacion
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_poblacion
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_poblacion
+msgid "Población"
+msgstr "Población"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_prev_ailments
@@ -633,7 +965,7 @@ msgid "Previous Ailments"
 msgstr "Enfermedades Previas"
 
 #. module: campos_clientes_vittal
-#: code:addons/campos_clientes_vittal/models/user_client.py:90
+#: code:addons/campos_clientes_vittal/models/user_client.py:73
 #: selection:company.member,client_type:0 selection:family.member,client_type:0
 #: selection:res.partner,client_type:0 selection:user.member,client_type:0
 #, python-format
@@ -656,6 +988,16 @@ msgid "RFC"
 msgstr "RFC"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_rfc_emisor
+msgid "RFC del Emisor"
+msgstr "RFC del Emisor"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_rfc_beneficiario
+msgid "RFC del Emisor Cuenta del Beneficiario"
+msgstr "RFC del Emisor Cuenta del Beneficiario"
+
+#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_end_reason
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_end_reason
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_end_reason
@@ -666,6 +1008,15 @@ msgstr "Motivo de Baja"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_recurrence
 msgid "Recurrence"
 msgstr "Recurrencia"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_reference_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_reference_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_reference_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_reference_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_reference_id
+msgid "Reference Number"
+msgstr "Número de Referencia"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_references
@@ -802,6 +1153,11 @@ msgid "TCMCHL"
 msgstr "TCMCHL"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pagos_tipo_cadena
+msgid "Tipo Cadena Pago"
+msgstr "Tipo Cadena Pago"
+
+#. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_subscription_tree
 msgid "Total Tax Included"
 msgstr "Impuesto Total"
@@ -813,6 +1169,27 @@ msgid "UNICA"
 msgstr "UNICA"
 
 #. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_sat_uso_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_sat_uso_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_sat_uso_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_sat_uso_id
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_sat_uso_ids
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_sat_uso_id
+msgid "Uso CFDI"
+msgstr "Uso CFDI"
+
+#. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_uso_form
+msgid "Usos CDFI"
+msgstr "Usos CDFI"
+
+#. module: campos_clientes_vittal
+#: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_pais_validacion_registro
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
+msgid "Validación del Registro de Identidad Tributaria"
+msgstr "Validación del Registro de Identidad Tributaria"
+
+#. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/user_sales_order.py:48
 #: selection:sale.order,recurrence:0
 #, python-format
@@ -821,29 +1198,13 @@ msgstr "Anual"
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "ZIP"
 msgstr "Código Postal"
-
-#. module: campos_clientes_vittal
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_address_form
-#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
-msgid "ZIP Ext"
-msgstr "C.P. Colonia"
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Zip"
 msgstr "C.P."
-
-#. module: campos_clientes_vittal
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_zip_extra
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_zip_extra
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_partner_zip_extra
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_res_users_zip_extra
-#: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_zip_extra
-msgid "Zip Extra"
-msgstr "C.P. Colonia"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_zone
@@ -868,6 +1229,11 @@ msgid "days"
 msgstr "días"
 
 #. module: campos_clientes_vittal
+#: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
+msgid "e.g. https://www.google.com"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: model:ir.model,name:campos_clientes_vittal.model_family_member
 msgid "family.member"
 msgstr ""
@@ -878,9 +1244,57 @@ msgid "partner.address"
 msgstr "Domicilio de Atención"
 
 #. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_sat_colonia
+msgid "sat.colonia"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_sat_estado
+msgid "sat.estado"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_sat_municipio
+msgid "sat.municipio"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_sat_pagos
+msgid "sat.pagos"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_sat_pais
+msgid "sat.pais"
+msgstr ""
+
+#. module: campos_clientes_vittal
+#: model:ir.model,name:campos_clientes_vittal.model_sat_uso
+msgid "sat.uso"
+msgstr ""
+
+#. module: campos_clientes_vittal
 #: model:ir.model,name:campos_clientes_vittal.model_user_member
 msgid "user.member"
 msgstr ""
+
+#~ msgid "City"
+#~ msgstr "Ciudad"
+
+#~ msgid "Clients"
+#~ msgstr "Clientes"
+
+#~ msgid "Country"
+#~ msgstr "País"
+
+#~ msgid "Cross Streets"
+#~ msgstr "Entre Calles"
+
+#~ msgid "ZIP Ext"
+#~ msgstr "C.P. Colonia"
+
+#~ msgid "Zip Extra"
+#~ msgstr "C.P. Colonia"
 
 #, fuzzy
 #~| msgid "Contact"

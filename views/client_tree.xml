@@ -13,8 +13,8 @@
                     <field name="name"/>
                     <field name="street"/>
                     <field name="street2"/>
-                    <field name="city"/>
-                    <field name="state_id"/>
+                    <field name="sat_municipio_id"/>
+                    <field name="sat_estado_id"/>
                     <field name="zip"/>
                     <field name="zone"/>
                  </tree>

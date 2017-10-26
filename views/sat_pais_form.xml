@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="sat_pais_form" model="ir.ui.view">
+            <field name="name">Paises</field>
+            <field name="model">sat.pais</field>
+            <field name="arch" type="xml">
+                <form string="Paises" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="nombre_pais" placeholder="Pais"/>
+                            <field name="codigo_pais" placeholder="Código de País"/>
+                            <field name="formato_codigo_postal" placeholder="Formato de Código Postal"/>
+                            <field name="formato_registro" placeholder="Formato de Registro de Identidad Tributaria"/>
+                            <field name="validacion_registro" placeholder="Validación del Registro de Identidad Tributaria"/>
+                            <field name="agrupaciones" placeholder="Agrupaciones"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

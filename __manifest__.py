@@ -34,6 +34,18 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/sat.colonia.csv',
+        'data/sat.municipio.csv',
+        'data/sat.estado.csv',
+        'data/sat.pais.csv',
+        'data/sat.uso.csv',
+        'data/sat.pagos.csv',
+        'views/sat_colonia_form.xml',
+        'views/sat_municipio_form.xml',
+        'views/sat_estado_form.xml',
+        'views/sat_pais_form.xml',
+        'views/sat_uso_form.xml',
+        'views/sat_pagos_form.xml',
         'views/partner_member_form.xml',
         'views/partner_address_form.xml',
         'views/view_partner_form.xml',
