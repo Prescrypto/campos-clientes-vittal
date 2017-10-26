@@ -128,4 +128,7 @@ class user_client(models.Model):
     # exportación sae
     @api.multi
     def export_order(self):
-        return [];
+        columns = [
+            'id',
+        ]
+        return self.export_data(columns).get('datas', [])
