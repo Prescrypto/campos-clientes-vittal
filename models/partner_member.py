@@ -27,17 +27,18 @@ class UserMember(models.Model):
     # edad
     age = fields.Integer("Age", compute="_calc_age", store=False)
 
-    @api.one
+    @api.multi
     @api.depends("birthday")
     def _calc_age(self):
-        def calculate_age(born):
-            today = date.today()
-            return today.year - born.year - ((today.month, today.day) <
-                                             (born.month, born.day))
+        for record in self:
+            def calculate_age(born):
+                today = date.today()
+                return today.year - born.year - ((today.month, today.day) <
+                                                 (born.month, born.day))
 
-        if self.birthday:
-            self.age = calculate_age(
-                fields.Datetime.from_string(self.birthday))
+            if record.birthday:
+                record.age = calculate_age(
+                    fields.Datetime.from_string(record.birthday))
 
     # enfermedades previas
     prev_ailments = fields.Text("Previous Ailments")
@@ -78,17 +79,19 @@ class FamilyMember(models.Model):
                    ("5", odoo._("Other family"))])
 
     # comenzar suscripción
-    @api.one
+    @api.multi
     def start_reg(self):
-        self.start_date = fields.Datetime.to_string(datetime.now())
-        self.end_date = ""
-        self.user_active = True
+        for record in self:
+            record.start_date = fields.Datetime.to_string(datetime.now())
+            record.end_date = ""
+            record.user_active = True
 
     # terminar suscripción
-    @api.one
+    @api.multi
     def end_reg(self):
-        self.end_date = fields.Datetime.to_string(datetime.now())
-        self.user_active = False
+        for record in self:
+            record.end_date = fields.Datetime.to_string(datetime.now())
+            record.user_active = False
 
 
 class CompanyMember(models.Model):
@@ -111,14 +114,16 @@ class CompanyMember(models.Model):
                    ("5", odoo._("Employee")), ("6", odoo._("Other"))])
 
     # comenzar suscripción
-    @api.one
+    @api.multi
     def start_reg(self):
-        self.start_date = fields.Datetime.to_string(datetime.now())
-        self.end_date = ""
-        self.user_active = True
+        for record in self:
+            record.start_date = fields.Datetime.to_string(datetime.now())
+            record.end_date = ""
+            record.user_active = True
 
     # terminar suscripción
-    @api.one
+    @api.multi
     def end_reg(self):
-        self.end_date = fields.Datetime.to_string(datetime.now())
-        self.user_active = False
+        for record in self:
+            record.end_date = fields.Datetime.to_string(datetime.now())
+            record.user_active = False

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import string
 from odoo import models, fields, api, _
 
 
@@ -11,7 +12,6 @@ class user_client(models.Model):
         relation="client_related_entities_rel",
         column1="parent_id",
         column2="child_id",
-        domain="['&',('customer','=',True),('id','!=',id)]",
         string="Parents")
 
     child_group_ids = fields.Many2many(
@@ -19,7 +19,6 @@ class user_client(models.Model):
         relation="client_related_entities_rel",
         column1="child_id",
         column2="parent_id",
-        domain="['&',('customer','=',True),('id','!=',id)]",
         string="Children")
 
     # titular familiar
@@ -45,26 +44,34 @@ class user_client(models.Model):
         "company.member", string="Main Contact")
 
     # cambiar formato de nombre de titular
-    @api.multi
     def name_get(self):
-        result = []
+        res = []
         for record in self:
-            result.append((record.id, record.name))
-        return result
+            if record.type != 'contact':
+                tpl = string.Template("$street, $street2$city")
+                label = tpl.substitute(
+                    street=record.street,
+                    street2=(record.street2 + ", " if record.street2 else ""),
+                    city=record.city)
+                res.append((record.id, label))
+            else:
+                res.append((record.id, record.name))
+        return res
 
     # codigo de grupo
     group_code = fields.Char("Group Code", compute="_group_code", store=True)
 
-    @api.one
+    @api.multi
     @api.depends("client_type")
     def _group_code(self):
-        if self.client_type:
-            prefix = {
-                "company": "E",
-                "family": "F",
-                "private": "P",
-            }[self.client_type]
-            self.group_code = prefix + str(self.id)
+        for record in self:
+            if record.client_type:
+                prefix = {
+                    "company": "E",
+                    "family": "F",
+                    "private": "P",
+                }[record.client_type]
+                record.group_code = prefix + str(record.id)
 
     # miembros del grupo
     family_ids = fields.One2many(
@@ -101,8 +108,8 @@ class user_client(models.Model):
     # tipos de dirección
     type = fields.Selection(
         string="Address Type",
-        selection=[("contact", _("Contact")),
-                   ("coverage", _("Coverage Address")),
+        selection=[("contact", _("Contact")), ("coverage",
+                                               _("Coverage Address")),
                    ("admin", _("Administrative Address")),
                    ("fiscal", _("Fiscal Address"))])
 
@@ -117,3 +124,4 @@ class user_client(models.Model):
 
     # características especiales
     details = fields.Char("Details")
+
