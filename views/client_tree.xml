@@ -1,7 +1,7 @@
 <odoo>
     <data>
-        <record id="view_client_tree" model="ir.ui.view">
-             <field name="name">Clients (Extended)</field>
+        <record id="res_partner_extended_tree" model="ir.ui.view">
+             <field name="name">Customers (Extended)</field>
              <field name="model">res.partner</field>
              <field name="arch" type="xml">
                  <tree>
@@ -13,10 +13,9 @@
                     <field name="name"/>
                     <field name="street"/>
                     <field name="street2"/>
-                    <field name="city"/>
-                    <field name="state_id"/>
+                    <field name="sat_municipio_id"/>
+                    <field name="sat_estado_id"/>
                     <field name="zip"/>
-                    <field name="zip_extra"/>
                     <field name="zone"/>
                  </tree>
              </field>

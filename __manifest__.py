@@ -34,10 +34,21 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/sat.colonia.csv',
+        'data/sat.municipio.csv',
+        'data/sat.estado.csv',
+        'data/sat.pais.csv',
+        'data/sat.uso.csv',
+        'data/sat.pagos.csv',
+        'views/sat_colonia_form.xml',
+        'views/sat_municipio_form.xml',
+        'views/sat_estado_form.xml',
+        'views/sat_pais_form.xml',
+        'views/sat_uso_form.xml',
+        'views/sat_pagos_form.xml',
         'views/partner_member_form.xml',
         'views/partner_address_form.xml',
         'views/view_partner_form.xml',
-        'views/view_partner_filter.xml',
         'views/view_product_filter.xml',
         'views/sale_order_form.xml',
         'views/client_tree.xml',
@@ -46,12 +57,20 @@
         'views/subscription_tree.xml',
         'views/subscription_action.xml',
         'views/subscription_filter.xml',
-        'views/subscription_menu.xml',
-        'views/templates.xml',
+        'views/sales_menu.xml',
+        'views/static_assets.xml',
     ],
     # styles
     'css': [
         'static/src/css/custom.css'
+    ],
+    # scripts
+    'js': [
+        'static/src/js/export.js'
+    ],
+    # templates
+    'qweb': [
+        'static/src/xml/export_button.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

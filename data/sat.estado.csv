@@ -1,0 +1,96 @@
+id,codigo_estado,codigo_pais,nombre_estado
+sat_estado_1,AGU,MEX,Aguascalientes
+sat_estado_2,BCN,MEX,Baja California
+sat_estado_3,BCS,MEX,Baja California Sur
+sat_estado_4,CAM,MEX,Campeche
+sat_estado_5,CHP,MEX,Chiapas
+sat_estado_6,CHH,MEX,Chihuahua
+sat_estado_7,COA,MEX,Coahuila
+sat_estado_8,COL,MEX,Colima
+sat_estado_9,DIF,MEX,Ciudad de México
+sat_estado_10,DUR,MEX,Durango
+sat_estado_11,GUA,MEX,Guanajuato
+sat_estado_12,GRO,MEX,Guerrero
+sat_estado_13,HID,MEX,Hidalgo
+sat_estado_14,JAL,MEX,Jalisco
+sat_estado_15,MEX,MEX,Estado de México
+sat_estado_16,MIC,MEX,Michoacán
+sat_estado_17,MOR,MEX,Morelos
+sat_estado_18,NAY,MEX,Nayarit
+sat_estado_19,NLE,MEX,Nuevo León
+sat_estado_20,OAX,MEX,Oaxaca
+sat_estado_21,PUE,MEX,Puebla
+sat_estado_22,QUE,MEX,Querétaro
+sat_estado_23,ROO,MEX,Quintana Roo
+sat_estado_24,SLP,MEX,San Luis Potosí
+sat_estado_25,SIN,MEX,Sinaloa
+sat_estado_26,SON,MEX,Sonora
+sat_estado_27,TAB,MEX,Tabasco
+sat_estado_28,TAM,MEX,Tamaulipas
+sat_estado_29,TLA,MEX,Tlaxcala
+sat_estado_30,VER,MEX,Veracruz
+sat_estado_31,YUC,MEX,Yucatán
+sat_estado_32,ZAC,MEX,Zacatecas
+sat_estado_33,AL,USA,Alabama
+sat_estado_34,AK,USA,Alaska
+sat_estado_35,AZ,USA,Arizona
+sat_estado_36,AR,USA,Arkansas
+sat_estado_37,CA,USA,California
+sat_estado_38,NC,USA,Carolina del Norte
+sat_estado_39,SC,USA,Carolina del Sur
+sat_estado_40,CO,USA,Colorado
+sat_estado_41,CT,USA,Connecticut
+sat_estado_42,ND,USA,Dakota del Norte
+sat_estado_43,SD,USA,Dakota del Sur
+sat_estado_44,DE,USA,Delaware
+sat_estado_45,FL,USA,Florida
+sat_estado_46,GA,USA,Georgia
+sat_estado_47,HI,USA,Hawái
+sat_estado_48,ID,USA,Idaho
+sat_estado_49,IL,USA,Illinois
+sat_estado_50,IN,USA,Indiana
+sat_estado_51,IA,USA,Iowa
+sat_estado_52,KS,USA,Kansas
+sat_estado_53,KY,USA,Kentucky
+sat_estado_54,LA,USA,Luisiana
+sat_estado_55,ME,USA,Maine
+sat_estado_56,MD,USA,Maryland
+sat_estado_57,MA,USA,Massachusetts
+sat_estado_58,MI,USA,Míchigan
+sat_estado_59,MN,USA,Minnesota
+sat_estado_60,MS,USA,Misisipi
+sat_estado_61,MO,USA,Misuri
+sat_estado_62,MT,USA,Montana
+sat_estado_63,NE,USA,Nebraska
+sat_estado_64,NV,USA,Nevada
+sat_estado_65,NJ,USA,Nueva Jersey
+sat_estado_66,NY,USA,Nueva York
+sat_estado_67,NH,USA,Nuevo Hampshire
+sat_estado_68,NM,USA,Nuevo México
+sat_estado_69,OH,USA,Ohio
+sat_estado_70,OK,USA,Oklahoma
+sat_estado_71,OR,USA,Oregón
+sat_estado_72,PA,USA,Pensilvania
+sat_estado_73,RI,USA,Rhode Island
+sat_estado_74,TN,USA,Tennessee
+sat_estado_75,TX,USA,Texas
+sat_estado_76,UT,USA,Utah
+sat_estado_77,VT,USA,Vermont
+sat_estado_78,VA,USA,Virginia
+sat_estado_79,WV,USA,Virginia Occidental
+sat_estado_80,WA,USA,Washington
+sat_estado_81,WI,USA,Wisconsin
+sat_estado_82,WY,USA,Wyoming
+sat_estado_83,ON,CAN,Ontario 
+sat_estado_84,QC,CAN, Quebec 
+sat_estado_85,NS,CAN, Nueva Escocia
+sat_estado_86,NB,CAN,Nuevo Brunswick 
+sat_estado_87,MB,CAN, Manitoba
+sat_estado_88,BC,CAN, Columbia Británica
+sat_estado_89,PE,CAN, Isla del Príncipe Eduardo
+sat_estado_90,SK,CAN, Saskatchewan
+sat_estado_91,AB,CAN, Alberta
+sat_estado_92,NL,CAN, Terranova y Labrador
+sat_estado_93,NT,CAN, Territorios del Noroeste
+sat_estado_94,YT,CAN, Yukón
+sat_estado_95,UN,CAN, Nunavut

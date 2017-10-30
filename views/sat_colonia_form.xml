@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="sat_colonia_form" model="ir.ui.view">
+            <field name="name">Colonias</field>
+            <field name="model">sat.colonia</field>
+            <field name="arch" type="xml">
+                <form string="Colonias" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="nombre_colonia" placeholder="Nombre del asentamiento"/>
+                            <field name="codigo_postal" placeholder="Código Postal"/>
+                            <field name="codigo_colonia" placeholder="Código de Colonia"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

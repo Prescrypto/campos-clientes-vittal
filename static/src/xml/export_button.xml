@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template id="template" xml:space="preserve">
+    <t t-extend="ListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <t t-if="widget.model=='res.partner'">
+                <button class="btn btn-sm export_button" type="button">Export</button>
+            </t>
+        </t>
+    </t>
+</template>

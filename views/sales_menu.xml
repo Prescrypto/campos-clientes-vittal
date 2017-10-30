@@ -4,5 +4,5 @@
     <menuitem id="menu_subs" parent="sales_team.menu_sales" name="Subscriptions" action="view_subscription_action"/>
 
     <!-- agregar entrada a menú que invoca la acción -->
-    <menuitem id="menu_clients_ext" parent="sales_team.menu_sales" name="Clients (Extended)" action="view_client_action"/>
+    <menuitem id="menu_clients_ext" parent="sales_team.menu_sales" name="Customers (Extended)" action="view_client_action"/>
 </odoo>

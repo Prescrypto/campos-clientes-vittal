@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="sat_uso_form" model="ir.ui.view">
+            <field name="name">Usos CFDI</field>
+            <field name="model">sat.uso</field>
+            <field name="arch" type="xml">
+                <form string="Usos CDFI" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="nombre_uso"/>
+                            <field name="codigo_uso"/>
+                            <field name="aplica_fisica"/>
+                            <field name="aplica_moral"/>
+                            <field name="inicio_vigencia"/>
+                            <field name="fin_vigencia"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

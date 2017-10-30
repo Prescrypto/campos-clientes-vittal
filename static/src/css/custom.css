@@ -1,47 +1,9 @@
-/* ampliar campo de ciudad */
-.o_form_view.o_form_editable .o_address_format input.o_address_city {
-  width: 50%;
-}
-
-/* ampliar campo de estado */
-.o_form_view.o_form_editable .o_address_format div.o_address_state {
-  width: 45%;
-}
-
-/* ampliar campo de codigo postal */
-.o_form_view.o_form_editable .o_address_format input.o_address_zip {
-  width: 50%;
-}
-
-/* agregar espacio entre codigo postal y codigo de colonia */
-.o_form_view .o_address_format .o_address_zip {
-  margin-right: 2%;
-}
-
-/* ampliar campo de codigo postal */
-.o_form_view.o_form_editable .o_address_format input.o_address_zip_extra {
-  width: 45%;
-}
-
-/* agregar separador si existe codigo postal de colonia */
-.o_address_zip_extra:not(:empty) {
-  margin-left: -2px;
-}
-.o_address_zip_extra:not(:empty)::before {
-  content: '– ';
-  margin-right: -3px;
-}
-
 /* arreglar overflow de nombre */
 .o_form_view .oe_title > .o_legal_name {
   width: 100%;
   word-wrap: break-word;
 }
 
-/* mostrar campos de identidad en su propia linea */
-.o_address_zip_container {
-  display: block;
-}
 .o_form_readonly .o_name_container > .o_row {
   display: block !important;
 }
@@ -52,4 +14,18 @@
 }
 .o_list_view  > tbody > tr > td.o_handle_cell {
   white-space: nowrap;
+}
 
+/* esconder boton de editar de colonia */
+.o_sat_pagos > .o_external_button,
+.o_sat_uso > .o_external_button,
+.o_address_colonia > .o_external_button,
+.o_address_city > .o_external_button,
+.o_address_pais > .o_external_button {
+  display: none !important;
+}
+
+/* arreglar municipio */
+.o_form_view .o_group .o_form_field.o_address_city {
+  width: 33%;
+}
