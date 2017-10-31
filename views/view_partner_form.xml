@@ -67,7 +67,7 @@
 
                 <!-- agregar catalogo de municipios -->
                 <field name="city" position="replace">
-                    <field name="sat_municipio_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_municipio_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_city"/>
+                    <field name="sat_municipio_id" placeholder="Municipio" context="{'form_view_ref': 'campos_clientes_vittal.sat_municipio_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_city"/>
                 </field>
 
                 <!-- agregar catalogo de estados -->

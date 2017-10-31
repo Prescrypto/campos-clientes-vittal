@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_product_template_form">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="list_price" position="before">
+                    <field name="cuenta_contable"/>
+                    <field name="clave_sat"/>
+                    <field name="clave_unidad" class="oe_read_only"/>
+                </field>
+
+                <field name="type" position="after">
+                    <field name="clave_erste"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
+

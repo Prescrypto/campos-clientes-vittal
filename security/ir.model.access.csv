@@ -7,3 +7,4 @@ v_sat_estado_user, Vittal SAT catalog access,model_sat_estado,base.group_user,1,
 v_sat_pais_user, Vittal SAT catalog access,model_sat_pais,base.group_user,1,1,1,1
 v_sat_municipio_user, Vittal SAT catalog access,model_sat_municipio,base.group_user,1,1,1,1
 v_sat_uso_user, Vittal SAT catalog access,model_sat_uso,base.group_user,1,1,1,1
+v_sat_pagos_user, Vittal SAT catalog access,model_sat_pagos,base.group_user,1,1,1,1

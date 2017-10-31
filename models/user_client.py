@@ -2,6 +2,7 @@
 
 import string
 import _sae as sae
+from functools import partial
 from odoo import models, fields, api, _
 
 
@@ -153,7 +154,7 @@ class user_client(models.Model):
 
     # exportación sae
     @api.multi
-    def export_client(self):
+    def export(self):
         columns = [
             'id',
             'name',
@@ -177,7 +178,8 @@ class user_client(models.Model):
             'sat_uso_codigo',
             'sat_pagos_codigo',
         ]
-        return map(sae.format, self.export_data(columns).get('datas', []))
+        format_clients = partial(sae.format, 'clients')
+        return map(format_clients, self.export_data(columns).get('datas', []))
 
     # cambiar formato de nombre de titular
     def name_get(self):
