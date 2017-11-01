@@ -174,6 +174,31 @@ function csvHeading(type) {
     'Campo libre 6',
   ];
 
+  var orderHeader = [
+    'Clave',
+    'Cliente',
+    'Fecha de elaboración',
+    'Descuento financiero',
+    'Observaciones',
+    'Clave de vendedor',
+    'Su pedido',
+    'Fecha de entrega',
+    'Fecha de vencimiento',
+    'Precio',
+    'Desc. 1',
+    'Desc. 2',
+    'Desc. 3',
+    'Comisión',
+    'Clave de esquema de impuestos',
+    'Clave del artículo',
+    'Cantidad',
+    'I.E.P.S.',
+    'Impuesto 2',
+    'Impuesto 3',
+    'I.V.A.',
+    'Observaciones de partida',
+  ];
+
   var header;
 
   switch (type) {
@@ -182,6 +207,9 @@ function csvHeading(type) {
       break;
     case 'products':
       header = productHeader;
+      break;
+    case 'orders':
+      header = orderHeader;
       break;
   }
 

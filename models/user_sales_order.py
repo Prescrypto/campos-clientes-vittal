@@ -3,7 +3,9 @@
 import odoo
 from odoo import models, fields, api
 from dateutil.relativedelta import relativedelta
+import _sae as sae
 from datetime import datetime
+from functools import partial
 
 
 class user_sales_order(models.Model):
@@ -110,3 +112,16 @@ class user_sales_order(models.Model):
     # fecha y hora de compromiso
     delivery_date = fields.Datetime("Delivery Date")
 
+    # exportación sae
+    def export(self):
+        columns = [
+            "id",
+            "partner_id",
+            "date_order",
+            "note",
+            "delivery_date",
+            "validity_date",
+            "amount_untaxed",
+        ]
+        format_orders = partial(sae.format, "orders")
+        return map(format_orders, self.export_data(columns).get("datas", []))

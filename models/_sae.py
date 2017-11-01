@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from re import findall, sub
+from odoo import fields
 
 
 # formatea datos exportados de odoo a sae
@@ -10,9 +11,39 @@ def format(type, row):
         row = format_clients(row)
     elif type == 'products':
         row = format_products(row)
+    elif type == 'orders':
+        row = format_orders(row)
 
     # limpiar datos
     return sanitize(row)
+
+
+# formatea datos de productos
+def format_orders(row):
+    # extraer id numerico de string
+    row[0] = extract_id(row[0])
+    # formatear datetime
+    row[2] = date_format(row[2])
+    # agregar campos no exportados
+    row.insert(3, "")
+    row.insert(5, "1")
+    row.insert(6, "1")
+    # formatear datetime
+    row[7] = date_format(row[7])
+    row[8] = date_format(row[8])
+    # agregar campos no exportados
+    for index in range(10, 14):
+        row.insert(index, "0")
+    row.insert(14, "1")
+    # agregar codigo indicando exportación
+    row.insert(15, "IMPORTADO")
+    # agregar campos no exportados
+    row.insert(16, "1")
+    for index in range(17, 20):
+        row.insert(index, "0")
+    row.insert(20, "16")
+    row.insert(21, "")
+    return row
 
 
 # formatea datos de productos
@@ -88,3 +119,9 @@ def sanitize(row):
 
     # regresar renglon corregido, removiendo valores falsos
     return map(lambda r: r if r else "", clean_row)
+
+
+# formatear fechas
+def date_format(date_string):
+    date = fields.Datetime.from_string(date_string)
+    return date.strftime('%d/%m/%Y') if date else ""

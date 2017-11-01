@@ -8,6 +8,9 @@
             <t t-if="widget.model=='product.template'">
                 <button class="btn btn-sm export_button" data-type="products" data-filename="Productos" type="button">Export</button>
             </t>
+            <t t-if="widget.model=='sale.order'">
+                <button class="btn btn-sm export_button" data-type="orders" data-filename="Facturas" type="button">Export</button>
+            </t>
         </t>
     </t>
 </template>
