@@ -13,12 +13,14 @@ openerp.campos_clientes_vittal = function(instance, local) {
       // PERFORM THE ACTION
       btn.on('click', this.proxy('export_button'));
     },
-    export_button: function() {
+    export_button: function(event) {
+      var type = event.toElement.dataset.type;
+      var filename = event.toElement.dataset.filename + '.csv';
       new instance.web.Model(this.model)
-        .call('export_client', [extractIds(this.records.records)], {
+        .call('export', [extractIds(this.records.records)], {
           context: instance.session.user_context,
         })
-        .done(createCsv.bind(this, 'export.csv'));
+        .done(createCsv.bind(this, filename, type));
     },
   });
 };
@@ -27,8 +29,8 @@ function extractIds(records) {
   return _.map(records, record => record.attributes.id);
 }
 
-function createCsv(filename, source) {
-  var csv = csvBody(source);
+function createCsv(filename, type, source) {
+  var csv = csvBody(source, type);
   var encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csv);
   var link = document.createElement('a');
   link.setAttribute('href', encodedUri);
@@ -37,12 +39,12 @@ function createCsv(filename, source) {
   link.click();
 }
 
-function csvBody(source) {
+function csvBody(source, type) {
   var csvBody = source.join('\n');
-  return [csvHeading(), csvBody].join('\n');
+  return [csvHeading(type), csvBody].join('\n');
 }
 
-function csvHeading() {
+function csvHeading(type) {
   // actualizar con /models/user_sales_order.py::export_client
   var clientHeader = [
     'Clave del Cliente',
@@ -124,5 +126,92 @@ function csvHeading() {
     'Campo Libre 5',
   ].join(',');
 
-  return clientHeader;
+  var productHeader = [
+    'Clave Artículo',
+    'Descripción',
+    'Línea',
+    'Con serie',
+    'Unidad de entrada',
+    'Unidad de empaque',
+    'Control de almacén',
+    'Tiempo de surtido',
+    'Stock mínimo',
+    'Stock máximo',
+    'Tipo de costeo',
+    'Fecha de última compra',
+    'Pendientes por recibir',
+    'Fecha de última venta',
+    'Pendientes por surtir',
+    'Existencias',
+    'Costo promedio',
+    'Último costo',
+    'Tipo de elemento',
+    'Unidad de salida',
+    'Factor entre unidades',
+    'Apartados',
+    'Con lote',
+    'Con pedimento',
+    'Peso',
+    'volumen',
+    'Clave de esquema',
+    'Cantidad de ventas anuales',
+    'Monto de ventas anuales',
+    'Cantidad de compras anuales',
+    'Monto de compras anuales',
+    'Cuenta contable',
+    'Estatus',
+    'Manejo de IEPS',
+    'Numero de impuesto a aplicar',
+    'Cuota de IEPS',
+    'Forma de aplicar IEPS',
+    'Clave SAT',
+    'Clave unidad',
+    'Clave Erste',
+    'Campo libre 2',
+    'Campo libre 3',
+    'Campo libre 4',
+    'Campo libre 5',
+    'Campo libre 6',
+  ];
+
+  var orderHeader = [
+    'Clave',
+    'Cliente',
+    'Fecha de elaboración',
+    'Descuento financiero',
+    'Observaciones',
+    'Clave de vendedor',
+    'Su pedido',
+    'Fecha de entrega',
+    'Fecha de vencimiento',
+    'Precio',
+    'Desc. 1',
+    'Desc. 2',
+    'Desc. 3',
+    'Comisión',
+    'Clave de esquema de impuestos',
+    'Clave del artículo',
+    'Cantidad',
+    'I.E.P.S.',
+    'Impuesto 2',
+    'Impuesto 3',
+    'I.V.A.',
+    'Observaciones de partida',
+  ];
+
+  var header;
+
+  switch (type) {
+    case 'clients':
+      header = clientHeader;
+      break;
+    case 'products':
+      header = productHeader;
+      break;
+    case 'orders':
+      header = orderHeader;
+      break;
+  }
+
+  return header;
 }
