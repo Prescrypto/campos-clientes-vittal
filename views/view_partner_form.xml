@@ -150,7 +150,6 @@
                     <page string="Family Members" attrs="{'invisible': [('client_type', '!=', 'family')]}">
                         <field name="family_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_family_member_form'}">
                             <tree>
-                                <!-- <field name="associate_id"/> -->
                                 <field name="name"/>
                                 <field name="age"/>
                                 <field name="birthday"/>
@@ -170,7 +169,6 @@
                     <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
                         <field name="company_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}">
                             <tree>
-                                <field name="associate_id"/>
                                 <field name="name"/>
                                 <field name="age"/>
                                 <field name="birthday"/>
