@@ -13,6 +13,7 @@
                         <group>
                             <field name="is_owner"/>
                             <field name="relationship" widget="radio" options="{'horizontal': true}"/>
+                            <field name="inherit_address"/>
                         </group>
                         <hr/>
                         <group>
@@ -20,6 +21,23 @@
                                 <field name="name" string="Contact Name"/>
                                 <field name="function"/>
                                 <field name="age" class="oe_read_only"/>
+                                <label for="street" string="Address"/>
+                                <div attrs="{'invisible': [('inherit_address', '=', False)]}">
+                                    <div class="o_address_format" name="div_address">
+                                        <field name="street" placeholder="Street..." class="o_address_street" attrs="{'required': [('inherit_address', '=', True)]}"/>
+                                        <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                        <field name="sat_colonia_id" placeholder="Colonia" context="{'codigo_postal': zip, 'form_view_ref': 'campos_clientes_vittal.sat_colonia_form'}" options="{'no_create': [('inherit_address', '=', True)]}" attrs="{'required': [('inherit_address', '=', True)]}"/>
+                                        <field name="sat_municipio_id" placeholder="Municipio" class="o_address_city" attrs="{'required': [('inherit_address', '=', True)]}"/>
+                                        <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': [('inherit_address', '=', True)]}" attrs="{'required': [('inherit_address', '=', True)]}" class="o_address_state"/>
+                                        <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'required': [('inherit_address', '=', True)]}"/>
+                                        <field name="sat_pais_id" placeholder="Pais" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': [('inherit_address', '=', True)]}" attrs="{'required': [('inherit_address', '=', True)]}" class="o_address_pais"/>
+                                        <field name="cross_street" placeholder="Cross Street"/>
+                                        <field name="crosses_with" placeholder="Crosses With"/>
+                                        <field name="references" placeholder="References"/>
+                                        <field name="exterior" placeholder="Exterior"/>
+                                        <field name="details" placeholder="Special details or characteristics"/>
+                                    </div>
+                                </div>
                                 <field name="phone" widget="phone"/>
                                 <field name="email"/>
                                 <field name="mobile" widget="phone"/>
@@ -54,12 +72,8 @@
             <field name="model">family.member</field>
             <field name="inherit_id" ref="campos_clientes_vittal.view_member_form"/>
             <field name="arch" type="xml">
-                <field name="age" position="after">
-                    <field name="atte_address_id" widget="selection" domain="[('parent_id','=',parent_id)]"/>
-                </field>
-
                 <field name="function" position="attributes">
-                    <attribute name="attrs">{'required': True}</attribute>
+                    <attribute name="attrs">{'invisible': True}</attribute>
                 </field>
             </field>
         </record>
@@ -69,8 +83,8 @@
             <field name="model">company.member</field>
             <field name="inherit_id" ref="campos_clientes_vittal.view_member_form"/>
             <field name="arch" type="xml">
-                <field name="age" position="after">
-                    <field name="atte_address_id" widget="selection" domain="[('parent_id','=',parent_id)]"/>
+                <field name="function" position="attributes">
+                    <attribute name="attrs">{'required': False}</attribute>
                 </field>
             </field>
         </record>

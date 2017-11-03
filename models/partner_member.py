@@ -40,6 +40,9 @@ class UserMember(models.Model):
                 record.age = calculate_age(
                     fields.Datetime.from_string(record.birthday))
 
+    # hereda domicilio de atención
+    inherit_address = fields.Boolean("Usar dirección de la empresa?")
+
     # enfermedades previas
     prev_ailments = fields.Text("Previous Ailments")
 
@@ -66,10 +69,6 @@ class FamilyMember(models.Model):
     # grupos del cual miembro es titular
     main_contact = fields.One2many(
         "res.partner", "family_contact_id", string="Main Contact")
-
-    # domicilio de atención
-    atte_address_id = fields.Many2one(
-        "res.partner", string="Attention Address")
 
     # condición de grupo
     relationship = fields.Selection(
@@ -101,10 +100,6 @@ class CompanyMember(models.Model):
     # grupos del cual miembro es titular
     main_contact = fields.One2many(
         "res.partner", "company_contact_id", string="Main Contact")
-
-    # domicilio de atención
-    atte_address_id = fields.Many2one(
-        "res.partner", string="Attention Address")
 
     # condición de grupo
     relationship = fields.Selection(
