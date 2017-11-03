@@ -29,6 +29,10 @@
                     </div>
                 </xpath>
 
+                <xpath expr="//sheet/group/group/label" position="attributes">
+                    <attribute name="string">Dirección de Cobertura</attribute>
+                </xpath>
+
                 <field name="phone" position="attributes">
                     <attribute name="attrs">{'required': True}</attribute>
                 </field>
