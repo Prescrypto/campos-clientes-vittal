@@ -26,13 +26,6 @@ class user_client(models.Model):
     # titular familiar
     family_contact_id = fields.Many2one("family.member", string="Main Contact")
 
-    # miembros de clientes que usan la direccion para domicilio de atención
-    family_atte_address = fields.One2many(
-        "family.member", "atte_address_id", string="Attention Address")
-
-    company_atte_address = fields.One2many(
-        "company.member", "atte_address_id", string="Attention Address")
-
     # direccion de factura de orden de venta
     invoice_address = fields.One2many(
         "sale.order", "invoice_address_id", string="Invoice Address")

@@ -29,6 +29,10 @@
                     </div>
                 </xpath>
 
+                <xpath expr="//sheet/group/group/label" position="attributes">
+                    <attribute name="string">Dirección de Cobertura</attribute>
+                </xpath>
+
                 <field name="phone" position="attributes">
                     <attribute name="attrs">{'required': True}</attribute>
                 </field>
@@ -36,6 +40,8 @@
                 <xpath expr="//field[@name='phone']" position="before">
                     <!-- agregar codigo de grupo -->
                     <field class="oe_read_only" name="group_code" string="Code" placeholder="Code" />
+                    <!-- agregar tipo de negocio -->
+                    <field name="business_type" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
                     <!-- agregar uso de cfdi -->
                     <field name="sat_uso_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_uso_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_uso"/>
                     <!-- agregar uso de cfdi -->
@@ -48,8 +54,6 @@
                     <field name="date" string="Join Date"/>
                     <!-- agregar numero de referencia -->
                     <field name="reference_id"/>
-                    <!-- agregar tipo de negocio -->
-                    <field name="business_type" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
                 </xpath>
 
                 <field name="website" position="before">
@@ -146,12 +150,10 @@
                     <page string="Family Members" attrs="{'invisible': [('client_type', '!=', 'family')]}">
                         <field name="family_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_family_member_form'}">
                             <tree>
-                                <!-- <field name="associate_id"/> -->
                                 <field name="name"/>
                                 <field name="age"/>
                                 <field name="birthday"/>
                                 <field name="relationship"/>
-                                <field name="function"/>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
                                 <field name="user_active"/>
@@ -167,7 +169,6 @@
                     <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
                         <field name="company_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}">
                             <tree>
-                                <field name="associate_id"/>
                                 <field name="name"/>
                                 <field name="age"/>
                                 <field name="birthday"/>
