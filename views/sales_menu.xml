@@ -1,8 +1,14 @@
 <?xml version="1.0"?>
 <odoo>
-    <!-- agregar entrada a menú que invoca la acción -->
+    <!-- suscripciones -->
     <menuitem id="menu_subs" parent="sales_team.menu_sales" name="Subscriptions" action="view_subscription_action"/>
 
-    <!-- agregar entrada a menú que invoca la acción -->
+    <!-- clientes con campos extendidos -->
     <menuitem id="menu_clients_ext" parent="sales_team.menu_sales" name="Customers (Extended)" action="view_client_action"/>
+
+    <!-- cápitas -->
+    <menuitem id="menu_capitas" parent="sales_team.menu_sales" name="Cápitas Familiares" action="view_family_action"/>
+
+    <!-- afiliados -->
+    <menuitem id="menu_afiliados" parent="sales_team.menu_sales" name="Afiliados" action="view_company_action"/>
 </odoo>
