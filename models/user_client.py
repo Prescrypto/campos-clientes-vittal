@@ -177,8 +177,10 @@ class user_client(models.Model):
     # cambiar formato de nombre de titular
     def name_get(self):
         res = []
+        params = self._context.get('params')
+        model = params.get('model') if params else ''
         for record in self:
-            if record.type != 'contact':
+            if model == 'sale.order':
                 tpl = string.Template("$street, $street2$city")
                 label = tpl.substitute(
                     street=record.street,
