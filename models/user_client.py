@@ -77,9 +77,13 @@ class user_client(models.Model):
     # código de zona
     zone = fields.Selection(
         string="Zone",
-        selection=[("bqelms", "BQELMS"), ("itrlms", "ITRLMS"),
-                   ("lomas", "LOMAS"), ("plnco", "PLNCO"), ("sfe", "SFE"),
-                   ("tcmchl", "TCMCHL"), ("unica", "UNICA")])
+        selection=[("bqelms", "BQELMS - Bosques de las Lomas"),
+                   ("itrlms", "ITRLMS - Interlomas"),
+                   ("lomas", "LOMAS - Lomas de Chapultepec"),
+                   ("plnco", "PLNCO - Polanco"),
+                   ("sfe", "SFE - Santa Fe"),
+                   ("tcmchl", "TCMCHL - Tecamachalco"),
+                   ("unica", "UNICA - Unica")])
 
     # catalogo de colonias
     sat_colonia_id = fields.Many2one("sat.colonia", "Colonia")
@@ -177,8 +181,10 @@ class user_client(models.Model):
     # cambiar formato de nombre de titular
     def name_get(self):
         res = []
+        params = self._context.get('params')
+        model = params.get('model') if params else ''
         for record in self:
-            if record.type != 'contact':
+            if model == 'sale.order':
                 tpl = string.Template("$street, $street2$city")
                 label = tpl.substitute(
                     street=record.street,

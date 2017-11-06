@@ -22,15 +22,15 @@
                                 <field name="function"/>
                                 <field name="age" class="oe_read_only"/>
                                 <label for="street" string="Address"/>
-                                <div attrs="{'invisible': [('inherit_address', '=', False)]}">
+                                <div attrs="{'invisible': [('inherit_address', '=', True)]}">
                                     <div class="o_address_format" name="div_address">
-                                        <field name="street" placeholder="Street..." class="o_address_street" attrs="{'required': [('inherit_address', '=', True)]}"/>
+                                        <field name="street" placeholder="Street..." class="o_address_street" attrs="{'required': [('inherit_address', '=', False)]}"/>
                                         <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                                        <field name="sat_colonia_id" placeholder="Colonia" context="{'codigo_postal': zip, 'form_view_ref': 'campos_clientes_vittal.sat_colonia_form'}" options="{'no_create': [('inherit_address', '=', True)]}" attrs="{'required': [('inherit_address', '=', True)]}"/>
-                                        <field name="sat_municipio_id" placeholder="Municipio" class="o_address_city" attrs="{'required': [('inherit_address', '=', True)]}"/>
-                                        <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': [('inherit_address', '=', True)]}" attrs="{'required': [('inherit_address', '=', True)]}" class="o_address_state"/>
-                                        <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'required': [('inherit_address', '=', True)]}"/>
-                                        <field name="sat_pais_id" placeholder="Pais" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': [('inherit_address', '=', True)]}" attrs="{'required': [('inherit_address', '=', True)]}" class="o_address_pais"/>
+                                        <field name="sat_colonia_id" placeholder="Colonia" context="{'codigo_postal': zip, 'form_view_ref': 'campos_clientes_vittal.sat_colonia_form'}" options="{'no_create': True}" attrs="{'required': [('inherit_address', '=', False)]}"/>
+                                        <field name="sat_municipio_id" placeholder="Municipio" class="o_address_city" attrs="{'required': [('inherit_address', '=', False)]}"/>
+                                        <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True}" attrs="{'required': [('inherit_address', '=', False)]}" class="o_address_state"/>
+                                        <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'required': [('inherit_address', '=', False)]}"/>
+                                        <field name="sat_pais_id" placeholder="Pais" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': True}" attrs="{'required': [('inherit_address', '=', False)]}" class="o_address_pais"/>
                                         <field name="cross_street" placeholder="Cross Street"/>
                                         <field name="crosses_with" placeholder="Crosses With"/>
                                         <field name="references" placeholder="References"/>
