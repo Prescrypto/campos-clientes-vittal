@@ -77,9 +77,13 @@ class user_client(models.Model):
     # código de zona
     zone = fields.Selection(
         string="Zone",
-        selection=[("bqelms", "BQELMS"), ("itrlms", "ITRLMS"),
-                   ("lomas", "LOMAS"), ("plnco", "PLNCO"), ("sfe", "SFE"),
-                   ("tcmchl", "TCMCHL"), ("unica", "UNICA")])
+        selection=[("bqelms", "BQELMS - Bosques de las Lomas"),
+                   ("itrlms", "ITRLMS - Interlomas"),
+                   ("lomas", "LOMAS - Lomas de Chapultepec"),
+                   ("plnco", "PLNCO - Polanco"),
+                   ("sfe", "SFE - Santa Fe"),
+                   ("tcmchl", "TCMCHL - Tecamachalco"),
+                   ("unica", "UNICA - Unica")])
 
     # catalogo de colonias
     sat_colonia_id = fields.Many2one("sat.colonia", "Colonia")
