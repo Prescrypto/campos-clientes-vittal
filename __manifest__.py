@@ -40,6 +40,7 @@
         'data/sat.pais.csv',
         'data/sat.uso.csv',
         'data/sat.pagos.csv',
+        'data/cron_subscription.xml',
         'views/sat_colonia_form.xml',
         'views/sat_municipio_form.xml',
         'views/sat_estado_form.xml',
