@@ -18,7 +18,5 @@ class SatUso(models.Model):
 
     inicio_vigencia = fields.Date("Inicio de Vigencia")
 
-    fin_vigencia = fields.Date("Fin de Vigencia")
-
     sat_uso_ids = fields.One2many(
         "res.partner", "sat_uso_id", string="Uso CFDI")

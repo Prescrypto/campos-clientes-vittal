@@ -12,7 +12,6 @@
                             <field name="aplica_fisica"/>
                             <field name="aplica_moral"/>
                             <field name="inicio_vigencia"/>
-                            <field name="fin_vigencia"/>
                         </group>
                     </sheet>
                 </form>

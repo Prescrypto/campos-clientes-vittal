@@ -1,23 +1,23 @@
-id,codigo_uso,nombre_uso,aplica_fisica,aplica_moral,inicio_vigencia,fin_vigencia
-sat_uso_1,G01,Adquisición de mercancias,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_2,G02,"Devoluciones, descuentos o bonificaciones",Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_3,G03,Gastos en general,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_4,I01,Construcciones,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_5,I02,Mobilario y equipo de oficina por inversiones,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_6,I03,Equipo de transporte,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_7,I04,Equipo de computo y accesorios,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_8,I05,"Dados, troqueles, moldes, matrices y herramental",Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_9,I06,Comunicaciones telefónicas,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_10,I07,Comunicaciones satelitales,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_11,I08,Otra maquinaria y equipo,Sí,Sí,2017-01-01T00:00:00Z,
-sat_uso_12,D01,"Honorarios médicos, dentales y gastos hospitalarios.",Sí,No,2017-01-01T00:00:00Z,
-sat_uso_13,D02,Gastos médicos por incapacidad o discapacidad,Sí,No,2017-01-01T00:00:00Z,
-sat_uso_14,D03,Gastos funerales.,Sí,No,2017-01-01T00:00:00Z,
-sat_uso_15,D04,Donativos.,Sí,No,2017-01-01T00:00:00Z,
-sat_uso_16,D05,Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación).,Sí,No,2017-01-01T00:00:00Z,
-sat_uso_17,D06,Aportaciones voluntarias al SAR.,Sí,No,2017-01-01T00:00:00Z,
-sat_uso_18,D07,Primas por seguros de gastos médicos.,Sí,No,2017-01-01T00:00:00Z,
-sat_uso_19,D08,Gastos de transportación escolar obligatoria.,Sí,No,2017-01-01T00:00:00Z,
-sat_uso_20,D09,"Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones.",Sí,No,2017-01-01T00:00:00Z,
-sat_uso_21,D10,Pagos por servicios educativos (colegiaturas),Sí,No,2017-01-01T00:00:00Z,
-sat_uso_22,P01,Por definir,Sí,Sí,2017-03-31T00:00:00Z,
+id,codigo_uso,nombre_uso,aplica_fisica,aplica_moral,inicio_vigencia
+sat_uso_1,G01,Adquisición de mercancias,1,1,2017-01-01T00:00:00Z
+sat_uso_2,G02,Devoluciones descuentos o bonificaciones,1,1,2017-01-01T00:00:00Z
+sat_uso_3,G03,Gastos en general,1,1,2017-01-01T00:00:00Z
+sat_uso_4,I01,Construcciones,1,1,2017-01-01T00:00:00Z
+sat_uso_5,I02,Mobilario y equipo de oficina por inversiones,1,1,2017-01-01T00:00:00Z
+sat_uso_6,I03,Equipo de transporte,1,1,2017-01-01T00:00:00Z
+sat_uso_7,I04,Equipo de computo y accesorios,1,1,2017-01-01T00:00:00Z
+sat_uso_8,I05,Dados troqueles moldes matrices y herramental,1,1,2017-01-01T00:00:00Z
+sat_uso_9,I06,Comunicaciones telefónicas,1,1,2017-01-01T00:00:00Z
+sat_uso_10,I07,Comunicaciones satelitales,1,1,2017-01-01T00:00:00Z
+sat_uso_11,I08,Otra maquinaria y equipo,1,1,2017-01-01T00:00:00Z
+sat_uso_12,D01,Honorarios médicos dentales y gastos hospitalarios.,1,0,2017-01-01T00:00:00Z
+sat_uso_13,D02,Gastos médicos por incapacidad o discapacidad,1,0,2017-01-01T00:00:00Z
+sat_uso_14,D03,Gastos funerales.,1,0,2017-01-01T00:00:00Z
+sat_uso_15,D04,Donativos.,1,0,2017-01-01T00:00:00Z
+sat_uso_16,D05,Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación).,1,0,2017-01-01T00:00:00Z
+sat_uso_17,D06,Aportaciones voluntarias al SAR.,1,0,2017-01-01T00:00:00Z
+sat_uso_18,D07,Primas por seguros de gastos médicos.,1,0,2017-01-01T00:00:00Z
+sat_uso_19,D08,Gastos de transportación escolar obligatoria.,1,0,2017-01-01T00:00:00Z
+sat_uso_20,D09,Depósitos en cuentas para el ahorro primas que tengan como base planes de pensiones.,1,0,2017-01-01T00:00:00Z
+sat_uso_21,D10,Pagos por servicios educativos (colegiaturas),1,0,2017-01-01T00:00:00Z
+sat_uso_22,P01,Por definir,1,1,2017-03-31T00:00:00Z
