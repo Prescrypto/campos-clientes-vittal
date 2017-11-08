@@ -2,6 +2,7 @@
 
 from re import findall, sub
 from odoo import fields
+import unicodedata
 
 
 # formatea datos exportados de odoo a sae
@@ -116,9 +117,10 @@ def sanitize(row):
     # quitar comas para no romper csv
     clean_row = map(
         lambda r: r.replace(",", " ") if isinstance(r, basestring) else r, row)
-
+    # Normaliza los campos, quita acentos y caracteres no soportados
+    normalize_row = map(lambda r: unicodedata.normalize("NFKD", u'{}'.format(r) ).encode('ascii', "ignore"), clean_row)
     # regresar renglon corregido, removiendo valores falsos
-    return map(lambda r: r if r else "", clean_row)
+    return map(lambda r: r if r else "", normalize_row)
 
 
 # formatear fechas
