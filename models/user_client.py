@@ -172,6 +172,7 @@ class user_client(models.Model):
             'curp',
             'sat_uso_codigo',
             'sat_pagos_codigo',
+            'zone',
         ]
         format_clients = partial(sae.format, 'clients')
         return map(format_clients, self.export_data(columns).get('datas', []))

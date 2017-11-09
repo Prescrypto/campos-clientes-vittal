@@ -90,7 +90,9 @@ def format_clients(row):
         row.insert(index, "")
     row.insert(70, "")
     row.insert(71, "")
-    for index in range(73, 78):
+    for index in range(73, 75):
+        row.insert(index, "")
+    for index in range(77, 79):
         row.insert(index, "")
     return row
 
