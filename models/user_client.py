@@ -183,8 +183,8 @@ class user_client(models.Model):
             if record.name:
                 result.append((record.id, record.name))
             else:
-                label = u"{}, {}{}".format(
+                label = u"{}{}".format(
                     record.street,
-                    (record.street2 + ", " if record.street2 else ""))
-                    result.append((record.id, label ))
+                    (", " + record.street2 if record.street2 else ""))
+                result.append((record.id, label ))
         return result
