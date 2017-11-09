@@ -47,7 +47,7 @@
                     <!-- agregar uso de cfdi -->
                     <field name="sat_pagos_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_pagos_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_pagos"/>
                     <!-- agregar titular familiar -->
-                    <field name="family_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_family_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}" options="{'no_create': True}"/>
+                    <field name="family_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}" options="{'no_create': True}"/>
                     <!-- agregar titular empresarial -->
                     <field name="company_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}" options="{'no_create': True}"/>
                     <!-- agregar fecha que fue introducido al sistema -->
@@ -148,7 +148,7 @@
                 <!-- agregar pestaña para mostrar cápitas -->
                 <xpath expr="//notebook/page[1]" position="after">
                     <page string="Family Members" attrs="{'invisible': [('client_type', '!=', 'family')]}">
-                        <field name="family_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form', 'tree_view_ref': 'campos_clientes_vittal.family_member_tree'}"/>
+                        <field name="family_ids" mode="tree" context="{'form_view_ref': 'campos_clientes_vittal.view_member_form', 'tree_view_ref': 'campos_clientes_vittal.family_member_tree'}"/>
                     </page>
 
                     <page string="Company Members" attrs="{'invisible': [('client_type', '!=', 'company')]}">
