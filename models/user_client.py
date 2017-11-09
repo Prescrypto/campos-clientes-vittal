@@ -177,15 +177,15 @@ class user_client(models.Model):
         return map(format_clients, self.export_data(columns).get('datas', []))
 
     def name_get(self):
-        ''' Cambiar formato de nombre de titular y direcciónes '''
+        ''' Cambiar formato de nombre de titular y direcciones '''
         result = []
         for record in self:
             if record.name:
                 result.append((record.id, record.name))
             else:
                 label = u"{}, {}{}".format(
-                record.street,
-                (record.street2 + ", " if record.street2 else ""),
-                record.sat_municipio_name)
-                result.append((record.id, label ))
+                    record.street,
+                    (record.street2 + ", " if record.street2 else ""),
+                    record.sat_municipio_name)
+                    result.append((record.id, label ))
         return result
