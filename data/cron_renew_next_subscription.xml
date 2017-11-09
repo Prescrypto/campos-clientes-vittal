@@ -8,7 +8,7 @@
             <field name="interval_type">hours</field>
             <field name="numbercall">-1</field>
             <field name="model">sale.order</field>
-            <field name="function">_renew_period</field>
+            <field name="function">_renew_next_subscription</field>
             <field name="doall">1</field>
         </record>
     </data>

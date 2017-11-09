@@ -125,9 +125,9 @@ class user_sales_order(models.Model):
         for order in self.env['sale.order'].search([]):
             is_sub = order.is_subscription
             is_active = order.sub_active
-            is_invoice = order.invoice_status == "invoiced" and order.state == 'sale'
+            is_invoice = (order.invoice_status is "invoiced" and order.state is 'sale')
             auto_invoice = order.auto_invoice
-            today_invoice = order.sub_invoice_date == fields.Date.today()
+            today_invoice = (order.sub_invoice_date is fields.Date.today())
             been_invoiced = order.next_sub_invoiced
 
             if (is_sub and is_active and auto_invoice and today_invoice
@@ -153,6 +153,37 @@ class user_sales_order(models.Model):
 
                 # guardar cambios en la base de datos
                 self.env.cr.commit()
+
+    def _renew_next_subscription(self):
+        ''' Renueva la siguiente subscripción  si esta marcado próxima subs automática '''
+        for order in self.env['sale.order'].search([]):
+            # obtiene la instancia de la orden "order"
+            _today = fields.Date.today()
+            _end_date = order.sub_end_date
+            expire_today = (_today is _end_date)
+            has_automatic_renew = order.auto_sub
+            is_active = order.sub_active
+            is_sub = order.is_subscription
+
+            if expire_today and has_automatic_renew and is_active and is_sub:
+                # Si expira este momento, tiene renovación automatica y es activa
+                # Terminamos la order
+                order.write({'sub_active': False})
+                # Generar nuevas fechas
+                _start = _today
+                _end = _start + relativedelta(months=order.recurrence)
+
+                # crear copia de factura con nueva fecha de subscripción
+                clone = order.copy(default={
+                    'state': 'sale',
+                    'is_active' : True
+                    'sub_start_date': fields.Datetime.to_string(_start),
+                    'sub_end_date': fields.Datetime.to_string(_end)
+                })
+                # save instance
+                self.env.cr.commit()
+
+            else: pass
 
     # exportación sae
     def export(self):
