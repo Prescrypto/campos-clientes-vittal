@@ -91,8 +91,9 @@ def format_clients(row):
     row.insert(23, "N")
     # agregar campo de correo electronico
     row.insert(24, "S")
-    # agregar campos no exportados
-    for index in range(25, 43):
+    # agregar campo no exportados
+    row.insert(25, "")
+    for index in range(27, 43):
         row.insert(index, "")
     # agregar campo de tipo de empresa
     row.insert(43, "M")
