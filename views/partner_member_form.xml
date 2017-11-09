@@ -52,7 +52,8 @@
                             <group>
                                 <field name="user_active"/>
                                 <field name="start_date"/>
-                                <field name="end_date" attrs="{'invisible': [('user_active', '=', True)]}"/>
+                                <field name="end_date" attrs="{'invisible': ['|', ('user_active', '=', True), ('auto_end_date', '=', True)]}"/>
+                                <field name="auto_end_date"/>
                                 <field name="end_reason" attrs="{'invisible': [('user_active', '=', True)]}"/>
                             </group>
                         </group>
