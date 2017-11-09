@@ -169,6 +169,7 @@ class user_sales_order(models.Model):
                 # Si expira este momento, tiene renovación automatica y es activa
                 # Terminamos la order
                 order.write({'sub_active': False})
+                # TODO checar si hace falta más pasos para terminar la orden
                 # Generar nuevas fechas
                 _start = _today
                 _end = _start + relativedelta(months=order.recurrence)
