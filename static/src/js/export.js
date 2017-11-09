@@ -83,6 +83,7 @@ function csvHeading(type) {
     'Lista de precios',
     'Documento del último pago',
     'Monto del último pago',
+    'Fecha del último pago',
     'Descuento',
     'Documento de última venta',
     'Monto de última venta',

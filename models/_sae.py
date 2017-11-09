@@ -86,11 +86,11 @@ def format_clients(row):
     # agregar clasificación
     row.insert(18, "")
     # agregar campos no exportados
-    for index in range(22, 68):
+    for index in range(22, 69):
         row.insert(index, "")
-    row.insert(69, "")
     row.insert(70, "")
-    for index in range(72, 77):
+    row.insert(71, "")
+    for index in range(73, 78):
         row.insert(index, "")
     return row
 
