@@ -21,6 +21,7 @@
     'depends': [
         'base',
         'crm',
+        'l10n_mx',
         'sale',
         'account',
         'account_accountant',
