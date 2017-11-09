@@ -178,20 +178,16 @@ class user_client(models.Model):
         format_clients = partial(sae.format, 'clients')
         return map(format_clients, self.export_data(columns).get('datas', []))
 
-    # cambiar formato de nombre de titular
     def name_get(self):
-        res = []
-        params = self._context.get('params')
-        model = params.get('model') if params else ''
+        ''' Cambiar formato de nombre de titular y direcciónes '''
+        result = []
         for record in self:
-            if model == 'sale.order':
-                tpl = string.Template("$street, $street2$city")
-                label = tpl.substitute(
-                    street=record.street,
-                    street2=(record.street2 + ", " if record.street2 else ""),
-                    city=record.sat_municipio_name)
-                res.append((record.id, label))
+            if record.name:
+                result.append((record.id, record.name))
             else:
-                res.append((record.id, record.name))
-        return res
-
+                label = u"{}, {}{}".format(
+                record.street,
+                (record.street2 + ", " if record.street2 else ""),
+                record.sat_municipio_name)
+                result.append((record.id, label ))
+        return result
