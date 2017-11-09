@@ -185,7 +185,6 @@ class user_client(models.Model):
             else:
                 label = u"{}, {}{}".format(
                     record.street,
-                    (record.street2 + ", " if record.street2 else ""),
-                    record.sat_municipio_name)
+                    (record.street2 + ", " if record.street2 else ""))
                     result.append((record.id, label ))
         return result
