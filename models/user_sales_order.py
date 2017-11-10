@@ -125,12 +125,14 @@ class user_sales_order(models.Model):
         for order in self.env['sale.order'].search([]):
             is_sub = order.is_subscription
             is_active = order.sub_active
-            is_invoice = (order.invoice_status is "invoiced" and order.state is 'sale')
+            is_invoice = order.invoice_status == "invoiced" and order.state == 'sale'
             auto_invoice = order.auto_invoice
-            today_invoice = (order.sub_invoice_date is fields.Date.today())
+            has_ended = fields.Datetime.from_string(
+                order.sub_invoice_date) < datetime.now(
+                ) if order.sub_invoice_date else False
             been_invoiced = order.next_sub_invoiced
 
-            if (is_sub and is_active and auto_invoice and today_invoice
+            if (is_sub and is_active and auto_invoice and has_ended
                     and is_invoice and not been_invoiced):
                 _logger.info('crontab _renew_subscription')
 
