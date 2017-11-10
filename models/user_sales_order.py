@@ -158,12 +158,13 @@ class user_sales_order(models.Model):
         ''' Renueva la siguiente subscripción  si esta marcado próxima subs automática '''
         for order in self.env['sale.order'].search([]):
             # obtiene la instancia de la orden "order"
-            _today = fields.Date.today()
-            _end_date = order.sub_end_date
-            expire_today = (_today is _end_date)
+            _today = datetime.now()
+            _end_date = fields.Datetime.from_string(order.sub_end_date)
+            expire_today = True if (_today > _end_date) else False
             has_automatic_renew = order.auto_sub
             is_active = order.sub_active
             is_sub = order.is_subscription
+
 
             if expire_today and has_automatic_renew and is_active and is_sub:
                 # Si expira este momento, tiene renovación automatica y es activa
@@ -171,8 +172,10 @@ class user_sales_order(models.Model):
                 order.write({'sub_active': False})
                 # TODO checar si hace falta más pasos para terminar la orden
                 # Generar nuevas fechas
-                _start = _today
-                _end = _start + relativedelta(months=order.recurrence)
+                _old_start_order = fields.Datetime.from_string(order.sub_start_date)
+                _timelapse = _end_date - _old_start_order
+                _start = _today + relativedelta(days=1)
+                _end = _start + _timelapse
 
                 # crear copia de factura con nueva fecha de subscripción
                 clone = order.copy(default={
