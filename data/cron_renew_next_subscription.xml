@@ -4,8 +4,8 @@
             <field name="name">Renewal next subscription</field>
             <field name="active" eval="True"/>
             <field name="user_id" ref="base.user_root"/>
-            <field name="interval_number">1</field>
-            <field name="interval_type">days</field> <!-- Checar si cada dia es mejor (days)-->
+            <field name="interval_number">12</field>
+            <field name="interval_type">hours</field> <!-- Checar si cada dia es mejor (days)-->
             <field name="numbercall">-1</field>
             <field name="model">sale.order</field>
             <field name="function">_renew_next_subscription</field>

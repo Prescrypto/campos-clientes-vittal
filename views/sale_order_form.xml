@@ -39,9 +39,9 @@
                     <group attrs="{'invisible': [('is_subscription', '!=', True)]}">
                         <group class="col-xs-4">
                             <field name="sub_active"/>
-                            <field name="recurrence" attrs="{'required': [('is_subscription', '=', True)]}"/>
-                            <field name="sub_start_date" placeholder="Date when subscription starts" attrs="{'required': ['|',('sub_active', '=', True)]}"/>
-                            <field name="sub_end_date" placeholder="Date when subscription ends"/>
+                            <field name="recurrence" attrs="{'required': ['&amp;',('sub_active', '=', True),('is_subscription','=',True)]}"/>
+                            <field name="sub_start_date" placeholder="Date when subscription starts" attrs="{'required': ['&amp;',('sub_active', '=', True),('is_subscription','=',True)]}"/>
+                            <field name="sub_end_date" placeholder="Date when subscription ends" attrs="{'required': ['&amp;',('sub_active', '=', True),('is_subscription','=',True)]}"/>
                             <field name="sub_invoice_date" class="oe_read_only"/>
                         </group>
                         <group class="col-xs-4">
