@@ -180,14 +180,17 @@ class user_sales_order(models.Model):
                 # crear copia de factura con nueva fecha de subscripción
                 clone = order.copy(default={
                     'state' : 'sale',
-                    'is_active' : True,
+                    'sub_active' : True,
                     'sub_start_date' : fields.Datetime.to_string(_start),
                     'sub_end_date' : fields.Datetime.to_string(_end)
                 })
                 # save instance
                 self.env.cr.commit()
 
-            else: pass
+            elif expire_today and not has_automatic_renew and is_active and is_sub:
+                # Si su periodo(contrato) termino, pero no tenia automatica subscripción
+                order.write({'sub_active': False})
+                self.env.cr.commit()
 
     # exportación sae
     def export(self):
