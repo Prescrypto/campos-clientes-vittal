@@ -28,6 +28,16 @@ class user_client(models.Model):
     invoice_address = fields.One2many(
         "sale.order", "invoice_address_id", string="Invoice Address")
 
+    # correo derivado de dirección fiscal
+    invoice_email = fields.Char(
+        "Invoice Email", compute="_invoice_email", store=True)
+
+    @api.depends('child_ids')
+    def _invoice_email(self):
+        for child in self.child_ids:
+            if child.type == 'fiscal':
+                self.invoice_email = child.email
+
     # direccion de cobertura de orden de venta
     cov_address = fields.One2many(
         "sale.order", "cov_address_id", string="Coverage Address")
@@ -170,8 +180,10 @@ class user_client(models.Model):
             'fax',
             'website',
             'curp',
+            'invoice_email',
             'sat_uso_codigo',
             'sat_pagos_codigo',
+            'zone',
         ]
         format_clients = partial(sae.format, 'clients')
         return map(format_clients, self.export_data(columns).get('datas', []))

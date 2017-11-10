@@ -31,9 +31,9 @@
                                 </div>
                             </group>
                             <group>
-                                <field name="name" string="Razón Social (o nombre de contacto)"/>
-                                <field name="rfc"/>
-                                <field name="email"/>
+                                <field name="name" string="Razón Social (o nombre de contacto)" attrs="{'required': [('type','=', 'fiscal')]}"/>
+                                <field name="rfc" attrs="{'required': [('type','=', 'fiscal')]}"/>
+                                <field name="email" attrs="{'required': [('type','=', 'fiscal')]}"/>
                                 <field name="nacionalidad"/>
                                 <field name="phone" widget="phone"/>
                                 <field name="mobile" widget="phone"/>
