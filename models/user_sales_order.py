@@ -91,7 +91,7 @@ class user_sales_order(models.Model):
     # renovacion de suscripción automatica
     auto_sub = fields.Boolean("Automatic Subscription Renewal")
 
-    # zona derivada de dirección
+    # zona derivada de contacto
     related_partner_zone = fields.Selection(
         string="Zone",
         related="partner_id.zone",
@@ -105,6 +105,22 @@ class user_sales_order(models.Model):
         for record in self:
             if record.related_partner_zone:
                 record.partner_zone = record.related_partner_zone.upper()
+
+    # id derivado de contacto
+    related_partner_export_id = fields.Char(
+        string="Partner ID",
+        related="partner_id.client_export_id",
+        readonly=True,
+        company_dependent=True)
+
+    partner_export_id = fields.Char(
+        "Export ID", compute="_get_export_id", store=True)
+
+    @api.depends("related_partner_export_id")
+    def _get_export_id(self):
+        for record in self:
+            if record.related_partner_export_id:
+                record.partner_export_id = record.related_partner_export_id
 
     # direccion de factura
     invoice_address_id = fields.Many2one("res.partner", string="Sale Address")
@@ -198,7 +214,7 @@ class user_sales_order(models.Model):
     def export(self):
         columns = [
             "id",
-            "partner_id",
+            "partner_export_id",
             "date_order",
             "note",
             "delivery_date",
