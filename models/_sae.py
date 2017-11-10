@@ -85,12 +85,25 @@ def format_clients(row):
     row.insert(4, extract_interior(street))
     # agregar clasificación
     row.insert(18, "")
-    # agregar campos no exportados
-    for index in range(22, 68):
+    # agregar campo no exportados
+    row.insert(22, "")
+    # agregar campo de imprimir
+    row.insert(23, "N")
+    # agregar campo de correo electronico
+    row.insert(24, "S")
+    # agregar campo no exportados
+    row.insert(25, "")
+    for index in range(27, 43):
         row.insert(index, "")
-    row.insert(69, "")
+    # agregar campo de tipo de empresa
+    row.insert(43, "M")
+    for index in range(44, 69):
+        row.insert(index, "")
     row.insert(70, "")
-    for index in range(72, 77):
+    row.insert(71, "")
+    for index in range(73, 75):
+        row.insert(index, "")
+    for index in range(77, 79):
         row.insert(index, "")
     return row
 

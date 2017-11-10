@@ -8,7 +8,7 @@
             <field name="view_type">form</field>
             <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('family_member_tree')}),
-                (0, 0, {'view_mode': 'form', 'view_id': ref('view_family_member_form')})]"/>
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_member_form')})]"/>
         </record>
     </data>
 </odoo>

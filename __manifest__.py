@@ -21,6 +21,7 @@
     'depends': [
         'base',
         'crm',
+        'l10n_mx',
         'sale',
         'account',
         'account_accountant',
@@ -42,6 +43,7 @@
         'data/sat.pagos.csv',
         'data/cron_subscription.xml',
         'data/cron_renew_next_subscription.xml',
+        'data/cron_user_member.xml',
         'views/sat_colonia_form.xml',
         'views/sat_municipio_form.xml',
         'views/sat_estado_form.xml',

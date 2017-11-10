@@ -83,6 +83,7 @@ function csvHeading(type) {
     'Lista de precios',
     'Documento del último pago',
     'Monto del último pago',
+    'Fecha del último pago',
     'Descuento',
     'Documento de última venta',
     'Monto de última venta',
@@ -121,7 +122,7 @@ function csvHeading(type) {
     'Forma de pago SAT',
     'Campo Libre 1',
     'Campo Libre 2',
-    'Campo Libre 3',
+    'Zona',
     'Campo Libre 4',
     'Campo Libre 5',
   ].join(',');
