@@ -32,6 +32,7 @@ class user_client(models.Model):
     invoice_email = fields.Char(
         "Invoice Email", compute="_invoice_email", store=True)
 
+    @api.one
     @api.depends('child_ids')
     def _invoice_email(self):
         for child in self.child_ids:
