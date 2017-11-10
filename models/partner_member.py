@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import odoo
+import logging
 from datetime import date, datetime
 from odoo import models, fields, api
+
+_logger = logging.getLogger(__name__)
 
 
 class UserMember(models.Model):
@@ -55,11 +58,51 @@ class UserMember(models.Model):
     # fecha de registro
     start_date = fields.Date("Registration Date")
 
-    # fecha de baja
+    # fecha cuando se dio de baja
     end_date = fields.Date("Date Ended")
+
+    # fecha de baja automatica
+    auto_end_date = fields.Date("End Date")
 
     # motivo de baja
     end_reason = fields.Text("Reason for Ending")
+
+    # dar de baja usuarios con fecha de baja
+    def _user_end_date(self):
+        # juntar cápitas y afiliados en un solo query
+        self.env.cr.execute("""
+            SELECT id,'family' as member_type,user_active,start_date,auto_end_date
+            FROM family_member
+            UNION ALL
+            SELECT id,'company' as member_type,user_active,start_date,auto_end_date
+            FROM company_member;
+        """)
+
+        # iterar por resultados del query
+        for member in self.env.cr.dictfetchall():
+            is_active = member['user_active']
+            end_date = member['auto_end_date']
+            has_ended = fields.Datetime.from_string(
+                end_date) < datetime.now() if end_date else False
+
+            # si es un miembro activo cuya fecha final se excedio
+            if is_active and has_ended:
+                id = member['id']
+                model = member['member_type'] + ".member"
+                current = self.env[model].browse(id)
+
+                _logger.info('crontab _user_end_date')
+
+                # desactivar el usuario y poner fecha final de hoy
+                current.write({
+                    'end_date': fields.Date.today(),
+                    'auto_end_date': None,
+                    'user_active': False,
+                    'end_reason': 'Baja automática',
+                })
+
+                # guardar cambios en la base de datos
+                self.env.cr.commit()
 
 
 class FamilyMember(models.Model):
@@ -90,6 +133,7 @@ class FamilyMember(models.Model):
     def end_reg(self):
         for record in self:
             record.end_date = fields.Datetime.to_string(datetime.now())
+            record.auto_end_date = ""
             record.user_active = False
 
 
@@ -121,4 +165,5 @@ class CompanyMember(models.Model):
     def end_reg(self):
         for record in self:
             record.end_date = fields.Datetime.to_string(datetime.now())
+            record.auto_end_date = ""
             record.user_active = False
