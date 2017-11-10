@@ -62,8 +62,9 @@ def format_products(row):
     # agregar campos no exportados
     for index in range(27, 31):
         row.insert(index, "")
+    row.insert(32, "A")
     # agregar campos no exportados
-    for index in range(32, 37):
+    for index in range(33, 37):
         row.insert(index, "")
     # agregar campos no exportados
     for index in range(40, 45):
