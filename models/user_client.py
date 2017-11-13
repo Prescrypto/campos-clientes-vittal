@@ -158,21 +158,14 @@ class user_client(models.Model):
     # nacionalidad
     nacionalidad = fields.Char("Nacionalidad")
 
-    # id externo
-    external_id = fields.Char(compute='_external_id', store=True)
-
-    def _external_id(self):
-        res = self.get_external_id()
-        if 7 in res:
-            self.res_id = res[7][1:]
-        else:
-            self.res_id = ""
+    # id externo en tabla de res_partner
+    client_export_id = fields.Char("Export ID")
 
     # exportación sae
     @api.multi
     def export(self):
         columns = [
-            'external_id',
+            'client_export_id',
             'name',
             'rfc',
             'street',
