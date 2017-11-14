@@ -92,7 +92,7 @@ class user_client(models.Model):
                    ("plnco", "PLNCO - Polanco"),
                    ("sfe", "SFE - Santa Fe"),
                    ("tcmchl", "TCMCHL - Tecamachalco"),
-                   ("unica", "UNICA - Unica")])
+                   ("unica", "UNICA - Fuera de Zona de Cobertura")])
 
     # catalogo de colonias
     sat_colonia_id = fields.Many2one("sat.colonia", "Colonia")
@@ -159,7 +159,7 @@ class user_client(models.Model):
     nacionalidad = fields.Char("Nacionalidad")
 
     # id externo en tabla de res_partner
-    client_export_id = fields.Char("Export ID")
+    client_export_id = fields.Char("Export ID", default="None")
 
     # exportación sae
     @api.multi
