@@ -159,7 +159,7 @@ class user_client(models.Model):
     nacionalidad = fields.Char("Nacionalidad")
 
     # id externo en tabla de res_partner
-    client_export_id = fields.Char("Export ID")
+    client_export_id = fields.Char("Export ID", default="None")
 
     # exportación sae
     @api.multi
