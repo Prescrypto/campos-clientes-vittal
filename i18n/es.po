@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prescrypto Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-14 06:00+0000\n"
-"PO-Revision-Date: 2017-11-13 22:01-0800\n"
+"POT-Creation-Date: 2017-11-15 06:32+0000\n"
+"PO-Revision-Date: 2017-11-14 22:33-0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -118,11 +118,6 @@ msgstr "Aplica a Persona Física"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_aplica_moral
 msgid "Aplica a Persona Moral"
 msgstr "Aplica a Persona Moral"
-
-#. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.A
-msgid "Asistencialistas"
-msgstr "Asistencialistas"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_associate_id
@@ -329,16 +324,6 @@ msgstr "Nombre de Contacto"
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
 msgid "Contacts & Addresses"
 msgstr "Contactos y Direcciones"
-
-#. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.CC
-msgid "Convenio Capitado"
-msgstr "Convenio Capitado"
-
-#. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.C
-msgid "Copago"
-msgstr "Copago"
 
 #. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/user_client.py:130
@@ -619,10 +604,17 @@ msgstr "Ejecutivo"
 #. openerp-web
 #: code:addons/campos_clientes_vittal/static/src/xml/export_button.xml:6
 #: code:addons/campos_clientes_vittal/static/src/xml/export_button.xml:9
-#: code:addons/campos_clientes_vittal/static/src/xml/export_button.xml:12
 #, python-format
 msgid "Export"
 msgstr "Exportar"
+
+#. module: campos_clientes_vittal
+#. openerp-web
+#: code:addons/campos_clientes_vittal/static/src/xml/export_all_button.xml:6
+#: code:addons/campos_clientes_vittal/static/src/xml/export_all_button.xml:9
+#, python-format
+msgid "Export All"
+msgstr "Exportar Todo"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_client_export_id
@@ -633,6 +625,13 @@ msgstr "Exportar"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_user_member_client_export_id
 msgid "Export ID"
 msgstr "Exportar"
+
+#. module: campos_clientes_vittal
+#. openerp-web
+#: code:addons/campos_clientes_vittal/static/src/xml/export_button.xml:12
+#, python-format
+msgid "Export Uninvoiced"
+msgstr "Exportar Sin Facturar"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_sale_order_exported
@@ -726,11 +725,6 @@ msgid "Group Code"
 msgstr "Código de Grupo"
 
 #. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.G
-msgid "Grupos"
-msgstr "Grupos"
-
-#. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_family_member_id
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_colonia_id
@@ -753,11 +747,6 @@ msgstr "ITRLMS - Interlomas"
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_sat_uso_inicio_vigencia
 msgid "Inicio de Vigencia"
 msgstr "Inicio de Vigencia"
-
-#. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.I
-msgid "Inscripción"
-msgstr "Inscripción"
 
 #. module: campos_clientes_vittal
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.view_partner_form
@@ -1014,11 +1003,6 @@ msgid "Other family"
 msgstr "Otro parentesco"
 
 #. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.O
-msgid "Otros"
-msgstr "Otros"
-
-#. module: campos_clientes_vittal
 #: code:addons/campos_clientes_vittal/models/partner_member.py:151
 #: selection:company.member,relationship:0
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_is_owner
@@ -1045,11 +1029,6 @@ msgstr "País"
 #: model:ir.ui.view,arch_db:campos_clientes_vittal.sat_pais_form
 msgid "Paises"
 msgstr "Paises"
-
-#. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.PS
-msgid "Paquete de Servicios"
-msgstr "Paquete de Servicios"
 
 #. module: campos_clientes_vittal
 #: model:ir.model.fields,field_description:campos_clientes_vittal.field_company_member_parent_id
@@ -1476,7 +1455,26 @@ msgstr ""
 msgid "user.member"
 msgstr ""
 
-#. module: campos_clientes_vittal
-#: model:product.category,name:campos_clientes_vittal.AP
-msgid "Área Protegida"
-msgstr "Área Protegida"
+#~ msgid "Asistencialistas"
+#~ msgstr "Asistencialistas"
+
+#~ msgid "Convenio Capitado"
+#~ msgstr "Convenio Capitado"
+
+#~ msgid "Copago"
+#~ msgstr "Copago"
+
+#~ msgid "Grupos"
+#~ msgstr "Grupos"
+
+#~ msgid "Inscripción"
+#~ msgstr "Inscripción"
+
+#~ msgid "Otros"
+#~ msgstr "Otros"
+
+#~ msgid "Paquete de Servicios"
+#~ msgstr "Paquete de Servicios"
+
+#~ msgid "Área Protegida"
+#~ msgstr "Área Protegida"
