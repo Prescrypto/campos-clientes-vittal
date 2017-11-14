@@ -210,6 +210,9 @@ class user_sales_order(models.Model):
                 order.write({'sub_active': False})
                 self.env.cr.commit()
 
+    # ha sido facturada?
+    exported = fields.Boolean("Exported?", default=False)
+
     # exportación sae
     def export(self):
         columns = [
@@ -221,5 +224,6 @@ class user_sales_order(models.Model):
             "validity_date",
             "amount_untaxed",
         ]
+        self.write({'exported': True})
         format_orders = partial(sae.format, "orders")
         return map(format_orders, self.export_data(columns).get("datas", []))
