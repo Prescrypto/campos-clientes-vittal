@@ -46,10 +46,7 @@
                                 <field name="allergies"/>
                                 <field name="prev_ailments"/>
                                 <field name="comment"/>
-                            </group>
-                        </group>
-                        <group>
-                            <group>
+
                                 <field name="user_active"/>
                                 <field name="start_date"/>
                                 <field name="end_date" attrs="{'invisible': ['|', ('user_active', '=', True), ('auto_end_date', '=', True)]}"/>

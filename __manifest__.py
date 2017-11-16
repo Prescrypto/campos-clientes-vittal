@@ -80,6 +80,7 @@
     # templates
     'qweb': [
         'static/src/xml/export_button.xml',
+        'static/src/xml/export_all_button.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

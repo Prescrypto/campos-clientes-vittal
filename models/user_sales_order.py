@@ -210,20 +210,40 @@ class user_sales_order(models.Model):
                 order.write({'sub_active': False})
                 self.env.cr.commit()
 
-    # ha sido facturada?
-    exported = fields.Boolean("Exported?", default=False)
-
     # exportación sae
     def export(self):
-        columns = [
-            "id",
-            "partner_export_id",
-            "date_order",
-            "note",
-            "delivery_date",
-            "validity_date",
-            "amount_untaxed",
-        ]
-        self.write({'exported': True})
+        # lista de ventas
+        orders = self.env['sale.order'].search([])
+
+        # lista de productos
+        products = self.env['product.template'].search([])
+
+        # lista de lineas sin facturar
+        lines = self.env['sale.order.line'].search(
+            [['invoice_status', '=', 'to invoice'], ['state', '=', 'sale']])
+
+        # datos relevantes de lineas
+        line_rows = lines.export_data([
+            'order_id',
+            'create_date',
+            'name',
+            'price_unit',
+            'discount',
+            'product_code',
+        ]).get('datas', [])
+
+        # agregar datos de orden a lineas anteriores
+        merge = partial(sae.merge_order_line, orders, products)
+        rows = map(merge, line_rows)
+
+        # actualizar fecha al e indicar que fueron exportados
+        update = {
+            'create_date': fields.Datetime.to_string(datetime.now()),
+            'invoice_status': 'invoiced'
+        }
+        orders.write(update)
+        lines.write(update)
+
+        # exportar
         format_orders = partial(sae.format, "orders")
-        return map(format_orders, self.export_data(columns).get("datas", []))
+        return map(format_orders, rows)

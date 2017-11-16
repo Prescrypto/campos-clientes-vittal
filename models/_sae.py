@@ -6,45 +6,14 @@ import unicodedata
 
 
 # formatea datos exportados de odoo a sae
-def format(type, row):
+def format(name, row):
     # format client data
-    if type == 'clients':
+    if name == 'clients':
         row = format_clients(row)
-    elif type == 'products':
+    elif name == 'products':
         row = format_products(row)
-    elif type == 'orders':
-        row = format_orders(row)
-
     # limpiar datos
     return sanitize(row)
-
-
-# formatea datos de productos
-def format_orders(row):
-    # extraer id numerico de string
-    row[0] = extract_id(row[0])
-    # formatear datetime
-    row[2] = date_format(row[2])
-    # agregar campos no exportados
-    row.insert(3, "")
-    row.insert(5, "1")
-    row.insert(6, "1")
-    # formatear datetime
-    row[7] = date_format(row[7])
-    row[8] = date_format(row[8])
-    # agregar campos no exportados
-    for index in range(10, 14):
-        row.insert(index, "0")
-    row.insert(14, "1")
-    # agregar codigo indicando exportación
-    row.insert(15, "IMPORTADO")
-    # agregar campos no exportados
-    row.insert(16, "1")
-    for index in range(17, 20):
-        row.insert(index, "0")
-    row.insert(20, "16")
-    row.insert(21, "")
-    return row
 
 
 # formatea datos de productos
@@ -141,3 +110,42 @@ def sanitize(row):
 def date_format(date_string):
     date = fields.Datetime.from_string(date_string)
     return date.strftime('%d/%m/%Y') if date else ""
+
+
+# llenar campos de linea con orden relevante
+def merge_order_line(orders, products, line):
+    # obtener orden a la cual pertenece la linea
+    order = orders.search([['name', '=', line[0]]], limit=1)
+    # obtener producto que pertenece a la linea
+    product = products.search([])
+    # agregar id externo de usuario
+    line.insert(1, order.partner_export_id)
+    # formatear fecha
+    line[2] = date_format(line[2])
+    # agregar descuento financiero
+    line.insert(3, "")
+    # agregar clave de vendedor
+    line.insert(5, 1)
+    # agregar su pedido
+    line.insert(6, 1)
+    # agregar fecha de entrega
+    line.insert(7, "")
+    # agregar fecha de vencimiento
+    line.insert(8, "")
+    # agregar descuentos adicionales
+    line.insert(11, 0)
+    line.insert(12, 0)
+    # agregar comision
+    line.insert(13, "")
+    # agregar clave de esquema de impuestos
+    line.insert(14, 1)
+    # agregar cantidad
+    line.insert(16, 1)
+    # agregar ivas
+    line.insert(17, 0)
+    line.insert(18, 0)
+    line.insert(19, 0)
+    line.insert(20, 16)
+    # agregar nota de orden de venta
+    line.insert(21, order.note if order.note else "")
+    return line

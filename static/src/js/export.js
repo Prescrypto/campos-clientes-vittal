@@ -7,17 +7,28 @@ openerp.campos_clientes_vittal = function(instance, local) {
       // GET BUTTON REFERENCE
       this._super.apply(this, arguments);
       if (this.$buttons) {
-        btn = this.$buttons.find('.export_button');
+        btnExport = this.$buttons.find('.export_button');
+        btnExportAll = this.$buttons.find('.export_all_button');
       }
 
       // PERFORM THE ACTION
-      btn.on('click', this.proxy('export_button'));
+      btnExport.on('click', this.proxy('export_button'));
+      btnExportAll.on('click', this.proxy('export_all_button'));
     },
     export_button: function(event) {
-      var type = event.toElement.dataset.type;
-      var filename = event.toElement.dataset.filename + '.csv';
+      var type = event.target.dataset.type;
+      var filename = event.target.dataset.filename + '.csv';
       new instance.web.Model(this.model)
         .call('export', [extractIds(this.records.records)], {
+          context: instance.session.user_context,
+        })
+        .done(createCsv.bind(this, filename, type));
+    },
+    export_all_button: function(event) {
+      var type = event.target.dataset.type;
+      var filename = event.target.dataset.filename + '.completo.csv';
+      new instance.web.Model(this.model)
+        .call('export_all', [extractIds(this.records.records)], {
           context: instance.session.user_context,
         })
         .done(createCsv.bind(this, filename, type));
@@ -40,7 +51,8 @@ function createCsv(filename, type, source) {
 }
 
 function csvBody(source, type) {
-  var csvBody = source.join('\n');
+  var cleanSource = source.map(row => row.map(item => item.split('\n')[0]))
+  var csvBody = cleanSource.join('\n');
   return [csvHeading(type), csvBody].join('\n');
 }
 
