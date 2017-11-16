@@ -7,8 +7,6 @@
             <field name='arch' type='xml'>
                 <field name="name" position="after">
                     <filter string="Subscriptions" name="sub" domain="[('is_subscription','=',True)]"/>
-                    <filter string="Invoiced" name="sub" domain="[('exported','=',True)]"/>
-                    <filter string="Uninvoiced" name="sub" domain="[('exported','=',False)]"/>
                     <filter string="Zone" name="zone" context="{'group_by':'partner_zone'}"/>
                 </field>
             </field>
