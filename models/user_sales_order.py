@@ -210,39 +210,64 @@ class user_sales_order(models.Model):
                 order.write({'sub_active': False})
                 self.env.cr.commit()
 
+    # ha sido facturada?
+    exported = fields.Boolean("Exported?", default=False)
+
     # exportación sae
     def export(self):
-        # lista de ventas
-        orders = self.env['sale.order'].search([])
+        # encontrar ventas sin facturar ni exportar
+        exported = self.env['sale.order'].search(
+            [['invoice_status', '=', 'to invoice'],
+             ['state', '=', 'sale'],
+             ['exported', '=', False]])
 
-        # lista de productos
-        products = self.env['product.template'].search([])
+        # actualizar fecha al momento de exportar
+        exported.write({
+            'create_date': fields.Datetime.to_string(datetime.now())
+        })
 
-        # lista de lineas sin facturar
-        lines = self.env['sale.order.line'].search(
-            [['invoice_status', '=', 'to invoice'], ['state', '=', 'sale']])
+        # query de sale_order con sale_order_lines
+        exported.env.cr.execute("""
+            SELECT
+                sale.id as "Clave de Factura",
+                partner.client_export_id as "Cliente",
+                sale.create_date as "Fecha de elaboración (dia, mes, año)",
+                '' as "Descuento financiero",
+                item.name as "Observaciones",
+                1 as "Clave de Vendedor",
+                1 as "Su pedido",
+                '' as "Fecha de entrega",
+                '' as "Fecha de vencimiento",
+                item.price_unit as "Precio",
+                item.discount as "Desc. 1",
+                0.00  as "Desc. 2",
+                0.00 as "Desc. 3",
+                '' as "Comisión",
+                1 as "Clave de esquema de impuestos",
+                product.clave_erste as "Clave del artículo",
+                1 as "Cantidad",
+                0 as "I.E.P.S",
+                0 as "Impuesto 2",
+                0 as "Impuesto 3",
+                16 as "I.V.A.",
+                sale.note as "Observaciones de partida"
+            FROM sale_order_line item
+            LEFT JOIN sale_order sale ON sale.id = item.order_id
+            LEFT JOIN res_partner partner ON partner.id = sale.partner_id
+            LEFT JOIN product_template product ON product.id = item.product_id
+            WHERE
+              sale.state = 'sale'
+            AND
+              sale.invoice_status = 'to invoice'
+            AND
+              sale.exported IS False;
+        """)
 
-        # datos relevantes de lineas
-        line_rows = lines.export_data([
-            'order_id',
-            'create_date',
-            'name',
-            'price_unit',
-            'discount',
-            'product_code',
-        ]).get('datas', [])
+        # valores del query
+        rows = exported.env.cr.fetchall()
 
-        # agregar datos de orden a lineas anteriores
-        merge = partial(sae.merge_order_line, orders, products)
-        rows = map(merge, line_rows)
-
-        # actualizar fecha al e indicar que fueron exportados
-        update = {
-            'create_date': fields.Datetime.to_string(datetime.now()),
-            'invoice_status': 'invoiced'
-        }
-        orders.write(update)
-        lines.write(update)
+        # indicar que fueron exportados
+        exported.write({'exported': True})
 
         # exportar
         format_orders = partial(sae.format, "orders")

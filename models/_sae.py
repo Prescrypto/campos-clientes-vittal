@@ -12,8 +12,19 @@ def format(name, row):
         row = format_clients(row)
     elif name == 'products':
         row = format_products(row)
+    elif name == "orders":
+        row = format_orders(row)
     # limpiar datos
     return sanitize(row)
+
+
+# formatea datos de productos
+def format_orders(row):
+    fmt_row = list(row)
+    fmt_row[2] = date_format(row[2])
+    fmt_row[7] = date_format(row[7])
+    fmt_row[8] = date_format(row[8])
+    return tuple(fmt_row)
 
 
 # formatea datos de productos
@@ -110,42 +121,3 @@ def sanitize(row):
 def date_format(date_string):
     date = fields.Datetime.from_string(date_string)
     return date.strftime('%d/%m/%Y') if date else ""
-
-
-# llenar campos de linea con orden relevante
-def merge_order_line(orders, products, line):
-    # obtener orden a la cual pertenece la linea
-    order = orders.search([['name', '=', line[0]]], limit=1)
-    # obtener producto que pertenece a la linea
-    product = products.search([])
-    # agregar id externo de usuario
-    line.insert(1, order.partner_export_id)
-    # formatear fecha
-    line[2] = date_format(line[2])
-    # agregar descuento financiero
-    line.insert(3, "")
-    # agregar clave de vendedor
-    line.insert(5, 1)
-    # agregar su pedido
-    line.insert(6, 1)
-    # agregar fecha de entrega
-    line.insert(7, "")
-    # agregar fecha de vencimiento
-    line.insert(8, "")
-    # agregar descuentos adicionales
-    line.insert(11, 0)
-    line.insert(12, 0)
-    # agregar comision
-    line.insert(13, "")
-    # agregar clave de esquema de impuestos
-    line.insert(14, 1)
-    # agregar cantidad
-    line.insert(16, 1)
-    # agregar ivas
-    line.insert(17, 0)
-    line.insert(18, 0)
-    line.insert(19, 0)
-    line.insert(20, 16)
-    # agregar nota de orden de venta
-    line.insert(21, order.note if order.note else "")
-    return line

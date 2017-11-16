@@ -51,8 +51,7 @@ function createCsv(filename, type, source) {
 }
 
 function csvBody(source, type) {
-  var cleanSource = source.map(row => row.map(item => item.split('\n')[0]))
-  var csvBody = cleanSource.join('\n');
+  var csvBody = source.join('\n');
   return [csvHeading(type), csvBody].join('\n');
 }
 
