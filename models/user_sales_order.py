@@ -233,7 +233,7 @@ class user_sales_order(models.Model):
                 partner.client_export_id as "Cliente",
                 sale.create_date as "Fecha de elaboración (dia, mes, año)",
                 '' as "Descuento financiero",
-                item.name as "Observaciones",
+                sale.note as "Observaciones",
                 1 as "Clave de Vendedor",
                 1 as "Su pedido",
                 '' as "Fecha de entrega",
@@ -250,7 +250,7 @@ class user_sales_order(models.Model):
                 0 as "Impuesto 2",
                 0 as "Impuesto 3",
                 16 as "I.V.A.",
-                sale.note as "Observaciones de partida"
+                item.name as "Observaciones de partida"
             FROM sale_order_line item
             LEFT JOIN sale_order sale ON sale.id = item.order_id
             LEFT JOIN res_partner partner ON partner.id = sale.partner_id
