@@ -17,6 +17,8 @@
     'category': 'Specific Industry Applications',
     'version': '0.1',
 
+    #Comentario de prueba
+    
     # any module necessary for this one to work correctly
     'depends': [
         'base',
