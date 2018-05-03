@@ -13,22 +13,22 @@ class UserMember(models.Model):
     _inherit = "res.partner"
 
     # padre del miembro
-    parent_id = fields.Many2one("res.partner", string="Parent")
+    parent_id = fields.Many2one("res.partner", string="Miembro padre")
 
     # clave de socio
-    associate_id = fields.Char("Associate ID")
+    associate_id = fields.Char("ID de Socio")
 
     # condición de grupo
-    relationship = fields.Selection(string="Relationship", selection=[])
+    relationship = fields.Selection(string="Rol", selection=[])
 
     # titular del grupo
-    is_owner = fields.Boolean("Owner")
+    is_owner = fields.Boolean("Titular")
 
     # fecha de nacimiento
-    birthday = fields.Date("Birthday")
+    birthday = fields.Date("Fecha de nacimiento")
 
     # edad
-    age = fields.Integer("Age", compute="_calc_age", store=False)
+    age = fields.Integer("Edad", compute="_calc_age", store=False)
 
     @api.multi
     @api.depends("birthday")
@@ -47,25 +47,25 @@ class UserMember(models.Model):
     inherit_address = fields.Boolean("Usar dirección de la empresa?")
 
     # enfermedades previas
-    prev_ailments = fields.Text("Previous Ailments")
+    prev_ailments = fields.Text("Enfermedades previas")
 
     # alergias
-    allergies = fields.Text("Allergies")
+    allergies = fields.Text("Alergias")
 
     # estatus
-    user_active = fields.Boolean("Active")
+    user_active = fields.Boolean("Activo")
 
     # fecha de registro
-    start_date = fields.Date("Registration Date")
+    start_date = fields.Date("Fecha de registro")
 
     # fecha cuando se dio de baja
-    end_date = fields.Date("Date Ended")
+    end_date = fields.Date("Fecha de baja")
 
     # fecha de baja automatica
-    auto_end_date = fields.Date("End Date")
+    auto_end_date = fields.Date("Fecha de baja automática")
 
     # motivo de baja
-    end_reason = fields.Text("Reason for Ending")
+    end_reason = fields.Text("Motivo de baja")
 
     # dar de baja usuarios con fecha de baja
     def _user_end_date(self):
@@ -111,14 +111,14 @@ class FamilyMember(models.Model):
 
     # grupos del cual miembro es titular
     main_contact = fields.One2many(
-        "res.partner", "family_contact_id", string="Main Contact")
+        "res.partner", "family_contact_id", string="Titular")
 
     # condición de grupo
     relationship = fields.Selection(
-        string="Relationship",
-        selection=[("1", _("Father")), ("2", _("Mother")),
-                   ("3", _("Spouse")), ("4", _("Offspring")),
-                   ("5", _("Other family"))])
+        string="Relación familiar",
+        selection=[("1", "Padre"), ("2", "Madre"),
+                   ("3", "Cónyuge"), ("4", "Hijo(a)"),
+                   ("5", "Otro parentesco")])
 
     # comenzar suscripción
     @api.multi
@@ -147,10 +147,10 @@ class CompanyMember(models.Model):
 
     # condición de grupo
     relationship = fields.Selection(
-        string="Role",
-        selection=[("2", _("Director")),
-                   ("3", _("Executive")), ("4", _("Administrator")),
-                   ("5", _("Employee")), ("6", _("Other"))])
+        string="Rol",
+        selection=[("2", "Directivo"),
+                   ("3", "Ejecutivo"), ("4", "Administrador"),
+                   ("5", "Empleado"), ("6", "Otro")])
 
     # comenzar suscripción
     @api.multi
