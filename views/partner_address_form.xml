@@ -17,11 +17,12 @@
                                     <div class="o_address_format" name="div_address">
                                         <field name="street" placeholder="Street..." class="o_address_street" attrs="{'required': True}"/>
                                         <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                                        <field name="sat_colonia_id" placeholder="Colonia" context="{'codigo_postal': zip, 'form_view_ref': 'campos_clientes_vittal.sat_colonia_form'}" options="{'no_create': True}" attrs="{'required': True}"/>
-                                        <field name="sat_municipio_id" placeholder="Municipio" class="o_address_city" attrs="{'required': True}"/>
-                                        <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_state"/>
+                                        <field name="sat_colonia_id" placeholder="Colonia" context="{'codigo_postal': zip, 'form_view_ref': 'campos_clientes_vittal.sat_colonia_form'}" options="{'no_create': True, 'no_open': True}" attrs="{'required': True}"/>
+                                        <field name="sat_municipio_id" placeholder="Municipio" class="o_address_city" attrs="{'required': True}" options="{'no_create': True, 'no_open': True}"/>
+                                        <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True, 'no_open': True}" attrs="{'required': True}" class="o_address_state"/>
                                         <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'required': True}"/>
                                         <field name="sat_pais_id" placeholder="Pais" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_pais"/>
+                                        <field name="zone"/>
                                         <field name="cross_street" placeholder="Cross Street"/>
                                         <field name="crosses_with" placeholder="Crosses With"/>
                                         <field name="references" placeholder="References"/>
@@ -33,6 +34,9 @@
                             <group>
                                 <field name="name" string="Razón Social (o nombre de contacto)" attrs="{'required': [('type','=', 'fiscal')]}"/>
                                 <field name="rfc" attrs="{'required': [('type','=', 'fiscal')]}"/>
+                                <field name="sat_uso_id"  attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="sat_pagos_id" attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="sat_metodo_pago" attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}"/>
                                 <field name="email" attrs="{'required': [('type','=', 'fiscal')]}"/>
                                 <field name="nacionalidad"/>
                                 <field name="phone" widget="phone"/>

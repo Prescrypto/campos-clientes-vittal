@@ -17,10 +17,10 @@
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
                             <field name="legal_name" placeholder="Legal Name" attrs="{'required': [('client_type', '=', 'company')]}"/>
                         </div>
-                        <!-- agregar rfc -->
+                        <!-- agregar rfc
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
                             <field name="rfc" placeholder="RFC" attrs="{'required': [('client_type', '=', 'company')]}"/>
-                        </div>
+                        </div>-->
 
                         <!-- agregar curp -->
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'private')]}">
@@ -42,14 +42,14 @@
                     <field class="oe_read_only" name="group_code" string="Code" placeholder="Code" />
                     <!-- agregar tipo de negocio -->
                     <field name="business_type" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
-                    <!-- agregar uso de cfdi -->
-                    <field name="sat_uso_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_uso_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_uso"/>
-                    <!-- agregar uso de cfdi -->
-                    <field name="sat_pagos_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_pagos_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_pagos"/>
-                    <!-- agregar titular familiar -->
-                    <field name="family_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}" options="{'no_create': True}"/>
-                    <!-- agregar titular empresarial -->
-                    <field name="company_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}" options="{'no_create': True}"/>
+                    <!-- agregar uso de cfdi
+                    <field name="sat_uso_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_uso_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_uso"/>-->
+                    <!-- forma de pago
+                    <field name="sat_pagos_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_pagos_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_pagos"/>-->
+                    <!-- agregar titular familiar
+                    <field name="family_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'family')]}" options="{'no_create': True}"/>-->
+                    <!-- agregar titular empresarial
+                    <field name="company_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}" options="{'no_create': True}"/>-->
                     <!-- agregar fecha que fue introducido al sistema -->
                     <field name="date" string="Join Date"/>
                     <!-- agregar numero de referencia -->
@@ -63,30 +63,30 @@
                     <field name="sat_pais_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_pais"/>
                     <!-- agregar campo de zona -->
                     <field name="zone" attrs="{'required': True}"/>
-                    <!-- agregar poblacion -->
-                    <field name="poblacion"/>
-                    <!-- agregar nacionalidad -->
-                    <field name="nacionalidad"/>
+                    <!-- agregar poblacion
+                    <field name="poblacion"/>-->
+                    <!-- agregar nacionalidad
+                    <field name="nacionalidad"/>-->
                 </field>
 
                 <!-- agregar catalogo de municipios -->
                 <field name="city" position="replace">
-                    <field name="sat_municipio_id" placeholder="Municipio" context="{'form_view_ref': 'campos_clientes_vittal.sat_municipio_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_city"/>
+                    <field name="sat_municipio_id" placeholder="Municipio" context="{'form_view_ref': 'campos_clientes_vittal.sat_municipio_form'}" options="{'no_create': True, 'no_open': True}" attrs="{'required': True}" class="o_address_city"/>
                 </field>
 
                 <!-- agregar catalogo de estados -->
                 <field name="state_id" position="replace">
-                    <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_state"/>
+                    <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True, 'no_open': True}" attrs="{'required': True}" class="o_address_state"/>
                 </field>
 
                 <field name="country_id" position="replace"/>
 
                 <!-- cambiar texto default de website -->
-                <field name="website" position="attributes">
-                    <attribute name="placeholder">e.g. https://www.google.com</attribute>
-                </field>
+                <field name="website" position="replace"/>
+                    <!--<attribute name="placeholder">e.g. https://www.google.com</attribute>-->
 
                 <!-- quitar campos no usados -->
+                <field name="fax" position="replace"/>
                 <field name="category_id" position="replace"/>
                 <field name="lang" position="replace"/>
 
@@ -122,11 +122,16 @@
 
                 <field name="function" position="replace"/>
                 <field name="title" position="replace"/>
+                <!-- Agregar copago -->
+                <field name="email" position="after">
+                    <field name="copago"/>
+                    <field name="copago_amount" attrs="{'invisible': [('copago','=',False)]}"/>
+                </field>
 
                 <!-- modificar pestaña para mostrar direcciones -->
                 <xpath expr="//notebook/page[1]" position="replace">
                     <page string="Contacts &amp; Addresses">
-                        <field name="child_ids" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_sat_municipio_id': sat_municipio_id, 'default_sat_estado_id': sat_estado_id, 'default_zip': zip, 'default_sat_colonia_id': sat_colonia_id, 'default_sat_pais_id': sat_pais_id, 'default_type': 'coverage'}">
+                        <field name="child_ids" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_sat_municipio_id': sat_municipio_id, 'default_sat_estado_id': sat_estado_id, 'default_zip': zip, 'default_sat_colonia_id': sat_colonia_id, 'default_sat_pais_id': sat_pais_id, 'default_type': 'coverage', 'default_zone': zone}">
                             <tree>
                                 <field name="name" string="Name"/>
                                 <field name="type" attrs="{'invisible': True}"/>

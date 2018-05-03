@@ -81,7 +81,7 @@ class user_client(models.Model):
     rfc = fields.Char("RFC")
 
     # tipo de negocio
-    business_type = fields.Char("Business Type")
+    business_type = fields.Many2one("business.type", "Business Type")
 
     # código de zona
     zone = fields.Selection(
@@ -119,6 +119,12 @@ class user_client(models.Model):
     # catalog de formas de pago
     sat_pagos_id = fields.Many2one("sat.pagos", "Formas de Pago")
 
+    # metodos de pago
+    sat_metodo_pago = fields.Selection([
+            ('PUE', 'PUE - PAGO EN UNA SOLA EXHIBICIÓN'),
+            ('PPD', 'PPD - PAGO EN PARCIALIDADES O DIFERIDO')
+        ], 'Metodo de Pago', default='PUE')
+
     # codigo derivado de forma de pago
     sat_pagos_codigo = fields.Char(
         related="sat_pagos_id.codigo_forma", store=True)
@@ -126,10 +132,14 @@ class user_client(models.Model):
     # tipos de dirección
     type = fields.Selection(
         string="Address Type",
-        selection=[("contact", _("Contact")), ("coverage",
-                                               _("Coverage Address")),
+        selection=[("contact", _("Contact")),
+                   ("coverage", _("Coverage Address")),
                    ("admin", _("Administrative Address")),
                    ("fiscal", _("Fiscal Address"))])
+    # Copago
+    copago = fields.Boolean('Copago')
+    # monto copago
+    copago_amount = fields.Float('Monto Copago')
 
     # entre calles
     cross_street = fields.Char("Cross Street")
@@ -147,7 +157,7 @@ class user_client(models.Model):
     details = fields.Char("Details")
 
     # número de referencia
-    reference_id = fields.Char("Reference Number")
+    reference_id = fields.Char("ID Erste")
 
     # CURP
     curp = fields.Char("CURP")
@@ -160,7 +170,49 @@ class user_client(models.Model):
 
     # id externo en tabla de res_partner
     client_export_id = fields.Char("Export ID", default="None")
-    
+
+    # exportación sae
+    export_columns = [
+        'client_export_id',
+        'name',
+        'rfc',
+        'street',
+        'street2',
+        'cross_street',
+        'crosses_with',
+        'sat_colonia_id',
+        'zip',
+        'poblacion',
+        'sat_municipio_id',
+        'sat_estado_id',
+        'sat_pais_id',
+        'nacionalidad',
+        'reference_id',
+        'phone',
+        'fax',
+        'website',
+        'curp',
+        'invoice_email',
+        'sat_uso_codigo',
+        'sat_pagos_codigo',
+        'zone',
+    ]
+
+    @api.multi
+    def export(self):
+        columns = self.export_columns
+        format_clients = partial(sae.format, 'clients')
+        return map(format_clients, self.export_data(columns).get('datas', []))
+
+    def export_all(self):
+        all_clients = self.env['res.partner']
+        valid_clients = all_clients.search([['active', '=', True], ['customer', '=', True], ['parent_id', '=', False]])
+
+        columns = self.export_columns
+        format_clients = partial(sae.format, 'clients')
+
+        return map(format_clients, valid_clients.export_data(columns).get('datas', []))
+
     def name_get(self):
         ''' Cambiar formato de nombre de titular y direcciones '''
         result = []

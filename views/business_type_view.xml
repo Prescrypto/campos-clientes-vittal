@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="business_type_view_form" model="ir.ui.view">
+        <field name="name">business.type.view.form</field>
+        <field name="model">business.type</field>
+        <field name="arch" type="xml">
+            <form string="Business Types">
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

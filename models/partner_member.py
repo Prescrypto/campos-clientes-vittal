@@ -3,7 +3,7 @@
 import odoo
 import logging
 from datetime import date, datetime
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 _logger = logging.getLogger(__name__)
 
@@ -116,9 +116,26 @@ class FamilyMember(models.Model):
     # condición de grupo
     relationship = fields.Selection(
         string="Relationship",
-        selection=[("1", odoo._("Father")), ("2", odoo._("Mother")),
-                   ("3", odoo._("Spouse")), ("4", odoo._("Offspring")),
-                   ("5", odoo._("Other family"))])
+        selection=[("1", _("Father")), ("2", _("Mother")),
+                   ("3", _("Spouse")), ("4", _("Offspring")),
+                   ("5", _("Other family"))])
+
+    # comenzar suscripción
+    @api.multi
+    def start_reg(self):
+        for record in self:
+            record.start_date = fields.Datetime.to_string(datetime.now())
+            record.end_date = ""
+            record.user_active = True
+
+    # terminar suscripción
+    @api.multi
+    def end_reg(self):
+        for record in self:
+            record.end_date = fields.Datetime.to_string(datetime.now())
+            record.auto_end_date = ""
+            record.user_active = False
+
 
 class CompanyMember(models.Model):
     _name = "company.member"
@@ -131,7 +148,22 @@ class CompanyMember(models.Model):
     # condición de grupo
     relationship = fields.Selection(
         string="Role",
-        selection=[("1", odoo._("Owner")), ("2", odoo._("Director")),
-                   ("3", odoo._("Executive")), ("4", odoo._("Administrator")),
-                   ("5", odoo._("Employee")), ("6", odoo._("Other"))])
+        selection=[("2", _("Director")),
+                   ("3", _("Executive")), ("4", _("Administrator")),
+                   ("5", _("Employee")), ("6", _("Other"))])
 
+    # comenzar suscripción
+    @api.multi
+    def start_reg(self):
+        for record in self:
+            record.start_date = fields.Datetime.to_string(datetime.now())
+            record.end_date = ""
+            record.user_active = True
+
+    # terminar suscripción
+    @api.multi
+    def end_reg(self):
+        for record in self:
+            record.end_date = fields.Datetime.to_string(datetime.now())
+            record.auto_end_date = ""
+            record.user_active = False
