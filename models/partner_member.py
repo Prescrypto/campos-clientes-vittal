@@ -120,23 +120,6 @@ class FamilyMember(models.Model):
                    ("3", odoo._("Spouse")), ("4", odoo._("Offspring")),
                    ("5", odoo._("Other family"))])
 
-    # comenzar suscripción
-    @api.multi
-    def start_reg(self):
-        for record in self:
-            record.start_date = fields.Datetime.to_string(datetime.now())
-            record.end_date = ""
-            record.user_active = True
-
-    # terminar suscripción
-    @api.multi
-    def end_reg(self):
-        for record in self:
-            record.end_date = fields.Datetime.to_string(datetime.now())
-            record.auto_end_date = ""
-            record.user_active = False
-
-
 class CompanyMember(models.Model):
     _name = "company.member"
     _inherit = "user.member"
@@ -152,18 +135,3 @@ class CompanyMember(models.Model):
                    ("3", odoo._("Executive")), ("4", odoo._("Administrator")),
                    ("5", odoo._("Employee")), ("6", odoo._("Other"))])
 
-    # comenzar suscripción
-    @api.multi
-    def start_reg(self):
-        for record in self:
-            record.start_date = fields.Datetime.to_string(datetime.now())
-            record.end_date = ""
-            record.user_active = True
-
-    # terminar suscripción
-    @api.multi
-    def end_reg(self):
-        for record in self:
-            record.end_date = fields.Datetime.to_string(datetime.now())
-            record.auto_end_date = ""
-            record.user_active = False

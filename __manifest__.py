@@ -17,9 +17,12 @@
     'category': 'Specific Industry Applications',
     'version': '0.1',
 
+    #Comentario de prueba
+    
     # any module necessary for this one to work correctly
     'depends': [
         'base',
+        'product',
         'crm',
         'l10n_mx',
         'sale',
@@ -41,9 +44,6 @@
         'data/sat.pais.csv',
         'data/sat.uso.csv',
         'data/sat.pagos.csv',
-        'data/cron_subscription.xml',
-        'data/cron_renew_next_subscription.xml',
-        'data/cron_user_member.xml',
         'views/sat_colonia_form.xml',
         'views/sat_municipio_form.xml',
         'views/sat_estado_form.xml',
@@ -60,30 +60,15 @@
         'views/view_partner_form.xml',
         'views/view_product_filter.xml',
         'views/sale_order_form.xml',
+        'views/sale_order_filter.xml',
         'views/client_tree.xml',
         'views/client_action.xml',
         'views/client_filter.xml',
-        'views/subscription_tree.xml',
-        'views/subscription_action.xml',
-        'views/subscription_filter.xml',
         'views/sales_menu.xml',
         'views/static_assets.xml',
     ],
     # styles
     'css': [
         'static/src/css/custom.css'
-    ],
-    # scripts
-    'js': [
-        'static/src/js/export.js'
-    ],
-    # templates
-    'qweb': [
-        'static/src/xml/export_button.xml',
-        'static/src/xml/export_all_button.xml',
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
     ],
 }

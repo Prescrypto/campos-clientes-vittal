@@ -1,12 +1,11 @@
 <odoo>
     <data>
         <record model='ir.ui.view' id='view_subscription_filter'>
-            <field name='name'>sale.order.list.select</field>
+            <field name='name'>sale.order.list.campos.select</field>
             <field name='model'>sale.order</field>
             <field name='inherit_id' ref='sale.view_sales_order_filter'/>
             <field name='arch' type='xml'>
                 <field name="name" position="after">
-                    <filter string="Subscriptions" name="sub" domain="[('is_subscription','=',True)]"/>
                     <filter string="Zone" name="zone" context="{'group_by':'partner_zone'}"/>
                 </field>
             </field>
