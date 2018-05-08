@@ -4,6 +4,7 @@
         <template id="assets_backend" name="Static Assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <link rel="stylesheet" href="/campos_clientes_vittal/static/src/css/custom.css"/>
+                <script type="text/javascript" src="/campos_clientes_vittal/static/src/js/export.js"></script>
             </xpath>
         </template>
     </data>
