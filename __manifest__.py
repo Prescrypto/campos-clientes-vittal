@@ -18,7 +18,7 @@
     'version': '0.1',
 
     #Comentario de prueba
-
+    
     # any module necessary for this one to work correctly
     'depends': [
         'base',
@@ -38,7 +38,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'data/sat.colonia.demo.csv',
+        'data/sat.colonia.csv',
         'data/sat.municipio.csv',
         'data/sat.estado.csv',
         'data/sat.pais.csv',
