@@ -1,12 +1,14 @@
 <?xml version="1.0"?>
 <odoo>
-
     <!-- clientes con campos extendidos -->
-    <menuitem id="menu_clients_ext" parent="sales_team.menu_sales" name="Customers (Extended)" action="view_client_action"/>
+    <menuitem id="menu_clients_ext" parent="sales_team.menu_sales" name="Clientes (Detallado)" action="view_client_action" sequence="3"/>
 
-    <!-- cápitas -->
-    <menuitem id="menu_capitas" parent="sales_team.menu_sales" name="Cápitas Familiares" action="view_family_action"/>
+    <!-- importar catalogos -->
+    <menuitem id="menu_cat_import" parent="sales_team.menu_sales" name="Importar" sequence="3"/>
 
     <!-- afiliados -->
-    <menuitem id="menu_afiliados" parent="sales_team.menu_sales" name="Afiliados" action="view_company_action"/>
+    <menuitem id="menu_afiliados" parent="menu_cat_import" name="Importar Afiliados" action="view_company_action"/>
+
+    <!-- cápitas -->
+    <menuitem id="menu_capitas" parent="menu_cat_import" name="Importar Cápitas Familiares" action="view_family_action"/>
 </odoo>

@@ -7,7 +7,7 @@
                 <field name="arch" type="xml">
                 <xpath expr="//h1" position="replace">
                     <h1 class="o_legal_name">
-                        <field name="name" default_focus="1" placeholder="Name"/>
+                        <field name="name" default_focus="1" placeholder="Nombre"/>
                     </h1>
                 </xpath>
 
@@ -15,7 +15,7 @@
                     <div class="o_name_container">
                         <!-- agregar nombre comercial -->
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
-                            <field name="legal_name" placeholder="Legal Name" attrs="{'required': [('client_type', '=', 'company')]}"/>
+                            <field name="legal_name" placeholder="Nombre comercial" attrs="{'required': [('client_type', '=', 'company')]}"/>
                         </div>
                         <!-- agregar rfc
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'company')]}">
@@ -38,8 +38,9 @@
                 </field>
 
                 <xpath expr="//field[@name='phone']" position="before">
+                    <field name="reference_id"/>
                     <!-- agregar codigo de grupo -->
-                    <field class="oe_read_only" name="group_code" string="Code" placeholder="Code" />
+                    <field class="oe_read_only" name="group_code" string="Código" placeholder="Code" />
                     <!-- agregar tipo de negocio -->
                     <field name="business_type" attrs="{'invisible': [('client_type', '!=', 'company')]}"/>
                     <!-- agregar uso de cfdi
@@ -51,9 +52,8 @@
                     <!-- agregar titular empresarial
                     <field name="company_contact_id" context="{'form_view_ref': 'campos_clientes_vittal.view_company_member_form'}" domain="[('parent_id','=',id)]" attrs="{'invisible': [('client_type', '!=', 'company')]}" options="{'no_create': True}"/>-->
                     <!-- agregar fecha que fue introducido al sistema -->
-                    <field name="date" string="Join Date"/>
+                    <field name="date" string="Fecha de registro"/>
                     <!-- agregar numero de referencia -->
-                    <field name="reference_id"/>
                 </xpath>
 
                 <field name="website" position="before">
@@ -63,6 +63,12 @@
                     <field name="sat_pais_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_pais"/>
                     <!-- agregar campo de zona -->
                     <field name="zone" attrs="{'required': True}"/>
+                    <!-- campos adicionales de cobertura -->
+                    <field name="cross_street"/>
+                    <field name="crosses_with"/>
+                    <field name="references"/>
+                    <field name="exterior"/>
+                    <field name="details"/>
                     <!-- agregar poblacion
                     <field name="poblacion"/>-->
                     <!-- agregar nacionalidad
@@ -76,7 +82,7 @@
 
                 <!-- agregar catalogo de estados -->
                 <field name="state_id" position="replace">
-                    <field name="sat_estado_id" placeholder="State" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True, 'no_open': True}" attrs="{'required': True}" class="o_address_state"/>
+                    <field name="sat_estado_id" placeholder="Estado" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True, 'no_open': True}" attrs="{'required': True}" class="o_address_state"/>
                 </field>
 
                 <field name="country_id" position="replace"/>
@@ -92,12 +98,12 @@
 
                 <!-- renombrar campo de nombre -->
                 <xpath expr="//field[@name='name']" position="replace">
-                    <field name="name" default_focus="1" placeholder="Name"/>
+                    <field name="name" default_focus="1" placeholder="Nombre"/>
                 </xpath>
 
                 <!-- agregar campo de tipo de cliente -->
                 <xpath expr="//field[@name='company_type']" position="replace">
-                    <field name="client_type" placeholder="Client Type" attrs="{'required': True}"/>
+                    <field name="client_type" placeholder="Tipo de cliente" attrs="{'required': True}"/>
                 </xpath>
 
                 <!-- quitar validaciones sobre campo deprecado -->
