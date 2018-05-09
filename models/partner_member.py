@@ -141,6 +141,8 @@ class CompanyMember(models.Model):
     _name = "company.member"
     _inherit = "user.member"
 
+    function = fields.Char(string="Puesto")
+
     # grupos del cual miembro es titular
     main_contact = fields.One2many(
         "res.partner", "company_contact_id", string="Main Contact")

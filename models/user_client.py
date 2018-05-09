@@ -5,7 +5,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import Warning
 
 
-class user_client(models.Model):
+class UserClient(models.Model):
     _inherit = "res.partner"
 
     parent_group_ids = fields.Many2many(
@@ -74,7 +74,7 @@ class user_client(models.Model):
     # tipo de usuario adicional
     client_type = fields.Selection(selection=[("company", "Empresa"),
                                               ("family", "Familia"),
-                                              ("private", "Privado")])
+                                              ("private", "Privado")], string="Tipo de cliente")
 
     # nombre comercial
     legal_name = fields.Char("Nombre comercial")
@@ -135,7 +135,7 @@ class user_client(models.Model):
     type = fields.Selection(
         string="Tipo de domicilio",
         selection=[("contact", "Contacto"),
-                   ("coverage", "Domicilio de covertura"),
+                   ("coverage", "Domicilio de cobertura"),
                    ("admin", "Domicilio Administrativo"),
                    ("fiscal", "Domicilio Fiscal")])
     # Copago
@@ -175,7 +175,7 @@ class user_client(models.Model):
 
     @api.model
     def create(self, vals):
-        partner = super(user_client,self).create(vals)
+        partner = super(UserClient, self).create(vals)
         if not partner.parent_id:
             new_vals = {
                 'parent_id': partner.id,
@@ -188,7 +188,12 @@ class user_client(models.Model):
                 'sat_colonia_id': partner.sat_colonia_id.id,
                 'sat_pais_id': partner.sat_pais_id.id,
                 'type': 'coverage',
-                'zone': partner.zone
+                'zone': partner.zone,
+                'cross_street': partner.cross_street,
+                'crosses_with': partner.crosses_with,
+                'references': partner.references,
+                'exterior': partner.exterior,
+                'details': partner.details
             }
             self.create(new_vals)
         return partner

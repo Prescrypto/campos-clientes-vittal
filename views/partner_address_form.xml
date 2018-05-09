@@ -22,14 +22,14 @@
                                         <field name="sat_estado_id" placeholder="Estado" context="{'form_view_ref': 'campos_clientes_vittal.sat_estado_form'}" options="{'no_create': True, 'no_open': True}" attrs="{'required': True}" class="o_address_state"/>
                                         <field name="zip" placeholder="C.P." class="o_address_zip" attrs="{'required': True}"/>
                                         <field name="sat_pais_id" placeholder="País" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_pais"/>
-                                        <field name="zone" placeholder="Zona"/>
-                                        <field name="cross_street" placeholder="Entre calles"/>
-                                        <field name="crosses_with" placeholder="Y calles"/>
-                                        <field name="references" placeholder="Referencias"/>
-                                        <field name="exterior" placeholder="Fachada"/>
-                                        <field name="details" placeholder="Características especiales"/>
                                     </div>
                                 </div>
+                                <field name="zone" placeholder="Zona"/>
+                                <field name="cross_street" placeholder="Entre calles"/>
+                                <field name="crosses_with" placeholder="Y calles"/>
+                                <field name="references" placeholder="Referencias"/>
+                                <field name="exterior" placeholder="Fachada"/>
+                                <field name="details" placeholder="Características especiales"/>
                             </group>
                             <group>
                                 <field name="name" string="Razón Social (o nombre de contacto)" attrs="{'required': [('type','=', 'fiscal')]}"/>
@@ -39,8 +39,8 @@
                                 <field name="sat_metodo_pago" attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}"/>
                                 <field name="email" attrs="{'required': [('type','=', 'fiscal')]}"/>
                                 <field name="nacionalidad"/>
-                                <field name="phone" widget="phone"/>
-                                <field name="mobile" widget="phone"/>
+                                <field name="phone" widget="phone" string="Teléfono"/>
+                                <field name="mobile" widget="phone" string="Teléfono"/>
                                 <field name="comment" placeholder="Nota interna..."/>
                             </group>
                         </group>

@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="view_client_action" model="ir.actions.act_window">
-            <field name="name">Client (Extended)</field>
+            <field name="name">Clientes (Detallado)</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
             <field name="view_mode">tree,form</field>
