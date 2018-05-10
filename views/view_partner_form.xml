@@ -64,11 +64,6 @@
                     <!-- agregar campo de zona -->
                     <field name="zone" attrs="{'required': True}"/>
                     <!-- campos adicionales de cobertura -->
-                    <field name="cross_street"/>
-                    <field name="crosses_with"/>
-                    <field name="references"/>
-                    <field name="exterior"/>
-                    <field name="details"/>
                     <!-- agregar poblacion
                     <field name="poblacion"/>-->
                     <!-- agregar nacionalidad
@@ -136,6 +131,20 @@
                     <field name="copago_amount" attrs="{'invisible': [('copago','=',False)]}"/>
                 </field>
 
+                <notebook position="before">
+                    <group string="Cobertura">
+                        <group>
+                            <field name="cross_street"/>
+                            <field name="crosses_with"/>
+                            <field name="references"/>
+                        </group>
+                        <group>
+                            <field name="exterior"/>
+                            <field name="details"/>
+                        </group>
+                    </group>
+                </notebook>
+
                 <!-- modificar pestaña para mostrar direcciones -->
                 <xpath expr="//notebook/page[1]" position="replace">
                     <page string="Contactos y Direcciones">
@@ -152,7 +161,7 @@
                                 <field name="zip" string="C.P."/>
                                 <field name="phone" string="Teléfono"/>
                                 <field name="mobile" string="Celular"/>
-                                <field name="comment" string="Nota"/>
+                                <field name="comment" string="Notas"/>
                             </tree>
                         </field>
                     </page>
