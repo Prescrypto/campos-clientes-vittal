@@ -41,7 +41,7 @@
                                 <field name="nacionalidad"/>
                                 <field name="phone" widget="phone" string="Teléfono"/>
                                 <field name="mobile" widget="phone" string="Teléfono"/>
-                                <field name="comment" placeholder="Nota interna..."/>
+                                <field name="comment" placeholder="Notas internas..." string="Notas"/>
                             </group>
                         </group>
                         <field name="supplier" invisible="True"/>

@@ -6,7 +6,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="is_owner"/>
-                    <field name="name"/>
+                    <field name="name" string="Nombre"/>
                     <field name="age"/>
                     <field name="birthday"/>
                     <field name="relationship"/>

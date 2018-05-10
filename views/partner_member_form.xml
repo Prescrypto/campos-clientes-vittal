@@ -6,8 +6,8 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button string="Begin Registration" type="object" name="start_reg" class="oe_highlight"/>
-                        <button string="End Registration" type="object" name="end_reg"/>
+                        <button string="Comenzar Registro" type="object" name="start_reg" class="oe_highlight"/>
+                        <button string="Terminar Registro" type="object" name="end_reg"/>
                     </header>
                     <sheet>
                         <group>
@@ -18,7 +18,7 @@
                         <hr/>
                         <group>
                             <group>
-                                <field name="name" string="Contact Name"/>
+                                <field name="name" string="Nombre de Contacto"/>
                                 <field name="age" class="oe_read_only"/>
                                 <label for="street" string="Address"/>
                                 <div attrs="{'invisible': [('inherit_address', '=', True)]}">
@@ -45,7 +45,7 @@
                                 <field name="birthday"/>
                                 <field name="allergies"/>
                                 <field name="prev_ailments"/>
-                                <field name="comment"/>
+                                <field name="comment" string="Notas"/>
 
                                 <field name="user_active"/>
                                 <field name="start_date"/>
