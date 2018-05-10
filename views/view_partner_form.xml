@@ -132,7 +132,6 @@
                 </field>
 
                 <notebook position="before">
-                    <group string="Cobertura">
                         <group>
                             <field name="cross_street"/>
                             <field name="crosses_with"/>
@@ -142,7 +141,6 @@
                             <field name="exterior"/>
                             <field name="details"/>
                         </group>
-                    </group>
                 </notebook>
 
                 <!-- modificar pestaña para mostrar direcciones -->
