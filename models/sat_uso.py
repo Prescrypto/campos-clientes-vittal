@@ -8,9 +8,9 @@ class SatUso(models.Model):
 
     _rec_name = "nombre_uso"
 
-    codigo_uso = fields.Char("Código de País")
+    codigo_uso = fields.Char("Código SAT")
 
-    nombre_uso = fields.Char("Nombre de País")
+    nombre_uso = fields.Char("Nombre")
 
     aplica_fisica = fields.Boolean("Aplica a Persona Física")
 

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import odoo
-import _sae as sae
-from functools import partial
 from odoo import models, fields, api
 
 

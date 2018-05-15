@@ -149,7 +149,8 @@
                 <xpath expr="//notebook/page[1]" position="replace">
                     <page string="Contactos y Direcciones">
                         <field name="child_ids" context="{'form_view_ref': 'campos_clientes_vittal.view_address_form', 'default_street': street, 'default_street2': street2, 'default_sat_municipio_id': sat_municipio_id, 'default_sat_estado_id': sat_estado_id, 'default_zip': zip, 'default_sat_colonia_id': sat_colonia_id, 'default_sat_pais_id': sat_pais_id, 'default_type': 'coverage', 'default_zone': zone}">
-                            <tree>
+                            <tree decoration-bf="main_fiscal_address==True">
+                                <field name="main_fiscal_address" invisible="True"/>
                                 <field name="name" string="Nombre"/>
                                 <field name="type" attrs="{'invisible': True}"/>
                                 <field name="type" string="Tipo de domicilio"/>

@@ -8,7 +8,7 @@ class SatPagos(models.Model):
 
     _rec_name = "nombre_forma"
 
-    nombre_forma = fields.Char(string="Nombre del asentamiento")
+    nombre_forma = fields.Char(string="Forma de pago")
 
     codigo_forma = fields.Char(string="Código de pagos")
 

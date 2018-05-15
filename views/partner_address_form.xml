@@ -8,6 +8,7 @@
                     <sheet>
                         <group>
                             <field name="type" widget="radio" options="{'horizontal': true}" attrs="{'required':True}"/>
+                            <field name="main_fiscal_address" attrs="{'invisible':[('type', '!=', 'fiscal')]}"/>
                         </group>
                         <hr/>
                         <group>

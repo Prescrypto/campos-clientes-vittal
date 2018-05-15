@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import odoo
 import logging
 from odoo import models, fields, api
-from dateutil.relativedelta import relativedelta
-import _sae as sae
-from datetime import datetime
-from functools import partial
 
 _logger = logging.getLogger(__name__)
 

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import _sae as sae
-from functools import partial
+
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning
 
@@ -24,25 +23,6 @@ class UserClient(models.Model):
 
     # titular familiar
     family_contact_id = fields.Many2one("family.member", string="Titular")
-
-    # direccion de factura de orden de venta
-    invoice_address = fields.One2many(
-        "sale.order", "invoice_address_id", string="Dirección de factura")
-
-    # correo derivado de dirección fiscal
-    invoice_email = fields.Char(
-        "Correo de factura", compute="_invoice_email", store=True)
-
-    @api.one
-    @api.depends('child_ids')
-    def _invoice_email(self):
-        for child in self.child_ids:
-            if child.type == 'fiscal':
-                self.invoice_email = child.email
-
-    # direccion de cobertura de orden de venta
-    cov_address = fields.One2many(
-        "sale.order", "cov_address_id", string="Dirección de cobertura")
 
     # titular empresarial
     company_contact_id = fields.Many2one(
@@ -88,23 +68,19 @@ class UserClient(models.Model):
     # código de zona
     zone = fields.Selection(
         string="Zona",
-        selection=[("bqelms", "BQELMS - Bosques de las Lomas"),
-                   ("itrlms", "ITRLMS - Interlomas"),
-                   ("lomas", "LOMAS - Lomas de Chapultepec"),
-                   ("plnco", "PLNCO - Polanco"),
-                   ("sfe", "SFE - Santa Fe"),
-                   ("tcmchl", "TCMCHL - Tecamachalco"),
-                   ("unica", "UNICA - Fuera de Zona de Cobertura")])
+        selection=[("BQELMS - Bosques de las Lomas", "BQELMS - Bosques de las Lomas"),
+                   ("ITRLMS - Interlomas", "ITRLMS - Interlomas"),
+                   ("LOMAS - Lomas de Chapultepec", "LOMAS - Lomas de Chapultepec"),
+                   ("PLNCO - Polanco", "PLNCO - Polanco"),
+                   ("SFE - Santa Fe", "SFE - Santa Fe"),
+                   ("TCMCHL - Tecamachalco", "TCMCHL - Tecamachalco"),
+                   ("UNICA - Fuera de Zona de Cobertura", "UNICA - Fuera de Zona de Cobertura")])
 
     # catalogo de colonias
     sat_colonia_id = fields.Many2one("sat.colonia", "Colonia")
 
     # catalogo de municipios
     sat_municipio_id = fields.Many2one("sat.municipio", "Municipio")
-
-    # nombre derivado de catalogo de municipio
-    sat_municipio_name = fields.Char(
-        related="sat_municipio_id.nombre_municipio", store=True)
 
     # catalogo de colonias
     sat_estado_id = fields.Many2one("sat.estado", "Estado")
@@ -115,9 +91,6 @@ class UserClient(models.Model):
     # catalogo de usos de cfdi
     sat_uso_id = fields.Many2one("sat.uso", "Uso CFDI")
 
-    # codigo derivado de uso de cfdi
-    sat_uso_codigo = fields.Char(related="sat_uso_id.codigo_uso", store=True)
-
     # catalog de formas de pago
     sat_pagos_id = fields.Many2one("sat.pagos", "Forma de Pago")
 
@@ -127,10 +100,6 @@ class UserClient(models.Model):
             ('PPD', 'PPD - PAGO EN PARCIALIDADES O DIFERIDO')
         ], 'Método de Pago', default='PUE')
 
-    # codigo derivado de forma de pago
-    sat_pagos_codigo = fields.Char(
-        related="sat_pagos_id.codigo_forma", store=True)
-
     # tipos de dirección
     type = fields.Selection(
         string="Tipo de domicilio",
@@ -138,6 +107,10 @@ class UserClient(models.Model):
                    ("coverage", "Domicilio de cobertura"),
                    ("admin", "Domicilio Administrativo"),
                    ("fiscal", "Domicilio Fiscal")])
+
+    # Marcar si la dirección fiscal es la principal
+    main_fiscal_address = fields.Boolean('Dirección fiscal principal', default=False)
+
     # Copago
     copago = fields.Boolean('Copago')
     # monto copago
@@ -173,6 +146,27 @@ class UserClient(models.Model):
     # id externo en tabla de res_partner
     client_export_id = fields.Char("Export ID", default="None")
 
+    # Dirección fiscal principal, en caso de no tener se pone el propio partner
+    fiscal_address = fields.Many2one('res.partner', 'Dirección Fiscal', compute="_get_fiscal_address", store=False)
+
+    # Calcular dirección
+    @api.one
+    def _get_fiscal_address(self):
+        for p in self.child_ids:
+            if p.main_fiscal_address:
+                self.fiscal_address = p
+                return
+        self.fiscal_address = self
+
+    @api.multi
+    def write(self, vals):
+        result = super(UserClient, self).write(vals)
+        for p in self:
+            if p.parent_id and p.main_fiscal_address:
+                super(UserClient, p.parent_id.child_ids).write({'main_fiscal_address': False})
+                super(UserClient, p).write({'main_fiscal_address': True})
+        return result
+
     @api.model
     def create(self, vals):
         partner = super(UserClient, self).create(vals)
@@ -196,52 +190,13 @@ class UserClient(models.Model):
                 'crosses_with': partner.crosses_with,
                 'references': partner.references,
                 'exterior': partner.exterior,
-                'details': partner.details
+                'details': partner.details,
+                'customer': False
             }
             self.create(new_vals)
+        elif partner.main_fiscal_address:
+            partner.write({'main_fiscal_address': True})
         return partner
-
-    # exportación sae
-    export_columns = [
-        'client_export_id',
-        'name',
-        'rfc',
-        'street',
-        'street2',
-        'cross_street',
-        'crosses_with',
-        'sat_colonia_id',
-        'zip',
-        'poblacion',
-        'sat_municipio_id',
-        'sat_estado_id',
-        'sat_pais_id',
-        'nacionalidad',
-        'reference_id',
-        'phone',
-        'fax',
-        'website',
-        'curp',
-        'invoice_email',
-        'sat_uso_codigo',
-        'sat_pagos_codigo',
-        'zone',
-    ]
-
-    @api.multi
-    def export(self):
-        columns = self.export_columns
-        format_clients = partial(sae.format, 'clients')
-        return map(format_clients, self.export_data(columns).get('datas', []))
-
-    def export_all(self):
-        all_clients = self.env['res.partner']
-        valid_clients = all_clients.search([['active', '=', True], ['customer', '=', True], ['parent_id', '=', False]])
-
-        columns = self.export_columns
-        format_clients = partial(sae.format, 'clients')
-
-        return map(format_clients, valid_clients.export_data(columns).get('datas', []))
 
     def name_get(self):
         ''' Cambiar formato de nombre de titular y direcciones '''
