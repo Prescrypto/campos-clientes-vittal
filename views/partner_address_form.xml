@@ -7,6 +7,7 @@
                 <form string="Contactos y Direcciones">
                     <sheet>
                         <group>
+                            <field name="customer" invisible="True"/>
                             <field name="type" widget="radio" options="{'horizontal': true}" attrs="{'required':True}"/>
                             <field name="main_fiscal_address" attrs="{'invisible':[('type', '!=', 'fiscal')]}"/>
                         </group>
@@ -41,7 +42,7 @@
                                 <field name="email" attrs="{'required': [('type','=', 'fiscal')]}"/>
                                 <field name="nacionalidad"/>
                                 <field name="phone" widget="phone" string="Teléfono"/>
-                                <field name="mobile" widget="phone" string="Teléfono"/>
+                                <field name="mobile" widget="phone" string="Celular"/>
                                 <field name="comment" placeholder="Notas internas..." string="Notas"/>
                             </group>
                         </group>

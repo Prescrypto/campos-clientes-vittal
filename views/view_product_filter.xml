@@ -10,7 +10,7 @@
                 </field>
                 <field name="categ_id" position="replace"/>
                 <field name="pricelist_id" position="replace"/>
-                <field name="attribute_line_ids" position="replace"/>
+                <!--field name="attribute_line_ids" position="replace"/-->
             </field>
         </record>
     </data>

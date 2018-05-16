@@ -51,6 +51,7 @@
         'views/sat_uso_form.xml',
         'views/sat_pagos_form.xml',
         'views/business_type_view.xml',
+        'views/account_invoice_form.xml',
         'views/partner_member_form.xml',
         'views/family_member_tree.xml',
         'views/family_member_action.xml',

@@ -11,6 +11,7 @@
                     </header>
                     <sheet>
                         <group>
+                            <field name="customer" invisible="True"/>
                             <field name="is_owner"/>
                             <field name="relationship" widget="radio" options="{'horizontal': true}"/>
                             <field name="inherit_address"/>
@@ -39,7 +40,7 @@
                                 </div>
                                 <field name="phone" widget="phone" string="Teléfono"/>
                                 <field name="email"/>
-                                <field name="mobile" widget="phone"/>
+                                <field name="mobile" widget="phone" string="Celular"/>
                             </group>
                             <group>
                                 <field name="birthday"/>
