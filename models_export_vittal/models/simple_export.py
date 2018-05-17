@@ -3,10 +3,17 @@
 import csv
 import io
 
+from odoo import fields
+
 
 def get_field(obj, field):
     if field is None:
         return ''
+    data = field.split('@')
+    field = data[0]
+    f = False
+    if len(data) == 2:
+        f = data[1]
     elif "const:" in field:
         return field.replace('const:', '').replace('"', '')
     else:
@@ -16,6 +23,10 @@ def get_field(obj, field):
                 value = getattr(obj, n)
             else:
                 value = getattr(value, n)
+        if isinstance(value, unicode):
+            value = value.encode('utf-8', 'replace')
+        if f:
+            value =  fields.Date.from_string(value).strftime(f)
         return value if value else ''
 
 

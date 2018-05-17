@@ -32,7 +32,7 @@ class AccountInvoiceLine(models.Model):
     export_map = [
         'id',
         'invoice_id.partner_id.group_code',
-        'invoice_id.date_invoice',
+        'invoice_id.date_invoice@%d/%m/%y',
         None,
         None,
         None,
@@ -41,7 +41,7 @@ class AccountInvoiceLine(models.Model):
         'invoice_id.user_id.id',
         'invoice_id.id',
         None,
-        'invoice_id.date_due',
+        'invoice_id.date_due@%d/%m/%y',
         'price_unit',
         'const:0',
         'const:0',
@@ -57,8 +57,8 @@ class AccountInvoiceLine(models.Model):
         None,
         'name',
         'invoice_id.sat_metodo_pago',
-        'invoice_id.sat_pagos_id.codigo_forma',
-        'invoice_id.sat_uso_id.codigo_uso'
+        'invoice_id.sat_pagos_id.nombre_forma',
+        'invoice_id.sat_uso_id.nombre_uso'
     ]
 
     header_map = [

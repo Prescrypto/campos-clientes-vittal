@@ -96,9 +96,9 @@ class UserClient(models.Model):
 
     # metodos de pago
     sat_metodo_pago = fields.Selection([
-            ('PUE', 'PUE - PAGO EN UNA SOLA EXHIBICIÓN'),
-            ('PPD', 'PPD - PAGO EN PARCIALIDADES O DIFERIDO')
-        ], 'Método de Pago', default='PUE')
+            ('PUE - PAGO EN UNA SOLA EXHIBICION', 'PUE - PAGO EN UNA SOLA EXHIBICIÓN'),
+            ('PPD - PAGO EN PARCIALIDADES O DIFERIDO', 'PPD - PAGO EN PARCIALIDADES O DIFERIDO')
+        ], 'Método de Pago')
 
     # tipos de dirección
     type = fields.Selection(
@@ -149,6 +149,9 @@ class UserClient(models.Model):
     # Dirección fiscal principal, en caso de no tener se pone el propio partner
     fiscal_address = fields.Many2one('res.partner', 'Dirección Fiscal', compute="_get_fiscal_address", store=False)
 
+    # Facturas pendientes de pago
+    outstanding = fields.Boolean('Factura pendiente de pago', compute="_get_outstanding", store=False)
+
     # Calcular dirección
     @api.one
     def _get_fiscal_address(self):
@@ -157,6 +160,12 @@ class UserClient(models.Model):
                 self.fiscal_address = p
                 return
         self.fiscal_address = self
+
+    # Calcular si faltan facturas de pagar
+    @api.one
+    def _get_outstanding(self):
+        invoices = self.env['account.invoice'].search([('partner_id', 'in', [self.id]), ('state', 'not in', ['paid', 'cancel'])])
+        self.outstanding = len(invoices) > 0
 
     @api.multi
     def write(self, vals):
