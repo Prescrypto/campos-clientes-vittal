@@ -27,9 +27,14 @@ class AccountInvoice(models.Model):
         self.env.cr.commit()
         return header + export_lines
 
+    @api.multi
     def export_all(self):
-        _logger.info("%s" % self)
-        return ""
+        export_lines = ""
+        for o in self:
+            export_lines = export_lines + se.gen_csv(o.invoice_line_ids, header=False)
+        header = se.gen_csv(self.env['account.invoice.line'])
+        self.env.cr.commit()
+        return header + export_lines
 
 
 class AccountInvoiceLine(models.Model):

@@ -5,6 +5,10 @@ import io
 
 from odoo import fields
 
+import logging
+
+_logger = logging.getLogger("============== EXPORT ==============")
+
 
 def get_field(obj, field):
     if field is None:
@@ -14,7 +18,7 @@ def get_field(obj, field):
     f = False
     if len(data) == 2:
         f = data[1]
-    elif "const:" in field:
+    if "const:" in field:
         return field.replace('const:', '').replace('"', '')
     else:
         value = None
@@ -23,10 +27,12 @@ def get_field(obj, field):
                 value = getattr(obj, n)
             else:
                 value = getattr(value, n)
+        _logger.info("Valor inicial: %s" % value)
         if isinstance(value, unicode):
             value = value.encode('utf-8', 'replace')
         if f:
             value =  fields.Date.from_string(value).strftime(f)
+        _logger.info("value: %s f:%s" % (value, f))
         return value if value else ''
 
 

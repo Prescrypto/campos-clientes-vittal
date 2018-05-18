@@ -9,7 +9,7 @@
                 <button class="btn btn-sm export_all_button" data-type="products" data-filename="Productos" data-count="all" type="button">Exportar Todos</button>
             </t-->
             <t t-if="widget.model=='account.invoice'">
-                <button class="btn btn-sm export_all_button" data-type="invoices" data-filename="Facturas" data-count="all" type="button">Exportar Selección Nuevamente</button>
+                <button class="btn btn-sm export_all_button" data-type="invoices" data-filename="Facturas" data-count="all" type="button">Exportar</button>
             </t>
         </t>
     </t>
