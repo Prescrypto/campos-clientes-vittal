@@ -3,10 +3,13 @@
     <t t-extend="ListView.buttons">
         <t t-jquery="button.export_button" t-operation="after">
             <t t-if="widget.model=='res.partner'">
-                <button class="btn btn-sm export_all_button" data-type="clients" data-filename="Clientes" data-count="all" type="button">Export All</button>
+                <button class="btn btn-sm export_all_button" data-type="clients" data-filename="Clientes" data-count="all" type="button">Exportar Todos</button>
             </t>
-            <t t-if="widget.model=='product.template'">
-                <button class="btn btn-sm export_all_button" data-type="products" data-filename="Productos" data-count="all" type="button">Export All</button>
+            <!--t t-if="widget.model=='product.template'">
+                <button class="btn btn-sm export_all_button" data-type="products" data-filename="Productos" data-count="all" type="button">Exportar Todos</button>
+            </t-->
+            <t t-if="widget.model=='account.invoice'">
+                <button class="btn btn-sm export_all_button" data-type="invoices" data-filename="Facturas" data-count="all" type="button">Exportar Selección Nuevamente</button>
             </t>
         </t>
     </t>

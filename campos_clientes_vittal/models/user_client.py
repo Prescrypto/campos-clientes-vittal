@@ -165,7 +165,8 @@ class UserClient(models.Model):
     @api.one
     def _get_outstanding(self):
         invoices = self.env['account.invoice'].search([('partner_id', 'in', [self.id]), ('state', 'not in', ['paid', 'cancel'])])
-        self.outstanding = len(invoices) > 0
+        contract = self.env['account.analytic.account'].search([('partner_id', 'in', [self.id])])
+        self.outstanding = len(invoices) > 0 or len(contract) == 0
 
     @api.multi
     def write(self, vals):

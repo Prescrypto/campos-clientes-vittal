@@ -130,8 +130,12 @@
                     <field name="copago"/>
                     <field name="copago_amount" attrs="{'invisible': [('copago','=',False)]}"/>
                     <field name="outstanding" invisible="True"/>
-                    <div style="background-color: #d60034; height: 20px; width: 80%;" attrs="{'invisible': [('outstanding', '=', False)]}"></div>
-                    <div style="background-color: #17d346; height: 20px; width: 80%;" attrs="{'invisible': [('outstanding', '=', True)]}"></div>
+                    <div style="background-color: #d60034; height: 30px; width: 80%;" attrs="{'invisible': [('outstanding', '=', False)]}">
+                    	Pendiente de pago
+                    </div>
+                    <div style="background-color: #17d346; height: 30px; width: 80%;" attrs="{'invisible': [('outstanding', '=', True)]}">
+                    	Pagado
+                    </div>
                 </field>
 
                 <notebook position="before">

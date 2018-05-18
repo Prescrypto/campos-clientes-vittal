@@ -3,6 +3,10 @@
 import simple_export as se
 from odoo import models, fields, api
 
+import logging
+
+_logger = logging.getLogger("============== EXPORT ==============")
+
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
@@ -22,6 +26,10 @@ class AccountInvoice(models.Model):
         orders.write({'exported': True})
         self.env.cr.commit()
         return header + export_lines
+
+    def export_all(self):
+        _logger.info("%s" % self)
+        return ""
 
 
 class AccountInvoiceLine(models.Model):
