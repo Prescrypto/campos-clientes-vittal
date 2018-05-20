@@ -20,6 +20,9 @@ def get_field(obj, field):
         f = data[1]
     if "const:" in field:
         return field.replace('const:', '').replace('"', '')
+    elif "func:" in field:
+        func = getattr(obj, field.replace('func:', ''))
+        return func()
     else:
         value = None
         for n in field.split('.'):

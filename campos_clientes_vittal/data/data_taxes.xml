@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="tax1" model="account.tax">
+        <field name="name">RET IVA 4%</field>
+        <field name="description">ITAXR_04-OUT</field>
+        <field name="amount">-4</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="l10n_mx.account_216_10"/>
+        <field name="refund_account_id" ref="l10n_mx.account_216_10"/>
+        <field name="tag_ids" eval="[(6,0,[ref('l10n_mx.tax_tag_04')])]"/>
+        <field name="tax_group_id" ref="l10n_mx.tax_group_iva_ret"/>
+    </record>
+
+    <record id="tax2" model="account.tax">
+        <field name="name">RET IVA 10%</field>
+        <field name="description">ITAXR_10-OUT</field>
+        <field name="amount">-10</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="l10n_mx.account_216_10"/>
+        <field name="refund_account_id" ref="l10n_mx.account_216_10"/>
+        <field name="tag_ids" eval="[(6,0,[ref('l10n_mx.tax_tag_05')])]"/>
+        <field name="tax_group_id" ref="l10n_mx.tax_group_iva_ret"/>
+    </record>
+
+    <record id="tax5" model="account.tax">
+        <field name="name">RET ISR 10%</field>
+        <field name="description">ITAXH_10-OUT</field>
+        <field name="amount">-10</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="l10n_mx.account_216_04"/>
+        <field name="refund_account_id" ref="l10n_mx.account_216_04"/>
+        <field name="tag_ids" eval="[(6,0,[ref('l10n_mx.tax_tag_07')])]"/>
+        <field name="tax_group_id" ref="l10n_mx.tax_group_isr_ret"/>
+    </record>
+
+    <record id="tax7" model="account.tax">
+        <field name="name">RET IVA 10.67%</field>
+        <field name="description">ITAX_1067-OUT</field>
+        <field name="amount">-10.67</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="l10n_mx.account_216_10"/>
+        <field name="refund_account_id" ref="l10n_mx.account_216_10"/>
+        <field name="tag_ids" eval="[(6,0,[ref('l10n_mx.tax_tag_08')])]"/>
+        <field name="tax_group_id" ref="l10n_mx.tax_group_iva_ret"/>
+    </record>
+
+</odoo>

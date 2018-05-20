@@ -11,8 +11,8 @@ _logger = logging.getLogger("============== EXPORT ==============")
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
     
-    exported = fields.Boolean(readonly=True, default=False, copy=False,
-        help="It indicates that the invoice has been export.")
+    exported = fields.Boolean("¿Exportado?", readonly=True, default=False, copy=False,
+        help="Este campo indica si la factura ya fue exportada.")
     
     # exportación sae
     def export(self):
@@ -61,18 +61,39 @@ class AccountInvoiceLine(models.Model):
         'const:0',
         'const:0',
         None,
-        'product_id.clave_sat',
+        'product_id.default_code',
         'quantity',
         None,
-        None,
-        None,
-        'const:16',
+        'func:get_ret_isr',
+        'func:get_ret_iva',
+        'func:get_iva',
         None,
         'name',
         'invoice_id.sat_metodo_pago',
         'invoice_id.sat_pagos_id.nombre_forma',
         'invoice_id.sat_uso_id.nombre_uso'
     ]
+
+    # Obtiene el porcentaje de retención de ISR
+    def get_ret_isr(self):
+        for tax in self.invoice_line_tax_ids:
+            if 'RET ISR' in tax.name:
+                return -tax.amount
+        return ''
+
+    # Obtiene el porcentaje de retención de IVA
+    def get_ret_iva(self):
+        for tax in self.invoice_line_tax_ids:
+            if 'RET IVA' in tax.name:
+                return -tax.amount
+        return ''
+
+    # Obtiene el IVA
+    def get_iva(self):
+        for tax in self.invoice_line_tax_ids:
+            if tax.name in ['IVA(0%) VENTAS','IVA(16%) VENTAS']:
+                return tax.amount
+        return ''
 
     header_map = [
         'Clave',

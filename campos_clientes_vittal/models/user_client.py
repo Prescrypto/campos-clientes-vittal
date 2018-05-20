@@ -164,8 +164,8 @@ class UserClient(models.Model):
     # Calcular si faltan facturas de pagar
     @api.one
     def _get_outstanding(self):
-        invoices = self.env['account.invoice'].search([('partner_id', 'in', [self.id]), ('state', 'not in', ['paid', 'cancel'])])
-        contract = self.env['account.analytic.account'].search([('partner_id', 'in', [self.id])])
+        invoices = self.env['account.invoice'].sudo().search([('partner_id', 'in', [self.id]), ('state', 'not in', ['paid', 'cancel'])])
+        contract = self.env['account.analytic.account'].sudo().search([('partner_id', 'in', [self.id])])
         self.outstanding = len(invoices) > 0 or len(contract) == 0
 
     @api.multi
