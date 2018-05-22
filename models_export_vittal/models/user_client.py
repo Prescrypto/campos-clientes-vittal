@@ -74,7 +74,7 @@ class UserClient(models.Model):
         None,
         None,
         'fiscal_address.sat_metodo_pago',
-        None,
+        'fiscal_address.account_number',
         None,
         None,
         None,

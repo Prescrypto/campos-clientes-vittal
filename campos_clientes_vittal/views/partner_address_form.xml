@@ -39,6 +39,7 @@
                                 <field name="sat_uso_id"  attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}" options="{'no_create': True, 'no_open': True}"/>
                                 <field name="sat_pagos_id" attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}" options="{'no_create': True, 'no_open': True}"/>
                                 <field name="sat_metodo_pago" attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}"/>
+                                <field name="account_number" attrs="{'invisible': [('type','!=', 'fiscal')], 'required': [('type','=', 'fiscal')]}"/>
                                 <field name="email" attrs="{'required': [('type','=', 'fiscal')]}"/>
                                 <field name="nacionalidad"/>
                                 <field name="phone" widget="phone" string="Teléfono"/>

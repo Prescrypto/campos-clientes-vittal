@@ -100,6 +100,10 @@ class UserClient(models.Model):
             ('PPD - PAGO EN PARCIALIDADES O DIFERIDO', 'PPD - PAGO EN PARCIALIDADES O DIFERIDO')
         ], 'Método de Pago')
 
+    # Número de cuenta
+
+    account_number = fields.Char('Número de cuenta')
+
     # tipos de dirección
     type = fields.Selection(
         string="Tipo de domicilio",
