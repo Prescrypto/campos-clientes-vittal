@@ -38,7 +38,6 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'data/data_taxes.xml',
         'data/sat.colonia.csv',
         'data/sat.municipio.csv',
         'data/sat.estado.csv',
