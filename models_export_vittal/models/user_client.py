@@ -167,7 +167,7 @@ class UserClient(models.Model):
         'Campo Libre 1',
         'Campo Libre 2',
         'Zona',
-        'Cliente Padre',
+        'Campo Libre 4',
         'Campo Libre 5',
     ]
     
