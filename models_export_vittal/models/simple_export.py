@@ -33,7 +33,8 @@ def get_field(obj, field):
         _logger.info("Valor inicial: %s" % value)
         if isinstance(value, unicode):
             value = value.encode('utf-8', 'replace')
-        if f:
+        '''if the field is a date and the format is not false then get the value'''
+        if f and n == "date_invoice":
             value =  fields.Date.from_string(value).strftime(f)
         _logger.info("value: %s f:%s" % (value, f))
         return value if value else ''
