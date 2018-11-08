@@ -27,7 +27,7 @@
     </record>
 
     <record id="test_action" model="ir.actions.act_window" >
-        <field name="name">A Test Action</field>
+        <field name="name">My Action</field>
         <field name="res_model">account.invoice</field>
         <field name="view_mode">graph</field>
         <field name="view_id" ref="account.invoice_form"/>
