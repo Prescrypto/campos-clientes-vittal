@@ -10,8 +10,6 @@
             </t-->
             <t t-if="widget.model=='account.invoice'">
                 <button class="btn btn-sm export_all_button" data-type="invoices" data-filename="Facturas" data-count="all" type="button">Exportar</button>
-                <button class="btn btn-sm export_check_button" data-type="invoices" data-filename="Facturas" data-count="all" type="button">Exportar checked</button>
-
             </t>
         </t>
     </t>
