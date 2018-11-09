@@ -22,5 +22,12 @@
                 </field>
             </field>
         </record>
+        <record id="test_action" model="ir.ui.view" >
+            <field name="name">My Action</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="account.invoice_form"/>
+    </record>
     </data>
 </odoo>
