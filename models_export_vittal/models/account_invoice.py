@@ -24,6 +24,7 @@ class AccountInvoice(models.Model):
             export_lines = export_lines + se.gen_csv(o.invoice_line_ids, header=False)
         header = se.gen_csv(self.env['account.invoice.line'])
         orders.write({'exported': True})
+        orders.write({'invoice_id': 1})
         self.env.cr.commit()
         return header + export_lines
 
