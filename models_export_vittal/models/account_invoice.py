@@ -13,7 +13,7 @@ class AccountInvoice(models.Model):
     
     exported = fields.Boolean("¿Exportado?", readonly=True, default=False, copy=False,
         help="Este campo indica si la factura ya fue exportada.")
-    invoice_id = fields.integer("x_id",default=0)
+    invoice_id = fields.Many2one("x_id",default=0)
     
     # exportación sae
     def export(self):
