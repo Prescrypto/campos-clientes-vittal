@@ -47,14 +47,14 @@ function extractIds(records) {
 function get_checked_rows(ids){
     console.log("get checked");
     var export_rows = [];
-    var rows = $(".o_list_view > tbody > tr input:first-child")
+    var rows = $(".o_list_view > tbody > tr input:first-child");
     console.log(rows);
     rows.each(function(index){
         console.log($(this)[0].checked);
         if($(this)[0].checked){
             export_rows.push(ids[index]);
         }
-    }
+    });
 
 
     console.log(export_rows);
