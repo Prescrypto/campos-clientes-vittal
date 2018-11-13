@@ -13,7 +13,6 @@ class AccountInvoice(models.Model):
     
     exported = fields.Boolean("¿Exportado?", readonly=True, default=False, copy=False,
         help="Este campo indica si la factura ya fue exportada.")
-    invoice_id = fields.Many2one("id",default=0)
     
     # exportación sae
     def export(self):
@@ -22,17 +21,16 @@ class AccountInvoice(models.Model):
         )
         export_lines = ""
         for o in orders:
+            print(o.invoice_line_ids)
             export_lines = export_lines + se.gen_csv(o.invoice_line_ids, header=False)
         header = se.gen_csv(self.env['account.invoice.line'])
         orders.write({'exported': True})
-        orders.write({'invoice_id': 1})
         self.env.cr.commit()
         return header + export_lines
 
     @api.multi
     def export_all(self):
         export_lines = ""
-        self.write({'invoice_id': 1})
         for o in self:
             export_lines = export_lines + se.gen_csv(o.invoice_line_ids, header=False)
         header = se.gen_csv(self.env['account.invoice.line'])
