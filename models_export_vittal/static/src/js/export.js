@@ -50,7 +50,8 @@ function get_checked_rows(ids){
     var rows = $(".o_list_view > tbody > tr input:first-child")
     console.log(rows);
     rows.each(function(index){
-        if(rows[index]){
+        console.log($(this)[0].checked);
+        if($(this)[0].checked){
             export_rows.push(ids[index]);
         }
     }
