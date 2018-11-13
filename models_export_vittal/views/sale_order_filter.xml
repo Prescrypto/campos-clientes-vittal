@@ -28,7 +28,7 @@
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
                 <field name="name" position="after">
-                    <field name="x_id"/>
+                    <field name="invoice_id"/>
                 </field>
             </field>
         </record>
