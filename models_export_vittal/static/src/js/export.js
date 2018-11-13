@@ -38,6 +38,8 @@ openerp.models_export_vittal = function(instance, local) {
 };
 
 function extractIds(records) {
+  console.log(_.map(records, record => record.attributes.name));
+  console.log(_.map(records, record => record.attributes.attrs));
   return _.map(records, record => record.attributes.id);
 }
 
