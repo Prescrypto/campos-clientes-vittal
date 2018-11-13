@@ -16,6 +16,7 @@ openerp.models_export_vittal = function(instance, local) {
       btnExportAll.on('click', this.proxy('export_all_button'));
     },
     export_button: function(event) {
+        get_checked_rows();
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.csv';
       new instance.web.Model(this.model)
@@ -25,6 +26,7 @@ openerp.models_export_vittal = function(instance, local) {
         .done(createCsv.bind(this, filename, type));
     },
     export_all_button: function(event) {
+    get_checked_rows();
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.completo.csv';
       new instance.web.Model(this.model)
