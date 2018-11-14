@@ -21,7 +21,6 @@ class AccountInvoice(models.Model):
         )
         export_lines = ""
         for o in orders:
-            print(o.invoice_line_ids)
             export_lines = export_lines + se.gen_csv(o.invoice_line_ids, header=False)
         header = se.gen_csv(self.env['account.invoice.line'])
         orders.write({'exported': True})
