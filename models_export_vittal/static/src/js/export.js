@@ -16,8 +16,6 @@ openerp.models_export_vittal = function(instance, local) {
       btnExportAll.on('click', this.proxy('export_all_button'));
     },
     export_button: function(event) {
-       var myids = extractIds(this.records.records);
-        get_checked_rows(myids);
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.csv';
       new instance.web.Model(this.model)
@@ -27,15 +25,18 @@ openerp.models_export_vittal = function(instance, local) {
         .done(createCsv.bind(this, filename, type));
     },
     export_all_button: function(event) {
-         var myids = extractIds(this.records.records);
-        get_checked_rows(myids);
+      var myids = extractIds(this.records.records);
+      var filtered_ids = get_checked_rows(myids);
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.completo.csv';
-      new instance.web.Model(this.model)
-        .call('export_all', [extractIds(this.records.records)], {
+      if(filtered_ids.length > 0){
+        new instance.web.Model(this.model)
+        .call('export_all', [filtered_ids], {
           context: instance.session.user_context,
         })
         .done(createCsv.bind(this, filename, type));
+      }
+
     }
   });
 };
@@ -57,13 +58,10 @@ function get_checked_rows(ids){
 
     }
 
-
-    console.log(export_rows);
     return export_rows;
 }
 
 function createCsv(filename, type, source) {
-  console.log(source);
   var encodedUri = encodeURI('data:text/csv;charset=utf-8,' + source);
   var link = document.createElement('a');
   link.setAttribute('href', encodedUri);
