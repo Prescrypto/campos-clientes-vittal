@@ -45,16 +45,17 @@ function extractIds(records) {
 }
 
 function get_checked_rows(ids){
-    console.log("get checked");
     var export_rows = [];
-    var rows = $(".o_list_view > tbody > tr input:first-child");
-    console.log(rows);
-    rows.each(function(index){
-        console.log($(this)[0].checked);
-        if($(this)[0].checked){
+    var rows = $(".o_list_view > tbody > tr > td:first-child");
+    for(var i = 0; i< rows.length; i++){
+        var item = rows[i];
+        var mychecked = item.children[0].children[0].checked;
+        console.log(mychecked);
+        if(mychecked){
             export_rows.push(ids[index]);
         }
-    });
+
+    }
 
 
     console.log(export_rows);
