@@ -18,6 +18,7 @@ openerp.models_export_vittal = function(instance, local) {
     export_button: function(event) {
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.csv';
+      //call the export function on python and send all the ids of the rows
       new instance.web.Model(this.model)
         .call('export', [extractIds(this.records.records)], {
           context: instance.session.user_context,
@@ -30,22 +31,31 @@ openerp.models_export_vittal = function(instance, local) {
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.completo.csv';
       if(filtered_ids.length > 0){
-        new instance.web.Model(this.model)
-        .call('export_all', [filtered_ids], {
+        //if there were some selected rows then filter the ids
+        myids = filtered_ids;
+      }
+      else{
+        //if none is selected then export all
+
+      }
+        //call the export all function on python and send the ids of the rows we need to export
+       new instance.web.Model(this.model)
+        .call('export_all', [myids], {
           context: instance.session.user_context,
         })
         .done(createCsv.bind(this, filename, type));
-      }
 
     }
   });
 };
 
 function extractIds(records) {
+    //get the ids of every row on an array
    return _.map(records, record => record.attributes.id);
 }
 
 function get_checked_rows(ids){
+    //filter by tr > input to get only the ids of the rows which are checked
     var export_rows = [];
     var rows = $(".o_list_view > tbody > tr > td:first-child");
     for(var i = 0; i< rows.length; i++){
@@ -54,14 +64,13 @@ function get_checked_rows(ids){
         if(mychecked === true){
             export_rows.push(ids[i]);
         }
-
-
     }
 
     return export_rows;
 }
 
 function createCsv(filename, type, source) {
+  //create the file with the information we got from the model
   var encodedUri = encodeURI('data:text/csv;charset=utf-8,' + source);
   var link = document.createElement('a');
   link.setAttribute('href', encodedUri);
