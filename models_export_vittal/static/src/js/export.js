@@ -16,7 +16,7 @@ openerp.models_export_vittal = function(instance, local) {
       btnExportAll.on('click', this.proxy('export_all_button'));
     },
     export_button: function(event) {
-       var myids = [extractIds(this.records.records)];
+       var myids = extractIds(this.records.records);
         get_checked_rows(myids);
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.csv';
@@ -27,7 +27,7 @@ openerp.models_export_vittal = function(instance, local) {
         .done(createCsv.bind(this, filename, type));
     },
     export_all_button: function(event) {
-         var myids = [extractIds(this.records.records)];
+         var myids = extractIds(this.records.records);
         get_checked_rows(myids);
       var type = event.target.dataset.type;
       var filename = event.target.dataset.filename + '.completo.csv';
@@ -50,13 +50,10 @@ function get_checked_rows(ids){
     for(var i = 0; i< rows.length; i++){
         var item = rows[i];
         var mychecked = item.children[0].children[0].checked;
-        console.log(mychecked);
         if(mychecked === true){
             export_rows.push(ids[i]);
         }
-        else{
-            console.log("no true checked: "+ i);
-        }
+
 
     }
 
