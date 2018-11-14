@@ -51,8 +51,11 @@ function get_checked_rows(ids){
         var item = rows[i];
         var mychecked = item.children[0].children[0].checked;
         console.log(mychecked);
-        if(mychecked){
+        if(mychecked === true){
             export_rows.push(ids[i]);
+        }
+        else{
+            console.log("no true checked: "+ i);
         }
 
     }
