@@ -52,7 +52,7 @@ function get_checked_rows(ids){
         var mychecked = item.children[0].children[0].checked;
         console.log(mychecked);
         if(mychecked){
-            export_rows.push(ids[index]);
+            export_rows.push(ids[i]);
         }
 
     }
