@@ -25,7 +25,7 @@ class AccountAnalyticAccount(models.Model):
     sat_uso_id = fields.Many2one("sat.uso", "Uso CFDI")
     sat_pagos_id = fields.Many2one("sat.pagos", "Forma de Pago")
     sat_metodo_pago = fields.Selection([
-        ('PUE - PAGO EN UNA SOLA EXHIBICION', 'PUE'),
+        ('PUE1 - PAGO EN UNA SOLA EXHIBICION', 'PUE'),
             ('PPD - PAGO EN PARCIALIDADES O DIFERIDO', 'PPD')
     ], 'Método de Pago')
 
