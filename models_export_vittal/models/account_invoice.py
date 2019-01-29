@@ -67,8 +67,8 @@ class AccountInvoiceLine(models.Model):
         None,
         'name',
         'invoice_id.sat_metodo_pago',
-        'invoice_id.sat_pagos_id.nombre_forma',
-        'invoice_id.sat_uso_id.nombre_uso'
+        'invoice_id.sat_pagos_id.codigo_forma',
+        'invoice_id.sat_uso_id.codigo_uso'
     ]
 
     # Obtiene el porcentaje de retención de ISR
