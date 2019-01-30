@@ -111,7 +111,6 @@ class AccountInvoiceLine(models.Model):
         'Impuesto 2',
         'Impuesto 3',
         'I.V.A.',
-        'Numero de almacen Partidas',
         'Observaciones de partida',
         'Metodo de Pago',
         'Forma de Pago Sat',
