@@ -7,6 +7,11 @@ import logging
 
 _logger = logging.getLogger("============== EXPORT ==============")
 
+IVA0 = 2
+IVA16 = 1
+EXENTO = 3
+
+
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
@@ -43,30 +48,30 @@ class AccountInvoiceLine(models.Model):
     product_id = fields.Many2one('product.product', required=True)
 
     export_map = [
-        'id',
-        'invoice_id.partner_id.group_code',
-        'invoice_id.date_invoice@%d/%m/%y',
-        'invoice_id.comment',
-        'invoice_id.user_id.id',
-        'invoice_id.id',
-        None,
-        'invoice_id.date_due@%d/%m/%y',
-        'price_unit',
-        'const:0',
-        'const:0',
-        'const:0',
-        'const:0',
-        None,
-        'product_id.default_code',
-        'quantity',
-        None,
-        'func:get_ret_isr',
-        'func:get_ret_iva',
-        'func:get_iva',
-        'name',
-        'invoice_id.sat_metodo_pago',
-        'invoice_id.sat_pagos_id.codigo_forma',
-        'invoice_id.sat_uso_id.codigo_uso'
+        'id', #clave
+        'invoice_id.partner_id.group_code', #cliente
+        'invoice_id.date_invoice@%d/%m/%y', #fecha de elaboracion
+        'invoice_id.comment', #observaciones
+        'invoice_id.user_id.id', #clave de vendedor
+        'invoice_id.id', #su pedido
+        None, #fecha de entrega
+        'invoice_id.date_due@%d/%m/%y', #fecha de vencimiento
+        'price_unit', #precio
+        'const:0', #desc 1
+        'const:0', #desc 2
+        'const:0', # desc 3
+        'const:0', #comision
+        'func:get_clave_esquema_impuestos', #clave de esquema de impuestos
+        'product_id.default_code', #clave del articulo
+        'quantity', #cantidad
+        'invoice_line_tax_ids.tax_group_id', # ieps
+        'func:get_ret_isr', #impuesto 2
+        'func:get_ret_iva', #impuesto 3
+        'func:get_iva', #iva
+        'name', #observaciones de partida
+        'invoice_id.sat_metodo_pago', #metodo de pago
+        'invoice_id.sat_pagos_id.codigo_forma', #forma de pago sat
+        'invoice_id.sat_uso_id.codigo_uso' #uso cfdi
     ]
 
     # Obtiene el porcentaje de retención de ISR
@@ -89,6 +94,14 @@ class AccountInvoiceLine(models.Model):
             if tax.name in ['IVA(0%) VENTAS','IVA(16%) VENTAS']:
                 return tax.amount
         return ''
+    def get_clave_esquema_impuestos(self):
+        for tax in self.invoice_line_tax_ids:
+            if tax.name == 'IVA(0%) VENTAS':
+                return IVA0
+            elif tax.name == 'IVA(16%) VENTAS':
+                return IVA16
+            else:
+                return EXENTO
 
     header_map = [
         'Clave',

@@ -2,6 +2,7 @@
 
 import csv
 import io
+import re
 
 from odoo import fields
 
@@ -35,6 +36,10 @@ def get_field(obj, field):
         '''if the field is a date and the format is not false then get the value'''
         if f and n == "date_invoice":
             value =  fields.Date.from_string(value).strftime(f)
+        else:
+            #remove all the tabs from the string
+            value =re.sub(r'(^[ \t]+|[ \t]+(?=:))', '', str(value), flags=re.M)
+
         return value if value else ''
 
 
