@@ -7,11 +7,6 @@ import logging
 
 _logger = logging.getLogger("============== EXPORT ==============")
 
-IVA0 = 2
-IVA16 = 1
-EXENTO = 3
-
-
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
