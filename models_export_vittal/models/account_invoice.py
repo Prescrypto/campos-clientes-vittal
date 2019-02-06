@@ -61,10 +61,10 @@ class AccountInvoiceLine(models.Model):
         'const:0', #desc 2
         'const:0', # desc 3
         'const:0', #comision
-        'func:get_clave_esquema_impuestos', #clave de esquema de impuestos
+        'invoice_line_tax_ids.tax_group_id.id', #clave de esquema de impuestos
         'product_id.default_code', #clave del articulo
         'quantity', #cantidad
-        'invoice_line_tax_ids.tax_group_id', # ieps
+        None, # ieps
         'func:get_ret_isr', #impuesto 2
         'func:get_ret_iva', #impuesto 3
         'func:get_iva', #iva
@@ -94,14 +94,6 @@ class AccountInvoiceLine(models.Model):
             if tax.name in ['IVA(0%) VENTAS','IVA(16%) VENTAS']:
                 return tax.amount
         return ''
-    def get_clave_esquema_impuestos(self):
-        for tax in self.invoice_line_tax_ids:
-            if tax.name == 'IVA(0%) VENTAS':
-                return IVA0
-            elif tax.name == 'IVA(16%) VENTAS':
-                return IVA16
-            else:
-                return EXENTO
 
     header_map = [
         'Clave',
