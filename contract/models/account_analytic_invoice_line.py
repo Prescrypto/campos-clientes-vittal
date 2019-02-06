@@ -160,7 +160,7 @@ class AccountAnalyticInvoiceLine(models.Model):
 
         name = product.name_get()[0][1]
         if product.description_sale:
-            name += '\n' + product.description_sale
+            name += ' ' + product.description_sale
         vals['name'] = name
 
         vals['price_unit'] = product.price

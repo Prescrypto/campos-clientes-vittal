@@ -32,10 +32,6 @@ def get_field(obj, field):
                 value = getattr(value, n)
         if isinstance(value, unicode):
             value = value.encode('utf-8', 'replace')
-        if isinstance(value, str):
-            #remove all the tabs from the string
-            value = value.rstrip('\r\n')
-            value = value.strip('\t')
         if f and n == "date_invoice":
             #if the field is a date and the format is not false then get the value
             value =  fields.Date.from_string(value).strftime(f)
