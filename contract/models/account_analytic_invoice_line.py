@@ -158,9 +158,12 @@ class AccountAnalyticInvoiceLine(models.Model):
             uom=self.uom_id.id
         )
 
+        # Obtain the product name
         name = product.name_get()[0][1]
         if product.description_sale:
-            name += '\n' + product.description_sale
+            # If there's a product description then join it with the name for the
+            # invoice description
+            name = ' '.join(name, product.description_sale)
         vals['name'] = name
 
         vals['price_unit'] = product.price

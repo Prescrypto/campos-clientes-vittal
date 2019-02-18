@@ -96,7 +96,7 @@ class UserClient(models.Model):
 
     # metodos de pago
     sat_metodo_pago = fields.Selection([
-            ('PUE - PAGO EN UNA SOLA EXHIBICION', 'PUE - PAGO EN UNA SOLA EXHIBICIÓN'),
+            ('PUE - PAGO EN UNA SOLA EXHIBICION', 'PUE - PAGO EN UNA SOLA EXHIBICION'),
             ('PPD - PAGO EN PARCIALIDADES O DIFERIDO', 'PPD - PAGO EN PARCIALIDADES O DIFERIDO')
         ], 'Método de Pago')
 
