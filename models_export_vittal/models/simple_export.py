@@ -32,6 +32,7 @@ def get_field(obj, field):
                 value = getattr(value, n)
         if isinstance(value, unicode):
             value = value.encode('utf-8', 'replace')
+            # This fix the legacy invoice descriptions removing tabs or enters
             value = value.replace("\r"," ").replace("\t"," ").replace("\n"," ")
         if f and n == "date_invoice":
             #if the field is a date and the format is not false then get the value
