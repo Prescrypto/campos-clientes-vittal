@@ -43,35 +43,30 @@ class AccountInvoiceLine(models.Model):
     product_id = fields.Many2one('product.product', required=True)
 
     export_map = [
-        'id',
-        'invoice_id.partner_id.group_code',
-        'invoice_id.date_invoice@%d/%m/%y',
-        None,
-        None,
-        None,
-        None,
-        'invoice_id.comment',
-        'invoice_id.user_id.id',
-        'invoice_id.id',
-        None,
-        'invoice_id.date_due@%d/%m/%y',
-        'price_unit',
-        'const:0',
-        'const:0',
-        'const:0',
-        'const:0',
-        None,
-        'product_id.default_code',
-        'quantity',
-        None,
-        'func:get_ret_isr',
-        'func:get_ret_iva',
-        'func:get_iva',
-        None,
-        'name',
-        'invoice_id.sat_metodo_pago',
-        'invoice_id.sat_pagos_id.nombre_forma',
-        'invoice_id.sat_uso_id.nombre_uso'
+        'id', #clave
+        'invoice_id.partner_id.group_code', #cliente
+        'invoice_id.date_invoice@%d/%m/%y', #fecha de elaboracion
+        'invoice_id.comment', #observaciones
+        'invoice_id.user_id.id', #clave de vendedor
+        'invoice_id.id', #su pedido
+        None, #fecha de entrega
+        'invoice_id.date_due@%d/%m/%y', #fecha de vencimiento
+        'price_unit', #precio
+        'const:0', #desc 1
+        'const:0', #desc 2
+        'const:0', # desc 3
+        'const:0', #comision
+        'invoice_line_tax_ids.tax_group_id.id', #clave de esquema de impuestos
+        'product_id.default_code', #clave del articulo
+        'quantity', #cantidad
+        None, # ieps
+        'func:get_ret_isr', #impuesto 2
+        'func:get_ret_iva', #impuesto 3
+        'func:get_iva', #iva
+        'name', #observaciones de partida
+        'invoice_id.sat_metodo_pago', #metodo de pago
+        'invoice_id.sat_pagos_id.codigo_forma', #forma de pago sat
+        'invoice_id.sat_uso_id.codigo_uso' #uso cfdi
     ]
 
     # Obtiene el porcentaje de retención de ISR
@@ -99,10 +94,6 @@ class AccountInvoiceLine(models.Model):
         'Clave',
         'Cliente',
         'Fecha de elaboración',
-        'Descuento financiero',
-        'Numero de almacen cabecera',
-        'Numero de Moneda',
-        'Tipo de Cambio',
         'Observaciones',
         'Clave de vendedor',
         'Su pedido',
@@ -117,10 +108,9 @@ class AccountInvoiceLine(models.Model):
         'Clave del artículo',
         'Cantidad',
         'I.E.P.S.',
-        'Ret. ISR',
-        'Ret. IVA',
+        'Impuesto 2',
+        'Impuesto 3',
         'I.V.A.',
-        'Numero de almacen Partidas',
         'Observaciones de partida',
         'Metodo de Pago',
         'Forma de Pago Sat',

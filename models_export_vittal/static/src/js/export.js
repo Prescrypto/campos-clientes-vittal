@@ -29,7 +29,7 @@ openerp.models_export_vittal = function(instance, local) {
       var myids = extractIds(this.records.records);
       var filtered_ids = get_checked_rows(myids);
       var type = event.target.dataset.type;
-      var filename = event.target.dataset.filename + '.completo.csv';
+      var filename = event.target.dataset.filename + '_completo.csv';
       if(filtered_ids.length > 0){
         //if there were some selected rows then filter the ids
         myids = filtered_ids;
