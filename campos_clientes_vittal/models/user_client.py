@@ -156,6 +156,9 @@ class UserClient(models.Model):
     # Facturas pendientes de pago
     outstanding = fields.Boolean('Factura pendiente de pago', compute="_get_outstanding", store=False)
 
+    # Sales Rep
+    sales_rep = fields.Char("Representante de ventas")
+
     # Calcular dirección
     @api.one
     def _get_fiscal_address(self):
@@ -205,7 +208,8 @@ class UserClient(models.Model):
                 'references': partner.references,
                 'exterior': partner.exterior,
                 'details': partner.details,
-                'customer': False
+                'customer': False,
+                'sales_rep': partner.sales_rep,
             }
             self.create(new_vals)
         elif partner.main_fiscal_address:
