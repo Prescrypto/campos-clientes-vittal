@@ -54,7 +54,7 @@ class UserClient(models.Model):
     # tipo de usuario adicional
     client_type = fields.Selection(selection=[("company", "Empresa"),
                                               ("family", "Familia"),
-                                              ("private", "Privado")], string="Tipo de cliente")
+                                              ("private", "Privado"),("prospect","Prospecto")], string="Tipo de cliente")
 
     # nombre comercial
     legal_name = fields.Char("Nombre comercial")
