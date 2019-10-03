@@ -56,6 +56,7 @@ class UserClient(models.Model):
                                               ("family", "Familia"),
                                               ("private", "Privado"),], string="Tipo de cliente")
 
+
     # nombre comercial
     legal_name = fields.Char("Nombre comercial")
 
@@ -119,9 +120,6 @@ class UserClient(models.Model):
     copago = fields.Boolean('Copago')
     # monto copago
     copago_amount = fields.Float('Monto Copago')
-
-    #prospect (define if client is a prospect)
-    prospect = fields.Boolean('Prospecto')
 
     # entre calles
     cross_street = fields.Char("Entre calles")
