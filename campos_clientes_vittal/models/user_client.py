@@ -121,6 +121,9 @@ class UserClient(models.Model):
     # monto copago
     copago_amount = fields.Float('Monto Copago')
 
+    #prospect
+    prospect = fields.Boolean('Prospecto')
+
     # entre calles
     cross_street = fields.Char("Entre calles")
 
