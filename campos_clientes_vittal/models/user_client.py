@@ -54,7 +54,7 @@ class UserClient(models.Model):
     # tipo de usuario adicional
     client_type = fields.Selection(selection=[("company", "Empresa"),
                                               ("family", "Familia"),
-                                              ("private", "Privado"),("prospect","Prospecto")], string="Tipo de cliente")
+                                              ("private", "Privado"),], string="Tipo de cliente")
 
     # nombre comercial
     legal_name = fields.Char("Nombre comercial")
@@ -119,6 +119,9 @@ class UserClient(models.Model):
     copago = fields.Boolean('Copago')
     # monto copago
     copago_amount = fields.Float('Monto Copago')
+
+    #prospect (define if client is a prospect)
+    prospect = fields.Boolean('Prospecto')
 
     # entre calles
     cross_street = fields.Char("Entre calles")
@@ -210,6 +213,7 @@ class UserClient(models.Model):
                 'details': partner.details,
                 'customer': False,
                 'sales_rep': partner.sales_rep,
+                'prospect' : partner.prospect,
             }
             self.create(new_vals)
         elif partner.main_fiscal_address:
