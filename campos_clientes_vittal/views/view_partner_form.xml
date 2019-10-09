@@ -29,6 +29,9 @@
                         <div class="o_row">
                             <field name="sales_rep" placeholder="Vendedor" attrs="{'required': True}"/>
                         </div>
+                        <div class="o_row">
+                            <field name="prospect" placeholder="Prospecto" attrs="{'required': True}"/>
+                        </div>
                     </div>
                 </xpath>
 
