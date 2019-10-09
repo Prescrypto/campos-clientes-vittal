@@ -28,9 +28,10 @@
                         </div>
                         <div class="o_row">
                             <field name="sales_rep" placeholder="Vendedor" attrs="{'required': True}"/>
+                            <field name="prospect"/>
                         </div>
                         <div class="o_row">
-                            <field name="prospect" placeholder="Prospecto" attrs="{'required': True}"/>
+                            <field name="prospect"/>
                         </div>
                     </div>
                 </xpath>
