@@ -164,6 +164,9 @@ class UserClient(models.Model):
     # Sales Rep
     sales_rep = fields.Char("Representante de ventas")
 
+    # Sales Prosp
+    sales_prosp = fields.Char("Es Prospecto")
+
     # Calcular dirección
     @api.one
     def _get_fiscal_address(self):
@@ -217,6 +220,7 @@ class UserClient(models.Model):
                 'sales_rep': partner.sales_rep,
                 'prospect' : partner.prospect,
                 'sales_prospect': partner.sales_prospect,
+                'sales_prosp': partner.sales_prosp,
             }
             self.create(new_vals)
         elif partner.main_fiscal_address:
