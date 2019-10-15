@@ -31,7 +31,7 @@
                         </div>
                         <div class="o_row">
                             <attribute name="string">Prospect label</attribute>
-                            <field name="prospect"/>
+                            <field name="sales_prospect"/>
                         </div>
                     </div>
                 </xpath>
