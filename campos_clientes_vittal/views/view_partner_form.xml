@@ -28,6 +28,7 @@
                         </div>
                         <div class="o_row">
                             <field name="sales_rep" placeholder="Vendedor" attrs="{'required': True}"/>
+                            <field name="sales_prosp" placeholder="Prospecto" attrs="{'required': True}"/>
                         </div>
                         <div class="o_row">
                             <attribute name="string">Prospect label</attribute>
