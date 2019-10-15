@@ -216,6 +216,7 @@ class UserClient(models.Model):
                 'customer': False,
                 'sales_rep': partner.sales_rep,
                 'prospect' : partner.prospect,
+                'sales_prospect': partner.sales_prospect,
             }
             self.create(new_vals)
         elif partner.main_fiscal_address:
