@@ -31,6 +31,7 @@
                             <field name="sales_prosp" placeholder="Prospecto" attrs="{'required': True}"/>
                         </div>
                         <div class="o_row">
+                            Prospect Label 33
                             <attribute name="string">Prospect label</attribute>
                             <field name="sales_prospect"/>
                         </div>
