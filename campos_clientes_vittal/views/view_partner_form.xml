@@ -28,7 +28,7 @@
                         </div>
                         <div class="o_row">
                             <field name="sales_rep" placeholder="Vendedor" attrs="{'required': True}"/>
-                            <field name="sales_prospect" placeholder="Prospecto" attrs="{'required': True}"/>
+                            <field name="sales_prospect" placeholder="Prospecto.." attrs="{'required': True}"/>
                         </div>
                     </div>
                 </xpath>
