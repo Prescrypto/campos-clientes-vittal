@@ -121,10 +121,6 @@ class UserClient(models.Model):
     # monto copago
     copago_amount = fields.Float('Monto Copago')
 
-    #prospect
-    prospect = fields.Boolean('Prospecto 2')
-    sales_prospect = fields.Boolean('Prospecto')
-
     # entre calles
     cross_street = fields.Char("Entre calles")
 
@@ -164,8 +160,8 @@ class UserClient(models.Model):
     # Sales Rep
     sales_rep = fields.Char("Representante de ventas")
 
-    # Sales Prosp
-    sales_prosp = fields.Char("Es Prospecto")
+    # Prospect
+    sales_prospect = fields.Boolean('Prospecto')
 
     # Calcular dirección
     @api.one
@@ -218,9 +214,7 @@ class UserClient(models.Model):
                 'details': partner.details,
                 'customer': False,
                 'sales_rep': partner.sales_rep,
-                'prospect' : partner.prospect,
                 'sales_prospect': partner.sales_prospect,
-                'sales_prosp': partner.sales_prosp,
             }
             self.create(new_vals)
         elif partner.main_fiscal_address:
