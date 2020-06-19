@@ -19,6 +19,9 @@
                     </group>
                 </group>
                 <group string="SAT Response">
+                    <field name="sat_pegaso_request" required="False"/>
+                    <field name="sat_pegaso_response" required="False"/>
+                    <field name="sat_pegaso_ok" required="False"/>
                 </group>
             </notebook>
 
