@@ -15,7 +15,9 @@ class Invoice(models.Model):
         ('PUE', 'PUE - PAGO EN UNA SOLA EXHIBICION'),
             ('PPD', 'PPD - PAGO EN PARCIALIDADES O DIFERIDO')
     ], 'Método de Pago')
-
+    sat_pegaso_request = fields.Text("Pegaso Request")
+    sat_pegaso_response = fields.Text("Pegaso Response")
+    sat_pegaso_ok = user_active = fields.Boolean("Timbrado")
     #################################
 
     @api.onchange('partner_id')
