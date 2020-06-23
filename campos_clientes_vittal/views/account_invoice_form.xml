@@ -9,7 +9,7 @@
                 <attribute name="domain">[('customer','=',True)]</attribute>
             </field>
             <notebook position="before">
-                <group string="Datos CFDI 1_0">
+                <group string="Datos CFDI 1_1">
                     <group>
                         <field name="sat_metodo_pago" required="True"/>
                         <field name="sat_pagos_id"  options="{'no_create': True, 'no_open': True}" required="True"/>
