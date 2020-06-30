@@ -1,0 +1,13 @@
+<RequestCFD>
+    <Comprobante Version="3.3" Serie="VD" Folio="833" Fecha="2020-06-12T10:42:02" FormaPago="03" SubTotal="6000.05" Moneda="MXN" Total="6000.05" TipoDeComprobante="I" MetodoPago="PUE" LugarExpedicion="15900">
+        <Emisor Rfc="TMO1104114Y9" Nombre="TIEMPOREAL_TMO1104114Y9_ws" RegimenFiscal="612"/>
+        <Receptor Rfc="RIMJ7108165N0" Nombre="RIVERO MERCADO JUAN MANUEL" UsoCFDI="P01"/>
+        <Conceptos>
+            <Concepto ClaveProdServ="43232605" Cantidad="1." ClaveUnidad="48" Unidad="1" Descripcion="Servicio Medico" ValorUnitario="6000.05" Importe="6000.05"/>
+        </Conceptos>
+    </Comprobante>
+    <Transaccion id="20180420132024"/>
+    <TipoComprobante clave="Factura" nombre="Factura"/>
+    <Sucursal nombre="Matriz"/>
+    <Receptor emailReceptor="juanmanuelriverom@gmail.com"/>
+</RequestCFD>
