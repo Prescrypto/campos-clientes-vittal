@@ -9,7 +9,7 @@
                 <attribute name="domain">[('customer','=',True)]</attribute>
             </field>
             <notebook position="before">
-                <group string="Datos CFDI 1_1">
+                <group string="Datos CFDI">
                     <group>
                         <field name="sat_metodo_pago" required="True"/>
                         <field name="sat_pagos_id"  options="{'no_create': True, 'no_open': True}" required="True"/>
@@ -18,7 +18,7 @@
                         <field name="sat_uso_id" options="{'no_create': True, 'no_open': True}" required="True"/>
                     </group>
                 </group>
-                <group string="SAT Response 27">
+                <group string="SAT Response">
                     <field name="sat_pegaso_request" required="False"/>
                     <field name="sat_pegaso_response" required="False"/>
                     <field name="sat_pegaso_ok" required="False"/>
