@@ -247,7 +247,11 @@ except ImportError as exp:
                     raise_parse_error(node, 'Requires sequence of float values')
             return values
         def gds_format_decimal(self, input_data, input_name=''):
-            return ('%0.10f' % input_data).rstrip('0')
+            test_string = "{0:.10g}".format(input_data)
+            #return ('%0.10f' % input_data).rstrip('0')
+            #return ('%0.10f' % input_data)
+            #return ("%0.10f".format(input_data))
+            return test_string
         def gds_parse_decimal(self, input_data, node=None, input_name=''):
             try:
                 decimal_value = decimal_.Decimal(input_data)
