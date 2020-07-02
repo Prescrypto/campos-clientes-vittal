@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 
 import RequestCFD_v33 as api_cfdi
 import requests
-import xmltodict, json
+#import xmltodict, json
 
 _logger = logging.getLogger(__name__)
 
@@ -235,38 +235,38 @@ class Invoice(models.Model):
         file.close()
         return contents
 
-    def SendCFDIREquest(self,file_data):
-        f = open(file_data,"r")
-        if f.mode == 'r':
-            contents =f.read()
-        f.close()
-        # Payload
-        url = REQUEST_URL
-        #payload = {'username': 'TIEMPOREAL_TMO1104114Y9_ws ', 'password': ''}
-        #headers = {"Content-Type": "text/html"}
+    # def SendCFDIREquest(self,file_data):
+    #     f = open(file_data,"r")
+    #     if f.mode == 'r':
+    #         contents =f.read()
+    #     f.close()
+    #     # Payload
+    #     url = REQUEST_URL
+    #     #payload = {'username': 'TIEMPOREAL_TMO1104114Y9_ws ', 'password': ''}
+    #     #headers = {"Content-Type": "text/html"}
 
-        headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
-        #response = requests.post(url, data=contents, headers=headers)
-        response = requests.post(url, data=contents, headers=headers)
-        #response = requests.put(url, data=contents, headers=headers)
-        #response = 
-        print("********************** DATA SEND **********************")
-        print("{}".format(contents))
-        print("*******************************************************")
-        print("********************** ANSWER *************************")
-        print("{}".format(response))
-        print("************************RESPONSE CONTENT*******************************")
-        print(response.content)
-        print("************************RESPONSE RAW 100 *******************************")
-        print(response.raw.read(100))
-        print("*********************** RESPONSE HEADERS********************************")
-        print(response.headers)
-        print("*********************** RESPONSE TEXT ********************************")
-        print(response.text)
-        print("*********************** RESPONSE DICT *************************")
-        o = xmltodict.parse(response.content)
-        print(json.dumps(o))
-        return response 
+    #     headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
+    #     #response = requests.post(url, data=contents, headers=headers)
+    #     response = requests.post(url, data=contents, headers=headers)
+    #     #response = requests.put(url, data=contents, headers=headers)
+    #     #response = 
+    #     print("********************** DATA SEND **********************")
+    #     print("{}".format(contents))
+    #     print("*******************************************************")
+    #     print("********************** ANSWER *************************")
+    #     print("{}".format(response))
+    #     print("************************RESPONSE CONTENT*******************************")
+    #     print(response.content)
+    #     print("************************RESPONSE RAW 100 *******************************")
+    #     print(response.raw.read(100))
+    #     print("*********************** RESPONSE HEADERS********************************")
+    #     print(response.headers)
+    #     print("*********************** RESPONSE TEXT ********************************")
+    #     print(response.text)
+    #     print("*********************** RESPONSE DICT *************************")
+    #     o = xmltodict.parse(response.content)
+    #     print(json.dumps(o))
+    #     return response 
 
     def response_cfdi_data(self,contents_xml,data_selector,info = True):
         root = etree.XML(contents_xml)
