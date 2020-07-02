@@ -28,7 +28,9 @@ REQUEST_URL = "https://qa.pegasotecnologia.mx/ServAdmEmisionGatewayQA/ServiceGat
 
 
 #TEMPORAL_OUT_XML = 'Temp_Out_Request.xml'
-TEMPORAL_OUT_XML = 'request_2020_06.xml'
+#TEMPORAL_OUT_XML = 'request_2020_06.xml'
+#TEMPORAL_OUT_XML = 'response_2020_07_01.xml'
+TEMPORAL_OUT_XML = 'full_cfdi_request.xml'
 
 INPUT_XSD_FILE = 'RequestCFD_v33_unix.xsd'
 
@@ -37,12 +39,12 @@ def CreateCFDIRequest(cfdi_data):
   requestCFD = api.RequestCFD()
 
   #Second add comprobant to requestCFD nested element inside requestCFD
-  comprobanteType = api.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
+  comprobanteType = api.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.01", SubTotal="6000.10" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
 
   emisorType = api.EmisorType(Rfc = EMISOR_RFC, Nombre= EMISOR_NOMBRE, RegimenFiscal= EMISOR_REGIMENFISCAL)
   receptorType = api.ReceptorType(Rfc = 'RIMJ7108165N0', Nombre= 'RIVERO MERCADO JUAN MANUEL', UsoCFDI= 'P01',emailReceptor='juanmanuelriverom@gmail.com')
 
-  conceptoType1 = api.ConceptoType(ClaveProdServ = '43232605', Cantidad='1', ClaveUnidad = '48', Unidad='1', ValorUnitario="6000.05", Importe="6000.05" ,Descripcion='Servicio Medico')
+  conceptoType1 = api.ConceptoType(ClaveProdServ = '43232605', Cantidad='1', ClaveUnidad = '48', Unidad='1', ValorUnitario="6000.00", Importe="6000.00" ,Descripcion='Servicio Medico')
   #conceptoType2 = api.ConceptoType(ClaveProdServ = '43232605', Cantidad='2', ClaveUnidad = '48', Unidad='1', ValorUnitario= '111.00', Importe='22.00' ,Descripcion='Servicio Medico 22')
 
   conceptosType = api.ConceptosType()
@@ -169,12 +171,12 @@ def ValidateCFDI(file_xsd,file_xml):
 #ValidateCFDI(INPUT_XSD_FILE,'Request_complementopago.txt')
 
 #SendCFDIREquest('Request_complementopago.txt')
-SendCFDIREquest(TEMPORAL_OUT_XML)
+#SendCFDIREquest(TEMPORAL_OUT_XML)
 #SendCFDIREquest('EjemploVidaUno.xml')
 
 
-TEMPORAL_OUT_XML = 'request_2020_06_29.xml'
+#TEMPORAL_OUT_XML = 'request_2020_06_29.xml'
 CreateCFDIRequest(TEMPORAL_OUT_XML)
-
+#SendCFDIREquest(TEMPORAL_OUT_XML)
 
 

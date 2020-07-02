@@ -31,7 +31,9 @@ print(satDateCFDI)
 
 
 #file_data = "response_2020_06_26.xml"
-file_data = "bad_response_example.xml"
+#file_data = "bad_response_example.xml"
+file_data = "full_cfdi_request.xml"
+
 f = open(file_data,"r")
 if f.mode == 'r':
 	contents_xml =f.read()
@@ -163,6 +165,7 @@ def response_cfdi_data(contents_xml,data_selector,info = True):
 	if info:
 		for idt,element in enumerate(root.iter()):
 			print("%s .- %s || %s" % (idt, element.tag, element.text))
+
 	option = {
 		'Envelope': '{http://schemas.xmlsoap.org/soap/envelope/}Envelope',
 		'Header': '{http://schemas.xmlsoap.org/soap/envelope/}Header',
@@ -173,7 +176,8 @@ def response_cfdi_data(contents_xml,data_selector,info = True):
 		'Transaccion': '{http://www.pegasotecnologia.com/}Transaccion',
 		'CFD': '{http://www.pegasotecnologia.com/}CFD',
 		'TFD': '{http://www.pegasotecnologia.com/}TFD',
-    'Error':'{http://www.pegasotecnologia.com/}Error'
+    'Error':'{http://www.pegasotecnologia.com/}Error',
+    'Comprobante': 'Comprobante'
 	}
 	for idx, item in enumerate(root.iter(option[data_selector])):
 		#print(idx)
@@ -195,6 +199,6 @@ def action_cfdi_date(parameter_date,current_date = True):
   return satDateCFDI
 
 #print(response_cfdi_data(contents_xml,'TFD'))
-print(response_cfdi_data(contents_xml,'Transaccion'))
+print(response_cfdi_data(contents_xml,'Comprobante'))
 
 print(action_cfdi_date(''))
