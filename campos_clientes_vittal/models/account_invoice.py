@@ -51,6 +51,7 @@ HEADER_SOAPACTION = os.environ['HEADER_SOAPACTION']
 REQUEST_URL = os.environ['REQUEST_URL']
 TEMPORAL_OUT_XML = os.environ['TEMPORAL_OUT_XML']
 TEMPORAL_OUT_XML_OK = os.environ['TEMPORAL_OUT_XML_OK']
+EMAIL_RECIPMENTS = os.environ['EMAIL_RECIPMENTS']
 
 
 class Invoice(models.Model):
@@ -226,7 +227,7 @@ class Invoice(models.Model):
         #transactionType=satTransactionID
         tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
         sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
-        receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email'])
+        receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
         requestCFD.set_Comprobante(comprobanteType)
         requestCFD.set_Transaccion(transactionType)
         requestCFD.set_TipoComprobante(tipoComprobante)
