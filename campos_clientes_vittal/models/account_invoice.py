@@ -35,8 +35,11 @@ EMISOR_LUGAR = '15900'
 TIMEOUT_TOLERANCE = 25
 HEADER_SOAPACTION="http://namespace.pegasotecnologia.com/SCFD/IEmisionBaseExternalService/emitirCFD"
 REQUEST_URL = "https://qa.pegasotecnologia.mx/ServAdmEmisionGatewayQA/ServiceGateway.svc/Soap11Text"
-TEMPORAL_OUT_XML = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/request_2020_06_30.xml'
-TEMPORAL_OUT_XML_OK = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/full_cfdi_request.xml'
+#TEMPORAL_OUT_XML = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/request_2020_06_30.xml'
+#TEMPORAL_OUT_XML_OK = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/full_cfdi_request.xml'
+
+TEMPORAL_OUT_XML = 'request_2020_06_30.xml'
+TEMPORAL_OUT_XML_OK = 'full_cfdi_request.xml'
 
 class Invoice(models.Model):
     _inherit = 'account.invoice'
