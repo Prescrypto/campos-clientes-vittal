@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 
 import RequestCFD_v33 as api_cfdi
 import requests
+import os
 #import xmltodict, json
 
 _logger = logging.getLogger(__name__)
@@ -28,18 +29,29 @@ BASE_XML="""<?xml version="1.0" encoding="UTF-8"?>
     </soapenv:Body>
 </soapenv:Envelope>"""
 
-EMISOR_RFC = 'TMO1104114Y9'
-EMISOR_NOMBRE = 'TIEMPOREAL_TMO1104114Y9_ws'
-EMISOR_REGIMENFISCAL = '601'
-EMISOR_LUGAR = '15900'
-TIMEOUT_TOLERANCE = 25
-HEADER_SOAPACTION="http://namespace.pegasotecnologia.com/SCFD/IEmisionBaseExternalService/emitirCFD"
-REQUEST_URL = "https://qa.pegasotecnologia.mx/ServAdmEmisionGatewayQA/ServiceGateway.svc/Soap11Text"
+# EMISOR_RFC = 'TMO1104114Y9'
+# EMISOR_NOMBRE = 'TIEMPOREAL_TMO1104114Y9_ws'
+# EMISOR_REGIMENFISCAL = '601'
+# EMISOR_LUGAR = '15900'
+# TIMEOUT_TOLERANCE = 25
+# HEADER_SOAPACTION="http://namespace.pegasotecnologia.com/SCFD/IEmisionBaseExternalService/emitirCFD"
+# REQUEST_URL = "https://qa.pegasotecnologia.mx/ServAdmEmisionGatewayQA/ServiceGateway.svc/Soap11Text"
 #TEMPORAL_OUT_XML = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/request_2020_06_30.xml'
 #TEMPORAL_OUT_XML_OK = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/full_cfdi_request.xml'
 
-TEMPORAL_OUT_XML = 'request_2020_06_30.xml'
-TEMPORAL_OUT_XML_OK = 'full_cfdi_request.xml'
+#TEMPORAL_OUT_XML = 'request_2020_06_30.xml'
+#TEMPORAL_OUT_XML_OK = 'full_cfdi_request.xml'
+
+EMISOR_RFC = os.environ['EMISOR_RFC']
+EMISOR_NOMBRE = os.environ['EMISOR_NOMBRE']
+EMISOR_REGIMENFISCAL = os.environ['EMISOR_REGIMENFISCAL']
+EMISOR_LUGAR = os.environ['EMISOR_LUGAR']
+TIMEOUT_TOLERANCE = os.environ['TIMEOUT_TOLERANCE']
+HEADER_SOAPACTION = os.environ['HEADER_SOAPACTION']
+REQUEST_URL = os.environ['REQUEST_URL']
+TEMPORAL_OUT_XML = os.environ['TEMPORAL_OUT_XML']
+TEMPORAL_OUT_XML_OK = os.environ['TEMPORAL_OUT_XML_OK']
+
 
 class Invoice(models.Model):
     _inherit = 'account.invoice'
