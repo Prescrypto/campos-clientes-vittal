@@ -16,7 +16,7 @@ import os
 
 _logger = logging.getLogger(__name__)
 
-#
+
 BASE_XML="""<?xml version="1.0" encoding="UTF-8"?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:scfd="http://namespace.pegasotecnologia.com/SCFD" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/">
     <soapenv:Header></soapenv:Header>
@@ -29,18 +29,6 @@ BASE_XML="""<?xml version="1.0" encoding="UTF-8"?>
     </soapenv:Body>
 </soapenv:Envelope>"""
 
-# EMISOR_RFC = 'TMO1104114Y9'
-# EMISOR_NOMBRE = 'TIEMPOREAL_TMO1104114Y9_ws'
-# EMISOR_REGIMENFISCAL = '601'
-# EMISOR_LUGAR = '15900'
-# TIMEOUT_TOLERANCE = 25
-# HEADER_SOAPACTION="http://namespace.pegasotecnologia.com/SCFD/IEmisionBaseExternalService/emitirCFD"
-# REQUEST_URL = "https://qa.pegasotecnologia.mx/ServAdmEmisionGatewayQA/ServiceGateway.svc/Soap11Text"
-#TEMPORAL_OUT_XML = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/request_2020_06_30.xml'
-#TEMPORAL_OUT_XML_OK = 'prescrypto/campos_clientes_vittal/campos_clientes_vittal/models/full_cfdi_request.xml'
-
-#TEMPORAL_OUT_XML = 'request_2020_06_30.xml'
-#TEMPORAL_OUT_XML_OK = 'full_cfdi_request.xml'
 
 EMISOR_RFC = os.environ['EMISOR_RFC']
 EMISOR_NOMBRE = os.environ['EMISOR_NOMBRE']
@@ -101,15 +89,6 @@ class Invoice(models.Model):
            dict_rows["clave_sat"]= line.product_id.clave_sat
            dict_rows["codigo_sat"]= line.product_id.codigo_sat
            dict_rows["clave_unidad"]=line.product_id.clave_unidad
-
-           # {'product_name': line.product_id.name,
-           #              'quantity': line.quantity,
-           #              'price_unit': line.price_unit,
-           #              'name':line.name,
-           #              'clave_sat':line.product_id.clave_sat,
-           #              'codigo_sat':line.product_id.codigo_sat,
-           #              'clave_unidad':line.product_id.clave_unidad
-           # }
            rows.append(dict_rows) 
         return rows
 
@@ -125,21 +104,11 @@ class Invoice(models.Model):
            dict_rows["clave_sat"]= line.product_id.clave_sat
            dict_rows["codigo_sat"]= line.product_id.codigo_sat
            dict_rows["clave_unidad"]=line.product_id.clave_unidad
-
-           # {'product_name': line.product_id.name,
-           #              'quantity': line.quantity,
-           #              'price_unit': line.price_unit,
-           #              'name':line.name,
-           #              'clave_sat':line.product_id.clave_sat,
-           #              'codigo_sat':line.product_id.codigo_sat,
-           #              'clave_unidad':line.product_id.clave_unidad
-           # }
            rows.append(dict_rows) 
         return rows
 
     @api.one
     def action_invoice_cfdi(self):
-        #for line in self:
         #Prepare Folio and serie
         invoice_id = self.number.split("/")
         invoice_lines = self.action_cfdi_lines()
@@ -224,31 +193,28 @@ class Invoice(models.Model):
                  'amount_total': line.amount_total,
                  'sat_metodo_pago': line.sat_metodo_pago
                  }
-                _logger.debug('send message to debug')
-                _logger.debug("self:{}".format(line))
-                _logger.info('send message to info')
-                #self.CreateCFDIRequest(client_dict)
+
                 CFDIRequest = self.CreateCFDIRequest(client_dict)
                 CFDIRequest_2 = CFDIRequest.replace('<RequestCFD>','<RequestCFD version="3.3">')
-                #print("CFDIRequest: {}".format(CFDIRequest_2))
+
                 _logger.debug("CFDIRequest: {}".format(CFDIRequest_2))
                 contents = BASE_XML.format(CFDIRequest_2)
                 # Send Data to Pegaso
                 url = REQUEST_URL
                 headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
                 response = requests.post(url, data=contents, headers=headers)
-                #print("response: {}".format(response.text))
-                #result = self.SendCFDIREquest(TEMPORAL_OUT_XML_OK)
+                # Process Response
                 result_cfdi=self.response_cfdi_data(response.content,'Transaccion',info = True)
                 result_cfdi_TFD=self.response_cfdi_data(response.content,'TFD',info = True)
-                #Write results
-                #self.write({'sat_pegaso_request': str(client_dict) + "***************\n" +  CFDIRequest_2})
+                # Write results
                 line.write({'sat_pegaso_request': CFDIRequest_2})
-                #self.write({'sat_pegaso_response': response.content })
-                _logger.debug("CFDIRequest: {}".format(response.text))
                 line.write({'sat_pegaso_response': response.text })
                 line.write({'sat_pegaso_status': result_cfdi['estatus']})
                 line.write({'sat_pegaso_uuid': result_cfdi_TFD['UUID']})
+                line.write({'sat_pegaso_ok': True })
+                _logger.debug("CFDIResponse: {}".format(response.text))
+            else:
+                _logger.debug("*********************** Do nothing in action_invoice_cfdi_multi ***********************")
 
         return True
 
@@ -262,10 +228,7 @@ class Invoice(models.Model):
         satTimeZone = 'America/Mexico_City'
         localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
         satDateCFDI = localDatetime.strftime(satLocalFormat)
-        #print("Fecha: {}".format(satDateCFDI))
-        #fecha= "{}".format(satDateCFDI)
-        #fecha_2 = fecha.replace("[","")
-        #fecha_3 = fecha_2.replace("]","")
+
         return satDateCFDI
 
     #@api.one
@@ -337,38 +300,7 @@ class Invoice(models.Model):
         file.close()
         return contents
 
-    # def SendCFDIREquest(self,file_data):
-    #     f = open(file_data,"r")
-    #     if f.mode == 'r':
-    #         contents =f.read()
-    #     f.close()
-    #     # Payload
-    #     url = REQUEST_URL
-    #     #payload = {'username': 'TIEMPOREAL_TMO1104114Y9_ws ', 'password': ''}
-    #     #headers = {"Content-Type": "text/html"}
 
-    #     headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
-    #     #response = requests.post(url, data=contents, headers=headers)
-    #     response = requests.post(url, data=contents, headers=headers)
-    #     #response = requests.put(url, data=contents, headers=headers)
-    #     #response = 
-    #     print("********************** DATA SEND **********************")
-    #     print("{}".format(contents))
-    #     print("*******************************************************")
-    #     print("********************** ANSWER *************************")
-    #     print("{}".format(response))
-    #     print("************************RESPONSE CONTENT*******************************")
-    #     print(response.content)
-    #     print("************************RESPONSE RAW 100 *******************************")
-    #     print(response.raw.read(100))
-    #     print("*********************** RESPONSE HEADERS********************************")
-    #     print(response.headers)
-    #     print("*********************** RESPONSE TEXT ********************************")
-    #     print(response.text)
-    #     print("*********************** RESPONSE DICT *************************")
-    #     o = xmltodict.parse(response.content)
-    #     print(json.dumps(o))
-    #     return response 
 
     def response_cfdi_data(self,contents_xml,data_selector,info = True):
         root = etree.XML(contents_xml)
@@ -391,8 +323,6 @@ class Invoice(models.Model):
         }
         loop_atrib = ""
         for idx, item in enumerate(root.iter(option[data_selector])):
-            #print(idx)
-            #print(movie.attrib)
             loop_atrib=item.attrib
             _logger.debug("loop_atrib: {}".format(loop_atrib))
         return loop_atrib   
