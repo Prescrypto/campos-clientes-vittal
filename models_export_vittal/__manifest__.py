@@ -13,7 +13,7 @@
     'website': "http://www.prescrypto.com",
 
     'category': 'Specific Industry Applications',
-    'version': '10.0.1',
+    'version': '10.0.22',
 
     'depends': [
         'base','campos_clientes_vittal','account',
