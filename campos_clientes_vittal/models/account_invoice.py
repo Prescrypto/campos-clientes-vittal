@@ -114,12 +114,38 @@ class Invoice(models.Model):
         return rows
 
     @api.one
+    def action_cfdi_lines_multi(self,parameter_data):
+        rows =[]
+        for line in parameter_data.invoice_line_ids:
+           dict_rows = {}
+           dict_rows["product_name"] = line.product_id.name
+           dict_rows["quantity"]= line.quantity
+           dict_rows["price_unit"]= line.price_unit
+           dict_rows["name"]= line.name
+           dict_rows["clave_sat"]= line.product_id.clave_sat
+           dict_rows["codigo_sat"]= line.product_id.codigo_sat
+           dict_rows["clave_unidad"]=line.product_id.clave_unidad
+
+           # {'product_name': line.product_id.name,
+           #              'quantity': line.quantity,
+           #              'price_unit': line.price_unit,
+           #              'name':line.name,
+           #              'clave_sat':line.product_id.clave_sat,
+           #              'codigo_sat':line.product_id.codigo_sat,
+           #              'clave_unidad':line.product_id.clave_unidad
+           # }
+           rows.append(dict_rows) 
+        return rows
+
+    @api.one
     def action_invoice_cfdi(self):
+        #for line in self:
+        #Prepare Folio and serie
         invoice_id = self.number.split("/")
         invoice_lines = self.action_cfdi_lines()
         
         
-
+        #Prepare dict info for request info 
         client_dict = {'customer_name': self.partner_id.name,
          'date': self.date_invoice,
          'customer_rfc': self.partner_id.rfc,
@@ -146,7 +172,7 @@ class Invoice(models.Model):
         #self.CreateCFDIRequest(client_dict)
         CFDIRequest = self.CreateCFDIRequest(client_dict)
         CFDIRequest_2 = CFDIRequest.replace('<RequestCFD>','<RequestCFD version="3.3">')
-        print("CFDIRequest: {}".format(CFDIRequest_2))
+        _logger.debug("CFDIRequest: {}".format(CFDIRequest_2))
         contents = BASE_XML.format(CFDIRequest_2)
         # Send Data to Pegaso
         url = REQUEST_URL
@@ -166,6 +192,66 @@ class Invoice(models.Model):
         self.write({'sat_pegaso_uuid': result_cfdi_TFD['UUID']})
 
         return True
+
+    @api.multi
+    def action_invoice_cfdi_multi(self):
+        _logger.info("*********************** Call by action_invoice_cfdi_multi ***********************")
+        for line in self:
+            if not line.sat_pegaso_uuid and line.state =='open':
+                #Prepare Folio and serie
+                invoice_id = line.number.split("/")
+                invoice_lines = self.action_cfdi_lines_multi(line)
+                
+                
+                #Prepare dict info for request info 
+                client_dict = {'customer_name': line.partner_id.name,
+                 'date': line.date_invoice,
+                 'customer_rfc': line.partner_id.rfc,
+                 'customer_payment_id': line.sat_pagos_id.codigo_forma,
+                 'customer_payment_name': line.sat_pagos_id.nombre_forma,
+                 'customer_payment_use_id': line.sat_uso_id.codigo_uso,
+                 'customer_payment_use_name': line.sat_uso_id.nombre_uso,
+                 'customer_email': line.partner_id.email,
+                 'invoice_id': line.number,
+                 'invoice_series': invoice_id[0],
+                 'invoice_folio': invoice_id[1]+invoice_id[2],
+                 'invoice_products': invoice_lines,
+                 'invoice_products_line': line.invoice_line_ids,
+                 'invoice_date': self.action_cfdi_paremeters(),
+                 #'invoice_date': self.date_invoice.strftime(satLocalFormat),
+                 'amount_untaxed': "{:10.4f}".format(line.amount_untaxed),
+                 'amount_tax': line.amount_tax,
+                 'amount_total': line.amount_total,
+                 'sat_metodo_pago': line.sat_metodo_pago
+                 }
+                _logger.debug('send message to debug')
+                _logger.debug("self:{}".format(line))
+                _logger.info('send message to info')
+                #self.CreateCFDIRequest(client_dict)
+                CFDIRequest = self.CreateCFDIRequest(client_dict)
+                CFDIRequest_2 = CFDIRequest.replace('<RequestCFD>','<RequestCFD version="3.3">')
+                #print("CFDIRequest: {}".format(CFDIRequest_2))
+                _logger.debug("CFDIRequest: {}".format(CFDIRequest_2))
+                contents = BASE_XML.format(CFDIRequest_2)
+                # Send Data to Pegaso
+                url = REQUEST_URL
+                headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
+                response = requests.post(url, data=contents, headers=headers)
+                #print("response: {}".format(response.text))
+                #result = self.SendCFDIREquest(TEMPORAL_OUT_XML_OK)
+                result_cfdi=self.response_cfdi_data(response.content,'Transaccion',info = True)
+                result_cfdi_TFD=self.response_cfdi_data(response.content,'TFD',info = True)
+                #Write results
+                #self.write({'sat_pegaso_request': str(client_dict) + "***************\n" +  CFDIRequest_2})
+                line.write({'sat_pegaso_request': CFDIRequest_2})
+                #self.write({'sat_pegaso_response': response.content })
+                _logger.debug("CFDIRequest: {}".format(response.text))
+                line.write({'sat_pegaso_response': response.text })
+                line.write({'sat_pegaso_status': result_cfdi['estatus']})
+                line.write({'sat_pegaso_uuid': result_cfdi_TFD['UUID']})
+
+        return True
+
         
     @api.one
     def action_cfdi_paremeters(self):
@@ -185,8 +271,8 @@ class Invoice(models.Model):
     #@api.one
     def CreateCFDIRequest(self,cfdi_data):
         fecha= self.action_cfdi_paremeters()
-        print("fecha: {}".format(fecha))
-        my_subtotal="2000"
+        #print("fecha: {}".format(fecha))
+        #my_subtotal="2000"
         #Correct date and transaction id
         utcmoment_naive = datetime.utcnow()
         utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
@@ -288,7 +374,7 @@ class Invoice(models.Model):
         root = etree.XML(contents_xml)
         if info:
             for idt,element in enumerate(root.iter()):
-                print("%s .- %s || %s" % (idt, element.tag, element.text))
+                _logger.debug("%s .- %s || %s" % (idt, element.tag, element.text))
 
         option = {
             'Envelope': '{http://schemas.xmlsoap.org/soap/envelope/}Envelope',
@@ -303,9 +389,10 @@ class Invoice(models.Model):
             'Error':'{http://www.pegasotecnologia.com/}Error',
             'Comprobante': 'Comprobante'
         }
+        loop_atrib = ""
         for idx, item in enumerate(root.iter(option[data_selector])):
             #print(idx)
             #print(movie.attrib)
             loop_atrib=item.attrib
-            print("{}".format(loop_atrib))
+            _logger.debug("loop_atrib: {}".format(loop_atrib))
         return loop_atrib   
