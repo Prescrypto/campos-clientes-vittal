@@ -19,8 +19,11 @@
             <field name="arch" type="xml">
                 <field name="state" position="after">
                     <field name="exported"/>
+                    <field name="sat_pegaso_uuid"/>
                 </field>
             </field>
         </record>
+
+
     </data>
 </odoo>
