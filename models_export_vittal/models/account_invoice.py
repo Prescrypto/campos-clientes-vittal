@@ -36,6 +36,16 @@ class AccountInvoice(models.Model):
         self.env.cr.commit()
         return header + export_lines
 
+    @api.multi
+    def stamp_all_cfdi(self):
+        print("pass by ****************")
+        for line in self:
+            if not line.sat_pegaso_uuid:
+                print("Selected invoices: {}".format(line) )
+                line.write({'sat_pegaso_response': "response.text" })
+                self.action_invoice_cfdi(line)
+        return True
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
@@ -116,3 +126,4 @@ class AccountInvoiceLine(models.Model):
         'Forma de Pago Sat',
         'Uso CFDI'
     ]
+
