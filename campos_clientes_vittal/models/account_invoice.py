@@ -212,7 +212,7 @@ class Invoice(models.Model):
                 line.write({'sat_pegaso_status': result_cfdi['estatus']})
                 line.write({'sat_pegaso_uuid': result_cfdi_TFD['UUID']})
                 line.write({'sat_pegaso_ok': True })
-                _logger.debug("CFDIResponse: {}".format(response.text))
+                _logger.debug("CFDIResponse uuid: {}".format(result_cfdi_TFD['UUID']))
             else:
                 _logger.debug("*********************** Do nothing in action_invoice_cfdi_multi ***********************")
 
