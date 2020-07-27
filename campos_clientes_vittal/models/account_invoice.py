@@ -143,7 +143,7 @@ class Invoice(models.Model):
         _logger.debug('send message to debug')
         _logger.debug("self:{}".format(self))
         _logger.info('send message to info')
-        #self.CreateCFDIRequest(client_dict)
+        
         CFDIRequest = self.CreateCFDIRequest(client_dict)
         CFDIRequest_2 = CFDIRequest.replace('<RequestCFD>','<RequestCFD version="3.3">')
         _logger.debug("CFDIRequest: {}".format(CFDIRequest_2))
@@ -152,14 +152,10 @@ class Invoice(models.Model):
         url = REQUEST_URL
         headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
         response = requests.post(url, data=contents, headers=headers)
-        #print("response: {}".format(response.text))
-        #result = self.SendCFDIREquest(TEMPORAL_OUT_XML_OK)
         result_cfdi=self.response_cfdi_data(response.content,'Transaccion',info = True)
         result_cfdi_TFD=self.response_cfdi_data(response.content,'TFD',info = True)
-        #Write results
-        #self.write({'sat_pegaso_request': str(client_dict) + "***************\n" +  CFDIRequest_2})
         self.write({'sat_pegaso_request': CFDIRequest_2})
-        #self.write({'sat_pegaso_response': response.content })
+        #Send data to log
         _logger.debug(response.text)
         self.write({'sat_pegaso_response': response.text })
         self.write({'sat_pegaso_status': result_cfdi['estatus']})
@@ -242,8 +238,7 @@ class Invoice(models.Model):
     # that defines rules fro the request.   
     def CreateCFDIRequest(self,cfdi_data):
         fecha= self.action_cfdi_paremeters()
-        #print("fecha: {}".format(fecha))
-        #my_subtotal="2000"
+
         #Correct date and transaction id
         utcmoment_naive = datetime.utcnow()
         utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
@@ -251,8 +246,7 @@ class Invoice(models.Model):
         satTimeZone = 'America/Mexico_City'
         localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
         satDateCFDI = localDatetime.strftime(satLocalFormat)
-        #satLocalFormatTransactionID = "%Y%m%d%H%M%S"
-        #satTransactionID=localDatetime.strftime(satLocalFormatTransactionID)
+
         #First create main document request
         requestCFD = api_cfdi.RequestCFD()
         requestCFD.set_version(version="3.3")
@@ -266,12 +260,7 @@ class Invoice(models.Model):
         receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'])
         #Invoice Line Data
         conceptosType = api_cfdi.ConceptosType()
-        # for lines in cfdi_data['invoice_products']:
-        #     #conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = '43232605', Cantidad='1', ClaveUnidad = '48', Unidad='1', ValorUnitario="6000.05", Importe="6000.05" ,Descripcion='Servicio Medico')
-        #     conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = lines['clave_sat'], Cantidad=lines['quantity'], ClaveUnidad = lines['clave_unidad'], Unidad='1', ValorUnitario=line['price_unit'], Importe=line['price_unit'] ,Descripcion=line['name'])
-        #     #conceptoType2 = api.ConceptoType(ClaveProdServ = '43232605', Cantidad='2', ClaveUnidad = '48', Unidad='1', ValorUnitario= '111.00', Importe='22.00' ,Descripcion='Servicio Medico 22')
-        #     conceptosType.add_Concepto(conceptoType1)
-        #conceptosType.add_Concepto(conceptoType2)
+        #Add al concepts on invoice lines
         for line in cfdi_data['invoice_products_line']:
             conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.product_id.name)
             conceptosType.add_Concepto(conceptoType1)
