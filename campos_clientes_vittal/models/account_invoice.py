@@ -77,36 +77,41 @@ class Invoice(models.Model):
         to_open_invoices.action_move_create()
         return to_open_invoices.invoice_validate()
 
+    #Take the data from teh invoice lines and return row/dict
     @api.one
     def action_cfdi_lines(self):
         rows =[]
         for line in self.invoice_line_ids:
-           dict_rows = {}
-           dict_rows["product_name"] = line.product_id.name
-           dict_rows["quantity"]= line.quantity
-           dict_rows["price_unit"]= line.price_unit
-           dict_rows["name"]= line.name
-           dict_rows["clave_sat"]= line.product_id.clave_sat
-           dict_rows["codigo_sat"]= line.product_id.codigo_sat
-           dict_rows["clave_unidad"]=line.product_id.clave_unidad
-           rows.append(dict_rows) 
+            dict_rows = {
+                "product_name" : line.product_id.name,
+                "quantity" : line.quantity,
+                "price_unit" : line.price_unit,
+                "name" : line.name,
+                "clave_sat" : line.product_id.clave_sat,
+                "codigo_sat" : line.product_id.codigo_sat,
+                "clave_unidad" : line.product_id.clave_unidad
+            }
+            rows.append(dict_rows) 
         return rows
 
+    #Take the data from teh invoice lines and return row/dict
     @api.one
     def action_cfdi_lines_multi(self,parameter_data):
         rows =[]
         for line in parameter_data.invoice_line_ids:
-           dict_rows = {}
-           dict_rows["product_name"] = line.product_id.name
-           dict_rows["quantity"]= line.quantity
-           dict_rows["price_unit"]= line.price_unit
-           dict_rows["name"]= line.name
-           dict_rows["clave_sat"]= line.product_id.clave_sat
-           dict_rows["codigo_sat"]= line.product_id.codigo_sat
-           dict_rows["clave_unidad"]=line.product_id.clave_unidad
+           dict_rows = {
+                "product_name" : line.product_id.name,
+                "quantity" : line.quantity,
+                "price_unit" : line.price_unit,
+                "name" : line.name,
+                "clave_sat" : line.product_id.clave_sat,
+                "codigo_sat" : line.product_id.codigo_sat,
+                "clave_unidad" : line.product_id.clave_unidad
+           }
            rows.append(dict_rows) 
         return rows
 
+    #Reads data from single invoices view and made the request for the cfdi
     @api.one
     def action_invoice_cfdi(self):
         #Prepare Folio and serie
@@ -162,6 +167,7 @@ class Invoice(models.Model):
 
         return True
 
+    #Reads data from invoices list view and made the request for the cfdi
     @api.multi
     def action_invoice_cfdi_multi(self):
         _logger.info("*********************** Call by action_invoice_cfdi_multi ***********************")
@@ -218,7 +224,7 @@ class Invoice(models.Model):
 
         return True
 
-        
+    # Returns the date to use on cdfi request format.
     @api.one
     def action_cfdi_paremeters(self):
         utcmoment_naive = datetime.utcnow()
@@ -232,6 +238,8 @@ class Invoice(models.Model):
         return satDateCFDI
 
     #@api.one
+    #Create CFDI request contents using RequestCFD_v33, RequestCFD_v33 was generated from the correspondent xsd file 
+    # that defines rules fro the request.   
     def CreateCFDIRequest(self,cfdi_data):
         fecha= self.action_cfdi_paremeters()
         #print("fecha: {}".format(fecha))
@@ -301,7 +309,7 @@ class Invoice(models.Model):
         return contents
 
 
-
+    #Takes the response from pegaso CDFI XML Element and return the requested attrib elements
     def response_cfdi_data(self,contents_xml,data_selector,info = True):
         root = etree.XML(contents_xml)
         if info:
