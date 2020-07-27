@@ -22,4 +22,4 @@ this operation reflects th changes.
 * Note: 
 
 This development is based on a main Module: "Odoo" and various submodules, like "campos_clientes_vittal", when you made changes on a submodule made sure you reflect the submodule change on the parent app.
-and make sure that teh parent app points to the correct commit on the submodule.
+and make sure that the parent app points to the correct commit on the submodule.
