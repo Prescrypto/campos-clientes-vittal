@@ -9,11 +9,14 @@ openerp.models_export_vittal = function(instance, local) {
       if (this.$buttons) {
         btnExport = this.$buttons.find('.export_button');
         btnExportAll = this.$buttons.find('.export_all_button');
+        //btnStampAll = this.$buttons.find('.stmp_all_button');
       }
 
       // PERFORM THE ACTION
-      btnExport.on('click', this.proxy('export_button'));
+      //btnExport.on('click', this.proxy('export_button'));
+      btnExport.on('click', this.proxy('stmp_all_button'));
       btnExportAll.on('click', this.proxy('export_all_button'));
+      //btnStampAll.on('click'), this.proxy('stmp_all_button');
     },
     export_button: function(event) {
       var type = event.target.dataset.type;
@@ -45,7 +48,29 @@ openerp.models_export_vittal = function(instance, local) {
         })
         .done(createCsv.bind(this, filename, type));
 
-    }
+    },
+    stmp_all_button : function(event) {
+      var myids = extractIds(this.records.records);
+      var filtered_ids = get_checked_rows(myids);
+      var type = event.target.dataset.type;
+      var filename = event.target.dataset.filename + '_completo.csv';
+      if(filtered_ids.length > 0){
+        //if there were some selected rows then filter the ids
+        myids = filtered_ids;
+      }
+      else{
+        //if none is selected then export all
+
+      }
+        //call the export all function on python and send the ids of the rows we need to export
+       new instance.web.Model(this.model)
+        //.call('stamp_all_cfdi', [myids], {
+        .call('action_invoice_cfdi_multi', [myids], {  
+          context: instance.session.user_context,
+        })
+        //.done(createCsv.bind(this, filename, type));
+
+    },
   });
 };
 

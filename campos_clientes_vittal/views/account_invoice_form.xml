@@ -18,7 +18,17 @@
                         <field name="sat_uso_id" options="{'no_create': True, 'no_open': True}" required="True"/>
                     </group>
                 </group>
+                <group string="SAT Response">
+                    <field name="sat_pegaso_request" required="False"/>
+                    <field name="sat_pegaso_response" required="False"/>
+                    <field name="sat_pegaso_ok" required="False"/>
+                    <field name="sat_pegaso_status" required="False"/>
+                    <field name="sat_pegaso_uuid" required="False" modifiers="{'readonly': true}"/>
+                    <button name="action_invoice_cfdi_multi" type="object" string="Timbrar" 
+                        attrs="{'invisible':['|',('sent','=',True), ('state', '!=', 'open')]}" class="oe_highlight" modifiers="{'invisible': ['|', ['sent', '=', true], ['state', '!=', 'open']]}"/>
+                </group>
             </notebook>
+
         </field>
     </record>
 
