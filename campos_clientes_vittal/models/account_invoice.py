@@ -146,7 +146,7 @@ class Invoice(models.Model):
         
         CFDIRequest = self.CreateCFDIRequest(client_dict)
         CFDIRequest_2 = CFDIRequest.replace('<RequestCFD>','<RequestCFD version="3.3">')
-        _logger.debug("CFDIRequest: {}".format(CFDIRequest_2))
+        _logger.info("CFDIRequest: {}".format(CFDIRequest_2))
         contents = BASE_XML.format(CFDIRequest_2)
         # Send Data to Pegaso
         url = REQUEST_URL
@@ -197,26 +197,38 @@ class Invoice(models.Model):
                  }
 
                 CFDIRequest = self.CreateCFDIRequest(client_dict)
-                CFDIRequest_2 = CFDIRequest.replace('<RequestCFD>','<RequestCFD version="3.3">')
+                if CFDIRequest.get('status_flag'):
 
-                _logger.debug("CFDIRequest: {}".format(CFDIRequest_2))
-                contents = BASE_XML.format(CFDIRequest_2)
-                # Send Data to Pegaso
-                url = REQUEST_URL
-                headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
-                response = requests.post(url, data=contents, headers=headers)
-                # Process Response
-                result_cfdi=self.response_cfdi_data(response.content,'Transaccion',info = True)
-                result_cfdi_TFD=self.response_cfdi_data(response.content,'TFD',info = True)
-                # Write results
-                line.write({'sat_pegaso_request': CFDIRequest_2})
-                line.write({'sat_pegaso_response': response.text })
-                line.write({'sat_pegaso_status': result_cfdi['estatus']})
-                line.write({'sat_pegaso_uuid': result_cfdi_TFD['UUID']})
-                line.write({'sat_pegaso_ok': True })
-                _logger.debug("CFDIResponse uuid: {}".format(result_cfdi_TFD['UUID']))
+                    CFDIRequest_2 = CFDIRequest.get('contents').replace('<RequestCFD>','<RequestCFD version="3.3">')
+
+                    _logger.info("CFDIRequest: {}".format(CFDIRequest_2))
+                    contents = BASE_XML.format(CFDIRequest_2)
+                    line.write({'sat_pegaso_request': CFDIRequest_2})
+
+                    # Send Data to Pegaso
+                    url = REQUEST_URL
+                    headers = {"Content-Type": "text/xml" , "SOAPAction": HEADER_SOAPACTION}
+                    response = requests.post(url, data=contents, headers=headers)
+                    line.write({'sat_pegaso_response': response.text })
+                    # Process Response
+                    result_cfdi=self.response_cfdi_data(response.content,'Transaccion',info = True)
+                    result_cfdi_TFD=self.response_cfdi_data(response.content,'TFD',info = True)
+                    # Write results
+                
+                    
+                    line.write({'sat_pegaso_status': result_cfdi.get('estatus','N/A')})
+                    line.write({'sat_pegaso_uuid': result_cfdi_TFD.get('UUID',None)})
+                    line.write({'sat_pegaso_ok': True })
+                    _logger.info("CFDIResponse uuid: {}".format(result_cfdi_TFD.get('UUID','')))
+                else:
+                    line.write({'sat_pegaso_request': CFDIRequest.get('contents')})
+                    line.write({'sat_pegaso_response': "ERROR" })
+                    line.write({'sat_pegaso_status': False})
+                    #line.write({'sat_pegaso_uuid': None })
+                    line.write({'sat_pegaso_ok': False })
+
             else:
-                _logger.debug("*********************** Do nothing in action_invoice_cfdi_multi ***********************")
+                _logger.info("*********************** Do nothing in action_invoice_cfdi_multi ***********************")
 
         return True
 
@@ -237,65 +249,80 @@ class Invoice(models.Model):
     #Create CFDI request contents using RequestCFD_v33, RequestCFD_v33 was generated from the correspondent xsd file 
     # that defines rules fro the request.   
     def CreateCFDIRequest(self,cfdi_data):
-        fecha= self.action_cfdi_paremeters()
+        _logger.info("*********************** Call by CreateCFDIRequest ***********************")
+        status_flag = True
+        try:
+            fecha= self.action_cfdi_paremeters()
+            #Correct date and transaction id
+            utcmoment_naive = datetime.utcnow()
+            utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
+            satLocalFormat = "%Y-%m-%dT%H:%M:%S"
+            satTimeZone = 'America/Mexico_City'
+            localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
+            satDateCFDI = localDatetime.strftime(satLocalFormat)
 
-        #Correct date and transaction id
-        utcmoment_naive = datetime.utcnow()
-        utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
-        satLocalFormat = "%Y-%m-%dT%H:%M:%S"
-        satTimeZone = 'America/Mexico_City'
-        localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
-        satDateCFDI = localDatetime.strftime(satLocalFormat)
-
-        #First create main document request
-        requestCFD = api_cfdi.RequestCFD()
-        requestCFD.set_version(version="3.3")
-        #Second add comprobant to requestCFD nested element inside requestCFD
-        #General Invoice Data
-        #comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
-        comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion=EMISOR_LUGAR ,MetodoPago=cfdi_data['sat_metodo_pago'] ,TipoDeComprobante='I', Total=cfdi_data['amount_total'], SubTotal=cfdi_data['amount_untaxed'] ,Moneda='MXN', FormaPago=cfdi_data['customer_payment_id'].zfill(2), Folio=cfdi_data['invoice_folio'], Serie=cfdi_data['invoice_series'] , Fecha=satDateCFDI )
-        #Emisor Data
-        emisorType = api_cfdi.EmisorType(Rfc = EMISOR_RFC, Nombre= EMISOR_NOMBRE, RegimenFiscal= EMISOR_REGIMENFISCAL)
-        #Receptor Data
-        receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'])
-        #Invoice Line Data
-        conceptosType = api_cfdi.ConceptosType()
-        #Add al concepts on invoice lines
-        for line in cfdi_data['invoice_products_line']:
-            conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.product_id.name)
-            conceptosType.add_Concepto(conceptoType1)
+            #First create main document request
+            requestCFD = api_cfdi.RequestCFD()
+            requestCFD.set_version(version="3.3")
+            #Second add comprobant to requestCFD nested element inside requestCFD
+            #General Invoice Data
+            #comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
+            comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion=EMISOR_LUGAR ,MetodoPago=cfdi_data['sat_metodo_pago'] ,TipoDeComprobante='I', Total=cfdi_data['amount_total'], SubTotal=cfdi_data['amount_untaxed'] ,Moneda='MXN', FormaPago=cfdi_data['customer_payment_id'].zfill(2), Folio=cfdi_data['invoice_folio'], Serie=cfdi_data['invoice_series'] , Fecha=satDateCFDI )
+            #Emisor Data
+            emisorType = api_cfdi.EmisorType(Rfc = EMISOR_RFC, Nombre= EMISOR_NOMBRE, RegimenFiscal= EMISOR_REGIMENFISCAL)
+            #Receptor Data
+            receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'])
+            #Invoice Line Data
+            conceptosType = api_cfdi.ConceptosType()
+            #Add al concepts on invoice lines
+            for line in cfdi_data['invoice_products_line']:
+                conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.product_id.name)
+                conceptosType.add_Concepto(conceptoType1)
 
 
-        comprobanteType.set_Conceptos(conceptosType)
-        comprobanteType.set_Emisor(emisorType)
-        comprobanteType.set_Receptor(receptorType)
-        transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
-        #transactionType=satTransactionID
-        tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
-        sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
-        receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
-        requestCFD.set_Comprobante(comprobanteType)
-        requestCFD.set_Transaccion(transactionType)
-        requestCFD.set_TipoComprobante(tipoComprobante)
-        requestCFD.set_Sucursal(sucursal)
-        requestCFD.set_Receptor(receptor)
+            comprobanteType.set_Conceptos(conceptosType)
+            comprobanteType.set_Emisor(emisorType)
+            comprobanteType.set_Receptor(receptorType)
+            transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            #transactionType=satTransactionID
+            tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
+            sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
+            receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
+            requestCFD.set_Comprobante(comprobanteType)
+            requestCFD.set_Transaccion(transactionType)
+            requestCFD.set_TipoComprobante(tipoComprobante)
+            requestCFD.set_Sucursal(sucursal)
+            requestCFD.set_Receptor(receptor)
 
-        salida = open(TEMPORAL_OUT_XML,"w+") 
-        requestCFD.export(salida,0)
-        salida.close()
+            salida = open(TEMPORAL_OUT_XML,"w+") 
+            requestCFD.export(salida,0)
+            salida.close()
 
-        # Save Request to file
-        f = open(TEMPORAL_OUT_XML,"r")
-        if f.mode == 'r':
-            contents =f.read()
-        f.close()
+            # Save Request to file
+            f = open(TEMPORAL_OUT_XML,"r")
+            if f.mode == 'r':
+                contents =f.read()
+            f.close()
 
-        contents_full = BASE_XML.format(contents)
-        contents_full_2 = contents_full.replace('<RequestCFD>','<RequestCFD version="3.3">')
-        file = open(TEMPORAL_OUT_XML_OK,"w")
-        file.write(contents_full_2)
-        file.close()
-        return contents
+            contents_full = BASE_XML.format(contents)
+            contents_full_2 = contents_full.replace('<RequestCFD>','<RequestCFD version="3.3">')
+            file = open(TEMPORAL_OUT_XML_OK,"w")
+            file.write(contents_full_2)
+            file.close()
+
+        except Exception as e:
+            _logger.info("*********************** Error on Call by CreateCFDIRequest ***********************")
+            _logger.info(e)
+            _logger.info("*********************** ********************************** ***********************")
+            _logger.info(cfdi_data)
+            _logger.info("*********************** ********************************** ***********************")
+            contents = "CreateCFDIRequest problem: {} |**************| cfdi_data: {}".format(str(e),str(cfdi_data))
+
+            #contents += "**************"
+            #contents += "cfdi_data: {}".format(str(cfdi_data))
+            status_flag = False
+
+        return {'contents' : contents, 'status_flag': status_flag}
 
 
     #Takes the response from pegaso CDFI XML Element and return the requested attrib elements
@@ -303,7 +330,7 @@ class Invoice(models.Model):
         root = etree.XML(contents_xml)
         if info:
             for idt,element in enumerate(root.iter()):
-                _logger.debug("%s .- %s || %s" % (idt, element.tag, element.text))
+                _logger.info("%s .- %s || %s" % (idt, element.tag, element.text))
 
         option = {
             'Envelope': '{http://schemas.xmlsoap.org/soap/envelope/}Envelope',
@@ -318,8 +345,8 @@ class Invoice(models.Model):
             'Error':'{http://www.pegasotecnologia.com/}Error',
             'Comprobante': 'Comprobante'
         }
-        loop_atrib = ""
+        loop_atrib = {}
         for idx, item in enumerate(root.iter(option[data_selector])):
             loop_atrib=item.attrib
-            _logger.debug("loop_atrib: {}".format(loop_atrib))
+            _logger.info("loop_atrib: {}".format(loop_atrib))
         return loop_atrib   
