@@ -12,8 +12,9 @@
                 <button class="btn btn-sm export_button" data-type="orders" data-filename="Facturas" type="button">Export Uninvoiced</button>
             </t-->
             <t t-if="widget.model=='account.invoice'">
-                <button class="btn btn-sm export_button" data-type="orders" data-filename="Facturas" type="button">Exportar sin facturar</button>
+                <button class="btn btn-sm export_button" data-type="orders" data-filename="Facturas" type="button">Timbrar</button>
             </t>
+
         </t>
     </t>
 </template>

@@ -54,7 +54,8 @@ class UserClient(models.Model):
     # tipo de usuario adicional
     client_type = fields.Selection(selection=[("company", "Empresa"),
                                               ("family", "Familia"),
-                                              ("private", "Privado")], string="Tipo de cliente")
+                                              ("private", "Privado"),], string="Tipo de cliente")
+
 
     # nombre comercial
     legal_name = fields.Char("Nombre comercial")
@@ -156,6 +157,12 @@ class UserClient(models.Model):
     # Facturas pendientes de pago
     outstanding = fields.Boolean('Factura pendiente de pago', compute="_get_outstanding", store=False)
 
+    # Sales Rep
+    sales_rep = fields.Char("Representante de ventas")
+
+    # Prospect
+    sales_prospect = fields.Boolean('Prospecto')
+
     # Calcular dirección
     @api.one
     def _get_fiscal_address(self):
@@ -205,7 +212,9 @@ class UserClient(models.Model):
                 'references': partner.references,
                 'exterior': partner.exterior,
                 'details': partner.details,
-                'customer': False
+                'customer': False,
+                'sales_rep': partner.sales_rep,
+                'sales_prospect': partner.sales_prospect,
             }
             self.create(new_vals)
         elif partner.main_fiscal_address:

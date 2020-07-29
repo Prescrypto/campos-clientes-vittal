@@ -26,6 +26,13 @@
                         <div class="o_row" attrs="{'invisible': [('client_type', '!=', 'private')]}">
                             <field name="curp" placeholder="CURP"/>
                         </div>
+                        <div class="o_row">
+                            <field name="sales_rep" placeholder="Vendedor" attrs="{'required': True}"/>
+                        </div>
+                        <div class="o_row">
+                            <attribute name="string">Es Prospecto</attribute>
+                            <field name="sales_prospect" placeholder="Prospecto.." attrs="{'required': True}"/>
+                        </div>
                     </div>
                 </xpath>
 
@@ -127,6 +134,7 @@
                 <field name="title" position="replace"/>
                 <!-- Agregar copago -->
                 <field name="email" position="after">
+                    <field name="rfc" placeholder="RFC"/>
                     <field name="copago"/>
                     <field name="copago_amount" attrs="{'invisible': [('copago','=',False)]}"/>
                     <field name="outstanding" invisible="True"/>
