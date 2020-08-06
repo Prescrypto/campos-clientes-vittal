@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 import RequestCFD_v33 as api_cfdi
 import requests
 import os
+import traceback
 #import xmltodict, json
 
 _logger = logging.getLogger(__name__)
@@ -58,7 +59,7 @@ class Invoice(models.Model):
     sat_pegaso_response = fields.Text("Pegaso Response")
     sat_pegaso_uuid = fields.Char(string="UUID")
     sat_pegaso_status = fields.Char(string="Status")
-    sat_pegaso_ok = user_active = fields.Boolean("Timbrado")
+    sat_pegaso_ok = fields.Boolean("Timbrado")
     #################################
 
     @api.onchange('partner_id')
@@ -140,8 +141,8 @@ class Invoice(models.Model):
          'amount_total': self.amount_total,
          'sat_metodo_pago': self.sat_metodo_pago
          }
-        _logger.debug('send message to debug')
-        _logger.debug("self:{}".format(self))
+        _logger.info('send message to debug')
+        _logger.info("self:{}".format(self))
         _logger.info('send message to info')
         
         CFDIRequest = self.CreateCFDIRequest(client_dict)
@@ -156,7 +157,7 @@ class Invoice(models.Model):
         result_cfdi_TFD=self.response_cfdi_data(response.content,'TFD',info = True)
         self.write({'sat_pegaso_request': CFDIRequest_2})
         #Send data to log
-        _logger.debug(response.text)
+        _logger.info(response.text)
         self.write({'sat_pegaso_response': response.text })
         self.write({'sat_pegaso_status': result_cfdi['estatus']})
         self.write({'sat_pegaso_uuid': result_cfdi_TFD['UUID']})
@@ -267,19 +268,37 @@ class Invoice(models.Model):
             #Second add comprobant to requestCFD nested element inside requestCFD
             #General Invoice Data
             #comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
-            comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion=EMISOR_LUGAR ,MetodoPago=cfdi_data['sat_metodo_pago'] ,TipoDeComprobante='I', Total=cfdi_data['amount_total'], SubTotal=cfdi_data['amount_untaxed'] ,Moneda='MXN', FormaPago=cfdi_data['customer_payment_id'].zfill(2), Folio=cfdi_data['invoice_folio'], Serie=cfdi_data['invoice_series'] , Fecha=satDateCFDI )
+            comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion=EMISOR_LUGAR ,MetodoPago=cfdi_data['sat_metodo_pago'] ,TipoDeComprobante='I', Total=cfdi_data['amount_total'], SubTotal=cfdi_data['amount_untaxed'] ,Impuestos=cfdi_data['amount_tax'] ,Moneda='MXN', FormaPago=cfdi_data['customer_payment_id'].zfill(2), Folio=cfdi_data['invoice_folio'], Serie=cfdi_data['invoice_series'] , Fecha=satDateCFDI )
             #Emisor Data
             emisorType = api_cfdi.EmisorType(Rfc = EMISOR_RFC, Nombre= EMISOR_NOMBRE, RegimenFiscal= EMISOR_REGIMENFISCAL)
             #Receptor Data
             receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'])
             #Invoice Line Data
             conceptosType = api_cfdi.ConceptosType()
+            #Invoice Taxes
+            trasladosType = api_cfdi.TrasladosType()
+            impuestosType = api_cfdi.ImpuestosType()
+            impuestosType2 = api_cfdi.ImpuestosType2(TotalImpuestosTrasladados=cfdi_data['amount_tax'])
+    
+            trasladoType6=api_cfdi.TrasladoType6(Impuesto="002", TipoFactor="Tasa", TasaOCuota="0.160000", Importe=cfdi_data['amount_tax'])
+            #trasladoType6.set_Traslado(Impuesto="002", TipoFactor="Tasa", TasaOCuota="0.160000", Importe="8.00")
+            trasladosType5 = api_cfdi.TrasladosType5()
+
+            trasladosType5.add_Traslado(trasladoType6)
+            impuestosType2.set_Traslados(trasladosType5)
+
             #Add al concepts on invoice lines
             for line in cfdi_data['invoice_products_line']:
                 conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.product_id.name)
+                trasladoType = api_cfdi.TrasladoType(Base=line.price_unit, Impuesto="002", TipoFactor="Tasa", TasaOCuota="0.160000" ,Importe=line.price_unit*0.16)
+                #trasladosType = api_cfdi.TrasladosType()
+                trasladosType.add_Traslado(trasladoType)
+                impuestosType.set_Traslados(trasladosType)
+                #conceptoType1.set_Impuestos(trasladosType)
+                conceptoType1.set_Impuestos(impuestosType)
                 conceptosType.add_Concepto(conceptoType1)
 
-
+            comprobanteType.set_Impuestos(impuestosType2)
             comprobanteType.set_Conceptos(conceptosType)
             comprobanteType.set_Emisor(emisorType)
             comprobanteType.set_Receptor(receptorType)
@@ -288,6 +307,8 @@ class Invoice(models.Model):
             tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
             sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
             receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
+            #impuestos = api_cfdi.ImpuestosType2(TotalImpuestosTrasladados=cfdi_data['amount_tax']
+            #comprobanteType.set_Impuestos(impuestos)
             requestCFD.set_Comprobante(comprobanteType)
             requestCFD.set_Transaccion(transactionType)
             requestCFD.set_TipoComprobante(tipoComprobante)
@@ -313,6 +334,8 @@ class Invoice(models.Model):
         except Exception as e:
             _logger.info("*********************** Error on Call by CreateCFDIRequest ***********************")
             _logger.info(e)
+            _logger.info("*********************** ********************************** ***********************")
+            _logger.info(traceback.format_exc())
             _logger.info("*********************** ********************************** ***********************")
             _logger.info(cfdi_data)
             _logger.info("*********************** ********************************** ***********************")
