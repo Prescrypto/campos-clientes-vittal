@@ -44,7 +44,11 @@ class AccountInvoice(models.Model):
                 print("Selected invoices: {}".format(line) )
                 line.write({'sat_pegaso_response': "response.text" })
                 self.action_invoice_cfdi(line)
-        return True
+        #return True
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
 
 class AccountInvoiceLine(models.Model):
