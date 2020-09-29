@@ -199,7 +199,7 @@ class Invoice(models.Model):
                  'sat_metodo_pago': line.sat_metodo_pago
                  }
 
-                if self.amount_tax != 0:
+                if line.amount_tax != 0:
                     CFDIRequest = self.CreateCFDIRequest(client_dict)
                 else:
                     CFDIRequest = self.CreateCFDIRequestNoTax(client_dict)
