@@ -199,7 +199,7 @@ class Invoice(models.Model):
                  'sat_metodo_pago': line.sat_metodo_pago
                  }
 
-                if self.amount_tax != 0:
+                if line.amount_tax != 0:
                     CFDIRequest = self.CreateCFDIRequest(client_dict)
                 else:
                     CFDIRequest = self.CreateCFDIRequestNoTax(client_dict)
@@ -299,7 +299,7 @@ class Invoice(models.Model):
 
             #Add al concepts on invoice lines
             for line in cfdi_data['invoice_products_line']:
-                conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.product_id.name)
+                conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.name)
                 #if cfdi_data['amount_tax'] != 0:
                 trasladoType = api_cfdi.TrasladoType(Base=line.price_unit, Impuesto="002", TipoFactor="Tasa", TasaOCuota="0.160000" ,Importe=line.price_unit*0.16)
                 #trasladosType = api_cfdi.TrasladosType()
@@ -401,7 +401,7 @@ class Invoice(models.Model):
 
             #Add al concepts on invoice lines
             for line in cfdi_data['invoice_products_line']:
-                conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.product_id.name)
+                conceptoType1 = api_cfdi.ConceptoType(ClaveProdServ = line.product_id.clave_sat, Cantidad=line.quantity, ClaveUnidad = line.product_id.clave_unidad, Unidad='1', ValorUnitario=line.price_unit, Importe=line.price_unit ,Descripcion=line.name)
                 #if cfdi_data['amount_tax'] != 0:
                 #trasladoType = api_cfdi.TrasladoType(Base=line.price_unit, Impuesto="002", TipoFactor="Tasa", TasaOCuota="0.160000" ,Importe=line.price_unit*0.16)
                 #trasladosType = api_cfdi.TrasladosType()

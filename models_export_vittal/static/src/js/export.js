@@ -69,7 +69,7 @@ openerp.models_export_vittal = function(instance, local) {
           context: instance.session.user_context,
         })
         //.done(createCsv.bind(this, filename, type));
-
+      location.reload();  
     },
   });
 };
