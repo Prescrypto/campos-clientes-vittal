@@ -314,7 +314,8 @@ class Invoice(models.Model):
             comprobanteType.set_Conceptos(conceptosType)
             comprobanteType.set_Emisor(emisorType)
             comprobanteType.set_Receptor(receptorType)
-            transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            #transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            transactionType = api_cfdi.TransaccionType(id=satDateCFDI+cfdi_data['invoice_series']+cfdi_data['invoice_folio'])
             #transactionType=satTransactionID
             tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
             sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
@@ -416,7 +417,8 @@ class Invoice(models.Model):
             comprobanteType.set_Conceptos(conceptosType)
             comprobanteType.set_Emisor(emisorType)
             comprobanteType.set_Receptor(receptorType)
-            transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            #transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            transactionType = api_cfdi.TransaccionType(id=satDateCFDI+cfdi_data['invoice_series']+cfdi_data['invoice_folio'])
             #transactionType=satTransactionID
             tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
             sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
