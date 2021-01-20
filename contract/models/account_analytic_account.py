@@ -31,6 +31,11 @@ class AccountAnalyticAccount(models.Model):
 
     #################################
 
+    recurring_payment_days = fields.Integer(
+        default = 7,
+        string = "Plazo Pago",
+        )
+
     contract_template_id = fields.Many2one(
         string='Contract Template',
         comodel_name='account.analytic.contract',
