@@ -33,7 +33,7 @@ class AccountAnalyticAccount(models.Model):
 
     recurring_payment_days = fields.Integer(
         default = 7,
-        string = "Plazo Pago",
+        string = "Dias de Pago",
         )
 
     contract_template_id = fields.Many2one(
@@ -114,6 +114,7 @@ class AccountAnalyticAccount(models.Model):
         self.sat_uso_id = self.partner_id.fiscal_address.sat_uso_id
         self.sat_metodo_pago = self.partner_id.fiscal_address.sat_metodo_pago
         self.sat_pagos_id = self.partner_id.fiscal_address.sat_pagos_id
+        self.recurring_payment_days = self.recurring_payment_days
 
     @api.constrains('partner_id', 'recurring_invoices')
     def _check_partner_id_recurring_invoices(self):
@@ -265,7 +266,8 @@ class AccountAnalyticAccount(models.Model):
             'user_id': self.partner_id.user_id.id,
             'sat_uso_id': self.sat_uso_id,
             'sat_metodo_pago': self.sat_metodo_pago,
-            'sat_pagos_id': self.sat_pagos_id
+            'sat_pagos_id': self.sat_pagos_id,
+            'recurring_payment_days': self.recurring_payment_days
         })
         # Get other invoice values from partner onchange
         invoice._onchange_partner_id()
