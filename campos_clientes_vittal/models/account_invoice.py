@@ -60,10 +60,10 @@ class Invoice(models.Model):
     sat_pegaso_uuid = fields.Char(string="UUID")
     sat_pegaso_status = fields.Char(string="Status")
     sat_pegaso_ok = fields.Boolean("Timbrado")
-    recurring_payment_days = fields.Integer(
-        default = 7,
-        string = "Dias de Pago",
-        )
+    # recurring_payment_days = fields.Integer(
+    #     default = 7,
+    #     string = "Dias de Pago",
+    #     )
     #################################
 
     @api.onchange('partner_id')

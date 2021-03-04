@@ -16,7 +16,7 @@
                     </group>
                     <group>
                         <field name="sat_uso_id" options="{'no_create': True, 'no_open': True}" required="True"/>
-                        <field name="recurring_payment_days" required="True"/>
+                        <!-- <field name="recurring_payment_days" required="True"/> -->
                     </group>
                 </group>
                 <group string="SAT Response">
