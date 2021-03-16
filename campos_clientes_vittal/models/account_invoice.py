@@ -71,7 +71,7 @@ class Invoice(models.Model):
         self.sat_uso_id = self.partner_id.fiscal_address.sat_uso_id
         self.sat_metodo_pago = self.partner_id.fiscal_address.sat_metodo_pago
         self.sat_pagos_id = self.partner_id.fiscal_address.sat_pagos_id
-        self.recurring_payment_days = self.recurring_payment_days
+        #self.recurring_payment_days = self.recurring_payment_days
 
     @api.multi
     def action_invoice_open(self):
