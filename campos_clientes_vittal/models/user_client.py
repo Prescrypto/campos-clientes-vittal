@@ -163,6 +163,9 @@ class UserClient(models.Model):
     # Prospect
     sales_prospect = fields.Boolean('Prospecto')
 
+    #Afiliados Estimados por convenio
+    estimated_affiliates = fields.Integer('Afiliados Estimados')
+
     # Calcular dirección
     @api.one
     def _get_fiscal_address(self):
