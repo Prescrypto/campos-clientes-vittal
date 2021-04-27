@@ -164,7 +164,7 @@ class UserClient(models.Model):
     sales_prospect = fields.Boolean('Prospecto')
 
     #Afiliados Estimados por convenio
-    estimated_affiliates = fields.Integer('Afiliados Estimados')
+    estimated_affiliates = fields.Integer('Afiliados Estimados', default=5)
 
     # Calcular dirección
     @api.one
