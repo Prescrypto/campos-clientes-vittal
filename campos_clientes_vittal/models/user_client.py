@@ -163,6 +163,10 @@ class UserClient(models.Model):
     # Prospect
     sales_prospect = fields.Boolean('Prospecto')
 
+    #headquarter
+    headquarter = fields.Selection(selection=[("cdmx", "CDMX"),
+                                              ("puebla", "Puebla"),], string="Sede" , default="cdmx")
+
     # Calcular dirección
     @api.one
     def _get_fiscal_address(self):
@@ -215,6 +219,7 @@ class UserClient(models.Model):
                 'customer': False,
                 'sales_rep': partner.sales_rep,
                 'sales_prospect': partner.sales_prospect,
+                'headquarter': partner.headquarter,
             }
             self.create(new_vals)
         elif partner.main_fiscal_address:

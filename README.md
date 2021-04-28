@@ -23,3 +23,25 @@ this operation reflects th changes.
 
 This development is based on a main Module: "Odoo" and various submodules, like "campos_clientes_vittal", when you made changes on a submodule made sure you reflect the submodule change on the parent app.
 and make sure that the parent app points to the correct commit on the submodule.
+
+
+* Vagrant Ambient:
+
+cd /vagrant
+
+source virtualenv/bin/activate
+
+cd odoo/
+
+./odoo-bin -r vagrant -w vagrant -d db_odoo --db_host 127.0.0.1 --addons-path=addons,prescrypto/campos_clientes_vittal --dev=all -u campos_clientes_vittal,account,contacts,sale,product,base,l10n_mx,contract,models_export_vittal,base,board,account,crm --log-request --log-response --log-web --log-level=debug --logfile=/vagrant/logs/prescrypto_odoo.log --logrotate
+
+
+deactivate
+
+http://192.168.50.4:8069/
+
+
+\                    <field name="recurring_payment_days"/>
+
+* Extra Modules
+add module journal cancel to enable invoice cancelation

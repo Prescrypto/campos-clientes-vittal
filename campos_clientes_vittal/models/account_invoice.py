@@ -60,6 +60,10 @@ class Invoice(models.Model):
     sat_pegaso_uuid = fields.Char(string="UUID")
     sat_pegaso_status = fields.Char(string="Status")
     sat_pegaso_ok = fields.Boolean("Timbrado")
+    # recurring_payment_days = fields.Integer(
+    #     default = 7,
+    #     string = "Dias de Pago",
+    #     )
     #################################
 
     @api.onchange('partner_id')
@@ -67,6 +71,7 @@ class Invoice(models.Model):
         self.sat_uso_id = self.partner_id.fiscal_address.sat_uso_id
         self.sat_metodo_pago = self.partner_id.fiscal_address.sat_metodo_pago
         self.sat_pagos_id = self.partner_id.fiscal_address.sat_pagos_id
+        #self.recurring_payment_days = self.recurring_payment_days
 
     @api.multi
     def action_invoice_open(self):
@@ -314,7 +319,8 @@ class Invoice(models.Model):
             comprobanteType.set_Conceptos(conceptosType)
             comprobanteType.set_Emisor(emisorType)
             comprobanteType.set_Receptor(receptorType)
-            transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            #transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            transactionType = api_cfdi.TransaccionType(id=satDateCFDI+cfdi_data['invoice_series']+cfdi_data['invoice_folio'])
             #transactionType=satTransactionID
             tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
             sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
@@ -416,7 +422,8 @@ class Invoice(models.Model):
             comprobanteType.set_Conceptos(conceptosType)
             comprobanteType.set_Emisor(emisorType)
             comprobanteType.set_Receptor(receptorType)
-            transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            #transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
+            transactionType = api_cfdi.TransaccionType(id=satDateCFDI+cfdi_data['invoice_series']+cfdi_data['invoice_folio'])
             #transactionType=satTransactionID
             tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
             sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
