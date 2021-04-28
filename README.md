@@ -39,3 +39,9 @@ cd odoo/
 deactivate
 
 http://192.168.50.4:8069/
+
+
+\                    <field name="recurring_payment_days"/>
+
+* Extra Modules
+add module journal cancel to enable invoice cancelation
