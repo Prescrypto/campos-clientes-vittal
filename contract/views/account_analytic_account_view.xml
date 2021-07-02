@@ -18,6 +18,7 @@
             </field>
             <field name="tag_ids" position="after">
                 <field name="sat_uso_id" options="{'no_create': True, 'no_open': True}"/>
+                <!-- <field name="recurring_payment_days"/> -->
             </field>
             <xpath expr="//div[@name='button_box']/.." position="before">
                 <header>

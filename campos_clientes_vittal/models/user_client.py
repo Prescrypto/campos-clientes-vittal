@@ -163,8 +163,13 @@ class UserClient(models.Model):
     # Prospect
     sales_prospect = fields.Boolean('Prospecto')
 
+
     #Afiliados Estimados por convenio
     estimated_affiliates = fields.Integer('Afiliados Estimados', default=5)
+
+    #headquarter
+    headquarter = fields.Selection(selection=[("cdmx", "CDMX"),
+                                              ("puebla", "Puebla"),], string="Sede" , default="cdmx")
 
     # Calcular dirección
     @api.one
@@ -191,38 +196,39 @@ class UserClient(models.Model):
                 super(UserClient, p).write({'main_fiscal_address': True})
         return result
 
-    @api.model
-    def create(self, vals):
-        partner = super(UserClient, self).create(vals)
-        if not partner.parent_id:
-            new_vals = {
-                'parent_id': partner.id,
-                'name': partner.name,
-                'street': partner.street,
-                'street2': partner.street2,
-                'sat_municipio_id': partner.sat_municipio_id.id,
-                'sat_estado_id': partner.sat_estado_id.id,
-                'zip': partner.zip,
-                'sat_colonia_id': partner.sat_colonia_id.id,
-                'sat_pais_id': partner.sat_pais_id.id,
-                'phone': partner.phone,
-                'mobile': partner.mobile,
-                'email': partner.email,
-                'type': 'coverage',
-                'zone': partner.zone,
-                'cross_street': partner.cross_street,
-                'crosses_with': partner.crosses_with,
-                'references': partner.references,
-                'exterior': partner.exterior,
-                'details': partner.details,
-                'customer': False,
-                'sales_rep': partner.sales_rep,
-                'sales_prospect': partner.sales_prospect,
-            }
-            self.create(new_vals)
-        elif partner.main_fiscal_address:
-            partner.write({'main_fiscal_address': True})
-        return partner
+    # @api.model
+    # def create(self, vals):
+    #     partner = super(UserClient, self).create(vals)
+    #     if not partner.parent_id:
+    #         new_vals = {
+    #             'parent_id': partner.id,
+    #             'name': partner.name,
+    #             'street': partner.street,
+    #             'street2': partner.street2,
+    #             'sat_municipio_id': partner.sat_municipio_id.id,
+    #             'sat_estado_id': partner.sat_estado_id.id,
+    #             'zip': partner.zip,
+    #             'sat_colonia_id': partner.sat_colonia_id.id,
+    #             'sat_pais_id': partner.sat_pais_id.id,
+    #             'phone': partner.phone,
+    #             'mobile': partner.mobile,
+    #             'email': partner.email,
+    #             'type': 'coverage',
+    #             'zone': partner.zone,
+    #             'cross_street': partner.cross_street,
+    #             'crosses_with': partner.crosses_with,
+    #             'references': partner.references,
+    #             'exterior': partner.exterior,
+    #             'details': partner.details,
+    #             'customer': False,
+    #             'sales_rep': partner.sales_rep,
+    #             'sales_prospect': partner.sales_prospect,
+    #             'headquarter': partner.headquarter,
+    #         }
+    #         self.create(new_vals)
+    #     elif partner.main_fiscal_address:
+    #         partner.write({'main_fiscal_address': True})
+    #     return partner
 
     def name_get(self):
         ''' Cambiar formato de nombre de titular y direcciones '''

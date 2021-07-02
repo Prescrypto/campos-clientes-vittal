@@ -70,6 +70,7 @@
                     <field name="sat_pais_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_pais_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_address_pais"/>
                     <!-- agregar campo de zona -->
                     <field name="zone" attrs="{'required': True}"/>
+                    <field name="headquarter" attrs="{'required': True}"/>
                     <!-- campos adicionales de cobertura -->
                     <!-- agregar poblacion
                     <field name="poblacion"/>-->
