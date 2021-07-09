@@ -71,6 +71,7 @@
                     <!-- agregar campo de zona -->
                     <field name="zone" attrs="{'required': True}"/>
                     <field name="headquarter" attrs="{'required': True}"/>
+                    <field name="estimated_affiliates" attrs="{'required': True}" />
                     <!-- campos adicionales de cobertura -->
                     <!-- agregar poblacion
                     <field name="poblacion"/>-->
