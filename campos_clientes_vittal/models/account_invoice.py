@@ -3,6 +3,10 @@
 from odoo import models, fields, api
 
 
+_logger = logging.getLogger(__name__)
+
+
+
 class Invoice(models.Model):
     _inherit = 'account.invoice'
 
@@ -26,12 +30,10 @@ class Invoice(models.Model):
         self.sat_metodo_pago = self.partner_id.fiscal_address.sat_metodo_pago
         self.sat_pagos_id = self.partner_id.fiscal_address.sat_pagos_id
 
-    @api.multi
-    def action_invoice_open(self):
-        # lots of duplicate calls to action_invoice_open, so we remove those already open
-        to_open_invoices = self.filtered(lambda inv: inv.state != 'open')
-        if to_open_invoices.filtered(lambda inv: inv.state not in ['proforma2', 'draft']):
-            raise UserError(_("Invoice must be in draft or Pro-forma state in order to validate it."))
-        to_open_invoices.action_date_assign()
-        to_open_invoices.action_move_create()
-        return to_open_invoices.invoice_validate()
+    @api.one
+    def action_invoice_cfdi(self):
+        _logger.debug('send message to debug')
+        _logger.info('send message to info')
+        self.write({'sat_pegaso_request': ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(randint(9,15)))})
+        #self.sat_pegaso_request = self.sat_pegaso_request + "TEst"
+        return True
