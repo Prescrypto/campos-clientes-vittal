@@ -73,8 +73,9 @@
                     <field name="headquarter" attrs="{'required': True}"/>
                     <field name="estimated_affiliates" attrs="{'required': True}" />
                     <!-- CFDI 4 requirments -->
-                    <field name="sat_zip_code" attrs="{'required': True}" />
-                    <field name="sat_regimen_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_regimen_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_regimen"/>
+                    <!-- <field name="sat_zip_code" attrs="{'required': True}" /> -->
+                    <field name="sat_regimen_id" attrs="{'required': True}"/>
+                    <!-- <field name="sat_regimen_id" context="{'form_view_ref': 'campos_clientes_vittal.sat_regimen_form'}" options="{'no_create': True}" attrs="{'required': True}" class="o_sat_regimen"/> -->
                     <!-- campos adicionales de cobertura -->
                     <!-- agregar poblacion
                     <field name="poblacion"/>-->

@@ -185,7 +185,7 @@ class UserClient(models.Model):
 
     #Afiliados Estimados por convenio
     estimated_affiliates = fields.Integer('Afiliados Estimados', default=5)
-    sat_zip_code = fields.Char('CFDI - Codigo Postal')
+    #sat_zip_code = fields.Char('CFDI - Codigo Postal')
     #sat_regimen_id = fields.Many2one("sat.regimen", "Regimen Fiscal")
     sat_regimen_id = fields.Selection(selection=SAT_REGIMEN, string="Regimen Fiscal")
 
