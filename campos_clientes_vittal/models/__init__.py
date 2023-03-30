@@ -12,3 +12,4 @@ import sat_municipio
 import sat_uso
 import sat_pagos
 import account_invoice
+import sat_regimen

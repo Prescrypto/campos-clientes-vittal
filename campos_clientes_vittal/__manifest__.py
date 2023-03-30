@@ -16,7 +16,7 @@
     # for the full list
     'category': 'Specific Industry Applications',
 
-    'version': '0.36',
+    'version': '0.39',
 
 
     #Comentario de prueba
@@ -46,6 +46,7 @@
         'data/sat.pais.csv',
         'data/sat.uso.csv',
         'data/sat.pagos.csv',
+        'data/sat.regimen.csv',
         'views/sat_colonia_form.xml',
         'views/sat_municipio_form.xml',
         'views/sat_estado_form.xml',
@@ -70,6 +71,7 @@
         'views/client_filter.xml',
         'views/sales_menu.xml',
         'views/static_assets.xml',
+        'views/sat_regimen_form.xml',
     ],
     # styles
     'css': [
