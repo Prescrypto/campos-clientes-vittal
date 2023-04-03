@@ -16,7 +16,7 @@
     # for the full list
     'category': 'Specific Industry Applications',
 
-    'version': '0.39',
+    'version': '0.41',
 
 
     #Comentario de prueba
