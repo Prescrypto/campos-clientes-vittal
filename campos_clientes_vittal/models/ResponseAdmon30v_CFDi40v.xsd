@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="ResponseAdmon">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Transaccion">
+					<xs:complexType>
+						<xs:attribute name="id" use="required">
+							<xs:annotation>
+								<xs:documentation>Numero de transaccion (ITU)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="tipo" use="required">
+							<xs:annotation>
+								<xs:documentation>
+									Tipo de transaccion solicitada
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="EMISION" />
+									<xs:enumeration value="CANCELACION" />
+									<xs:enumeration value="REEMISION" />
+									<xs:enumeration value="CONSULTA" />
+									<xs:enumeration value="REENVIO" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="estatus" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para senalar el resultado de una operacion</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="collapse" />
+									<xs:enumeration value="EXITO">
+										<xs:annotation>
+											<xs:documentation>Operacion realizada con exito</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="ERROR">
+										<xs:annotation>
+											<xs:documentation>Operacion sin exito</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="PREVIAMENTE_EMITIDO">
+										<xs:annotation>
+											<xs:documentation>Operacion no realizada por tratarse de un comprobante previamente emitido</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="folioConfirmacion" use="optional">
+							<xs:annotation>
+								<xs:documentation>Folio unico de confirmacion de la cancelacion</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CFD" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Datos del Comprobante Fiscal Digital. Aplica en caso de Transacciones concluidas con Exito
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="serie" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para precisar la serie a la que corresponde el comprobante. Este atributo acepta una cadena de caracteres alfabeticos de 1 a 10 caracteres sin incluir caracteres acentuados.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+									<xs:maxLength value="10" />
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="folio" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para precisar el folio del comprobante.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+									<xs:maxLength value="20" />
+									<xs:whiteSpace value="collapse" />
+									<xs:pattern value="[0-9]+" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="fecha" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para la expresion de la fecha y hora de expedicion  del comprobante fiscal. Se expresa en la forma aaaa-mm-ddThh:mm:ss, de acuerdo con la especificacion ISO 8601.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:dateTime">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="sello" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para contener el sello digital del comprobante fiscal, al que hacen referencia las reglas de resolucion miscelanea aplicable. El sello debera ser expresado como una cadena de texto en formato Base 64.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:base64Binary">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="noAprobacion" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para precisar el numero de aprobacion emitido por el SAT, para el rango de folios al que pertenece el folio particular que ampara el comprobante fiscal digital (No aplica para Comprobantes version 3).</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="anoAprobacion" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para precisar el ano en que se solicito el folio que se estan utilizando para emitir el comprobante fiscal digital (No aplica para Comprobantes version 3).</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:whiteSpace value="collapse" />
+									<xs:totalDigits value="4" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="noCertificado" use="optional">
+							<xs:annotation>
+								<xs:documentation> Atributo opcional para expresar el numero de serie del certificado de sello digital que ampara al comprobante, de acuerdo al acuse correspondiente a 20 posiciones otorgado por el sistema del SAT.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="20" />
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="cadenaOriginal" use="optional">
+							<xs:annotation>
+								<xs:documentation>
+									Cadena original del comprobante
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="comprobanteStr" use="optional">
+							<xs:annotation>
+								<xs:documentation>Contiene la representacion xml del comprobante en un formato de cadena</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="codigoDeBarras" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para contener Codigo de Barras generado conforme al Anexo 20 para los Comprobantes version 3. El Codigo de Barras debera ser expresado como una cadena de texto en formato Base 64.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:base64Binary">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Proveedor" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Elemento opcional para especificar los datos de Provedor de Servicio de Emision de CFDs (en caso de que el comprobante sea version 2 y haya sido emitido por el servicio administrado)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="rfc" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para especificar el Registro Federal de Contribuyentes del Provedor de Servicios.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="collapse" />
+									<xs:maxLength value="13" />
+									<xs:minLength value="12" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="nombre" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para especificar la Razon Social del Provedor de Servicios.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="collapse" />
+									<xs:minLength value="1" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="noAutorizacion" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para especificar el numero de autorizacion del Provedor de Servicios ante el SAT.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="fechaAutorizacion" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para la expresion de la fecha y hora de la autorizacion del Proveedor de Servios ante el SAT. Se expresa en la forma aaaa-mm-ddThh:mm:ss, de acuerdo con la especificacion ISO 8601.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:dateTime">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="sello" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para contener el sello digital del comprobante fiscal por parte del Proveedor de Servicios. El sello debera ser expresado como una cadena de texto en formato Base 64.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:base64Binary">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="noCertificado" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para expresar el numero de serie del certificado de sello digital que ampara al comprobante por parte del Proveedor de Servicios, de acuerdo al acuse correspondiente a 20 posiciones otorgado por el sistema del SAT.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="20" />
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TFD" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Elemento opcional para especificar los datos de Timbre Fiscal Digital (en caso de que el comprobante sea version 3)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute id="UUID" name="UUID" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para expresar los 36 caracteres del UUID de la transaccion de timbrado</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="collapse" />
+									<xs:length value="36" />
+									<xs:pattern value="[a-f0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{12}" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="FechaTimbrado" use="required">
+							<xs:annotation>
+								<xs:documentation>Atributo requerido para expresar la fecha y hora de la generacion del timbre </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:dateTime">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="noCertificadoSAT" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para expresar el numero de serie del certificado del SAT usado para el Timbre</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="collapse" />
+									<xs:length value="20" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="selloSAT" use="optional">
+							<xs:annotation>
+								<xs:documentation>Atributo opcional para contener el sello digital del Timbre Fiscal Digital, al que hacen referencia las reglas de resolucion miscelanea aplicable. El sello debera ser expresado como una cadena de texto en formato Base 64.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:base64Binary">
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Error" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							Errores detectados. Aplica en caso de Transacciones concluidas con Error
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="noIdentificacion" use="required">
+							<xs:annotation>
+								<xs:documentation>
+									Numero de Identificacion del Error
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="descripcion" use="required">
+							<xs:annotation>
+								<xs:documentation>
+									Texto que describe el Error
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1" />
+									<xs:whiteSpace value="collapse" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" fixed="3.0" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						Version de la estructura del mensaje
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fechaCreacion" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						Fecha y hora de creacion del mensaje
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="19" />
+						<xs:whiteSpace value="collapse" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
