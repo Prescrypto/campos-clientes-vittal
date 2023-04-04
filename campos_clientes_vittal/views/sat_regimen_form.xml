@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="sat_regimen_form" model="ir.ui.view">
+            <field name="name">Regimen Fiscal</field>
+            <field name="model">sat.regimen</field>
+            <field name="arch" type="xml">
+                <form string="Regimen Fiscal" create="true" edit="true">
+                    <sheet>
+                        <group>
+                            <field name="nombre_regimen"/>
+                            <field name="codigo_regimen"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

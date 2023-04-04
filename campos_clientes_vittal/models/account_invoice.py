@@ -9,7 +9,8 @@ import pytz
 from lxml import etree
 import xml.etree.ElementTree as ET
 
-import RequestCFD_v33 as api_cfdi
+#import RequestCFD_v33 as api_cfdi
+import RequestCFD_v40 as api_cfdi
 import requests
 import os
 import traceback
@@ -144,7 +145,9 @@ class Invoice(models.Model):
          'amount_untaxed': "{:10.4f}".format(self.amount_untaxed),
          'amount_tax': self.amount_tax,
          'amount_total': self.amount_total,
-         'sat_metodo_pago': self.sat_metodo_pago
+         'sat_metodo_pago': self.sat_metodo_pago,
+         'sat_regimen_id': line.partner_id.sat_regimen_id,
+         'zip': line.partner_id.zip,
          }
         _logger.info('send message to debug')
         _logger.info("self:{}".format(self))
@@ -201,7 +204,9 @@ class Invoice(models.Model):
                  'amount_untaxed': "{:10.4f}".format(line.amount_untaxed),
                  'amount_tax': line.amount_tax,
                  'amount_total': line.amount_total,
-                 'sat_metodo_pago': line.sat_metodo_pago
+                 'sat_metodo_pago': line.sat_metodo_pago,
+                 'sat_regimen_id': line.partner_id.sat_regimen_id,
+                 'zip': line.partner_id.zip,
                  }
 
                 if line.amount_tax != 0:
@@ -211,7 +216,7 @@ class Invoice(models.Model):
 
                 if CFDIRequest.get('status_flag'):
 
-                    CFDIRequest_2 = CFDIRequest.get('contents').replace('<RequestCFD>','<RequestCFD version="3.3">')
+                    CFDIRequest_2 = CFDIRequest.get('contents').replace('<RequestCFD>','<RequestCFD version="4.0">')
 
                     _logger.info("CFDIRequest: {}".format(CFDIRequest_2))
                     contents = BASE_XML.format(CFDIRequest_2)
@@ -266,19 +271,23 @@ class Invoice(models.Model):
     def CreateCFDIRequest(self,cfdi_data):
         _logger.info("*********************** Call by CreateCFDIRequest ***********************")
         status_flag = True
-        try:
-            fecha= self.action_cfdi_paremeters()
-            #Correct date and transaction id
-            utcmoment_naive = datetime.utcnow()
-            utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
-            satLocalFormat = "%Y-%m-%dT%H:%M:%S"
-            satTimeZone = 'America/Mexico_City'
-            localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
-            satDateCFDI = localDatetime.strftime(satLocalFormat)
+        fecha= self.action_cfdi_paremeters()
+        #Correct date and transaction id
+        utcmoment_naive = datetime.utcnow()
+        utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
+        satLocalFormat = "%Y-%m-%dT%H:%M:%S"
+        satTimeZone = 'America/Mexico_City'
+        localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
+        satDateCFDI = localDatetime.strftime(satLocalFormat)
+        #First create main document request
+        requestCFD = api_cfdi.RequestCFD()
+        requestCFD.set_version(version="4.0")
+        #General Invoice Data
+        #comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
+        comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion=EMISOR_LUGAR ,MetodoPago=cfdi_data['sat_metodo_pago'] ,TipoDeComprobante='I', Total=cfdi_data['amount_total'], SubTotal=cfdi_data['amount_untaxed'] ,Impuestos=cfdi_data['amount_tax'] ,Moneda='MXN', FormaPago=cfdi_data['customer_payment_id'].zfill(2), Folio=cfdi_data['invoice_folio'], Serie=cfdi_data['invoice_series'] , Fecha=satDateCFDI )
 
-            #First create main document request
-            requestCFD = api_cfdi.RequestCFD()
-            requestCFD.set_version(version="3.3")
+        try:
+
             #Second add comprobant to requestCFD nested element inside requestCFD
             #General Invoice Data
             #comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
@@ -286,7 +295,7 @@ class Invoice(models.Model):
             #Emisor Data
             emisorType = api_cfdi.EmisorType(Rfc = EMISOR_RFC, Nombre= EMISOR_NOMBRE, RegimenFiscal= EMISOR_REGIMENFISCAL)
             #Receptor Data
-            receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'])
+            receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'],DomicilioFiscalReceptor=cfdi_data['zip'],RegimenFiscalReceptor=cfdi_data['sat_regimen_id'])
             #Invoice Line Data
             conceptosType = api_cfdi.ConceptosType()
             #Invoice Taxes
@@ -324,7 +333,8 @@ class Invoice(models.Model):
             #transactionType=satTransactionID
             tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
             sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
-            receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
+            #receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
+            receptor= api_cfdi.ReceptorType18(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
             #impuestos = api_cfdi.ImpuestosType2(TotalImpuestosTrasladados=cfdi_data['amount_tax']
             #comprobanteType.set_Impuestos(impuestos)
             requestCFD.set_Comprobante(comprobanteType)
@@ -344,7 +354,7 @@ class Invoice(models.Model):
             f.close()
 
             contents_full = BASE_XML.format(contents)
-            contents_full_2 = contents_full.replace('<RequestCFD>','<RequestCFD version="3.3">')
+            contents_full_2 = contents_full.replace('<RequestCFD>','<RequestCFD version="4.0">')
             file = open(TEMPORAL_OUT_XML_OK,"w")
             file.write(contents_full_2)
             file.close()
@@ -357,7 +367,7 @@ class Invoice(models.Model):
             _logger.info("*********************** ********************************** ***********************")
             _logger.info(cfdi_data)
             _logger.info("*********************** ********************************** ***********************")
-            contents = "CreateCFDIRequest problem: {} |**************| cfdi_data: {}".format(str(e),str(cfdi_data))
+            contents = "CreateCFDIRequest problem : {} |**************| cfdi_data: {}".format(str(e),str(cfdi_data))
 
             #contents += "**************"
             #contents += "cfdi_data: {}".format(str(cfdi_data))
@@ -369,27 +379,30 @@ class Invoice(models.Model):
     def CreateCFDIRequestNoTax(self,cfdi_data):
         _logger.info("*********************** Call by CreateCFDIRequestNoTax ***********************")
         status_flag = True
-        try:
-            fecha= self.action_cfdi_paremeters()
-            #Correct date and transaction id
-            utcmoment_naive = datetime.utcnow()
-            utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
-            satLocalFormat = "%Y-%m-%dT%H:%M:%S"
-            satTimeZone = 'America/Mexico_City'
-            localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
-            satDateCFDI = localDatetime.strftime(satLocalFormat)
+        fecha= self.action_cfdi_paremeters()
+        #Correct date and transaction id
+        utcmoment_naive = datetime.utcnow()
+        utcmoment = utcmoment_naive.replace(tzinfo=pytz.utc)
+        satLocalFormat = "%Y-%m-%dT%H:%M:%S"
+        satTimeZone = 'America/Mexico_City'
+        localDatetime = utcmoment.astimezone(pytz.timezone(satTimeZone))
+        satDateCFDIs = localDatetime.strftime(satLocalFormat)
+        #satDateCFDI = localDatetime
+        satDateCFDI = datetime.strptime(satDateCFDIs,satLocalFormat)
 
-            #First create main document request
-            requestCFD = api_cfdi.RequestCFD()
-            requestCFD.set_version(version="3.3")
-            #Second add comprobant to requestCFD nested element inside requestCFD
-            #General Invoice Data
-            #comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
-            comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion=EMISOR_LUGAR ,MetodoPago=cfdi_data['sat_metodo_pago'] ,TipoDeComprobante='I', Total=cfdi_data['amount_total'], SubTotal=cfdi_data['amount_untaxed'] ,Moneda='MXN', FormaPago=cfdi_data['customer_payment_id'].zfill(2), Folio=cfdi_data['invoice_folio'], Serie=cfdi_data['invoice_series'] , Fecha=satDateCFDI )
+        #First create main document request
+        requestCFD = api_cfdi.RequestCFD()
+        requestCFD.set_version(version="4.0")
+        #Second add comprobant to requestCFD nested element inside requestCFD
+        #General Invoice Data
+        #comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion='15900' ,MetodoPago='PUE' ,TipoDeComprobante='I', Total="6000.05", SubTotal="6000.05" ,Moneda='MXN', FormaPago='03', Folio='833', Serie='VD' , Fecha="2020-06-12T10:42:02" )
+        comprobanteType = api_cfdi.ComprobanteType(LugarExpedicion=EMISOR_LUGAR ,MetodoPago=cfdi_data['sat_metodo_pago'] ,TipoDeComprobante='I', Total=cfdi_data['amount_total'], SubTotal=cfdi_data['amount_untaxed'] ,Moneda='MXN', FormaPago=cfdi_data['customer_payment_id'].zfill(2), Folio=cfdi_data['invoice_folio'], Serie=cfdi_data['invoice_series'] , Fecha=satDateCFDI )
+        try:
+
             #Emisor Data
             emisorType = api_cfdi.EmisorType(Rfc = EMISOR_RFC, Nombre= EMISOR_NOMBRE, RegimenFiscal= EMISOR_REGIMENFISCAL)
             #Receptor Data
-            receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'])
+            receptorType = api_cfdi.ReceptorType(Rfc = cfdi_data['customer_rfc'], Nombre= cfdi_data['customer_name'], UsoCFDI= cfdi_data['customer_payment_use_id'],emailReceptor=cfdi_data['customer_email'],DomicilioFiscalReceptor=cfdi_data['zip'],RegimenFiscalReceptor=cfdi_data['sat_regimen_id'])
             #Invoice Line Data
             conceptosType = api_cfdi.ConceptosType()
             #Invoice Taxes
@@ -423,11 +436,12 @@ class Invoice(models.Model):
             comprobanteType.set_Emisor(emisorType)
             comprobanteType.set_Receptor(receptorType)
             #transactionType = api_cfdi.TransaccionType(id=cfdi_data['invoice_date'])
-            transactionType = api_cfdi.TransaccionType(id=satDateCFDI+cfdi_data['invoice_series']+cfdi_data['invoice_folio'])
+            transactionType = api_cfdi.TransaccionType(id=satDateCFDIs+cfdi_data['invoice_series']+cfdi_data['invoice_folio'])
             #transactionType=satTransactionID
             tipoComprobante = api_cfdi.TipoComprobanteType(clave="Factura", nombre="Factura")
             sucursal = api_cfdi.SucursalType(nombre="MATRIZ")
-            receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
+            #receptor= api_cfdi.ReceptorType7(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
+            receptor= api_cfdi.ReceptorType18(emailReceptor=cfdi_data['customer_email']+';'+EMAIL_RECIPMENTS)
             #impuestos = api_cfdi.ImpuestosType2(TotalImpuestosTrasladados=cfdi_data['amount_tax']
             #comprobanteType.set_Impuestos(impuestos)
             requestCFD.set_Comprobante(comprobanteType)
@@ -447,7 +461,7 @@ class Invoice(models.Model):
             f.close()
 
             contents_full = BASE_XML.format(contents)
-            contents_full_2 = contents_full.replace('<RequestCFD>','<RequestCFD version="3.3">')
+            contents_full_2 = contents_full.replace('<RequestCFD>','<RequestCFD version="4.0">')
             file = open(TEMPORAL_OUT_XML_OK,"w")
             file.write(contents_full_2)
             file.close()
@@ -460,7 +474,7 @@ class Invoice(models.Model):
             _logger.info("*********************** ********************************** ***********************")
             _logger.info(cfdi_data)
             _logger.info("*********************** ********************************** ***********************")
-            contents = "CreateCFDIRequest problem: {} |**************| cfdi_data: {}".format(str(e),str(cfdi_data))
+            contents = "CreateCFDIRequestNoTax problem: {} |**************| cfdi_data: {}".format(str(e),str(cfdi_data))
 
             #contents += "**************"
             #contents += "cfdi_data: {}".format(str(cfdi_data))

@@ -15,7 +15,9 @@
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Specific Industry Applications',
-    'version': '0.36',
+
+    'version': '0.41',
+
 
     #Comentario de prueba
     

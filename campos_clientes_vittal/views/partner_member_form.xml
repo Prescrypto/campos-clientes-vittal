@@ -15,6 +15,7 @@
                             <field name="is_owner"/>
                             <field name="relationship" widget="radio" options="{'horizontal': true}"/>
                             <field name="inherit_address"/>
+                            <field name="type" widget="radio" options="{'horizontal': true}" attrs="{'required':True}"/>
                         </group>
                         <hr/>
                         <group>
